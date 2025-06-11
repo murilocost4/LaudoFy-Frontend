@@ -195,10 +195,8 @@ const CriarPaciente = () => {
             setMensagem("Download do laudo assinado iniciado");
             return;
           } catch (fetchError) {
-            console.warn('Erro no fetch direto, tentando abrir em nova aba:', fetchError);
-            window.open(url, '_blank');
-            setMensagem("Laudo assinado aberto em nova aba");
-            return;
+            console.warn('Erro no fetch do UploadCare, usando endpoint da API:', fetchError);
+            // Se falhar no UploadCare, continuar para usar endpoint da API
           }
         }
       }

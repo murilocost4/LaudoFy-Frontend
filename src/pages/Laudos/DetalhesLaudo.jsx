@@ -205,21 +205,16 @@ const DetalhesLaudo = () => {
     }
   };
 
-  // Função para download de laudo
+  // Função para download de laudo - CORRIGIDA PARA DOWNLOADS DIRETOS
   const handleDownloadLaudo = async (tipo) => {
     try {
       setIsLoading(true);
       setErro("");
 
-      // Para laudo assinado, verificar se existe arquivo
+      // Para laudo assinado, verificar se existe arquivo UploadCare legado
       if (tipo === "assinado") {
         const url = laudo.arquivoPath || laudo.laudoAssinado;
-        if (!url) {
-          throw new Error("Laudo assinado não disponível");
-        }
-
-        // Se for uma URL do UploadCare (contém ucarecdn.com)
-        if (url.includes("ucarecdn.com")) {
+        if (url && url.includes("ucarecdn.com")) {
           try {
             const response = await fetch(url);
             const blob = await response.blob();
@@ -240,25 +235,21 @@ const DetalhesLaudo = () => {
             });
             return;
           } catch (fetchError) {
-            console.warn('Erro no fetch direto, tentando abrir em nova aba:', fetchError);
-            window.open(url, '_blank');
-            setMensagem({
-              texto: "Laudo assinado aberto em nova aba",
-              tipo: "info",
-            });
-            return;
+            console.warn('Erro no fetch do UploadCare, usando endpoint da API:', fetchError);
           }
         }
       }
 
-      // Para laudo original ou se não for URL do UploadCare, usar endpoint da API
+      // Usar endpoint da API para download direto (S3 streaming)
       const endpoint = tipo === "assinado" ? "download/assinado" : "download/original";
       
       const response = await api.get(`/laudos/${laudo._id}/${endpoint}`, {
         responseType: "blob",
       });
 
-      const blobUrl = window.URL.createObjectURL(new Blob([response.data]));
+      // Criar blob e fazer download direto
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const blobUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
       link.setAttribute("download", `laudo_${tipo}_${laudo._id}.pdf`);
@@ -270,8 +261,8 @@ const DetalhesLaudo = () => {
       document.body.removeChild(link);
 
       setMensagem({
-        texto: `Download do laudo ${tipo} iniciado`,
-        tipo: "info",
+        texto: `Download do laudo ${tipo} iniciado com sucesso`,
+        tipo: "sucesso",
       });
 
     } catch (err) {
@@ -285,7 +276,7 @@ const DetalhesLaudo = () => {
       } else if (err.response?.status === 501) {
         setErro(`Funcionalidade de download ${tipo} temporariamente indisponível`);
       } else {
-        setErro(err.message || `Erro ao baixar laudo ${tipo}`);
+        setErro(err.response?.data?.erro || err.message || `Erro ao baixar laudo ${tipo}`);
       }
     } finally {
       setIsLoading(false);
@@ -770,9 +761,13 @@ const DetalhesLaudo = () => {
               </button>
             )}
 
-            {/* Botões Download - CORRIGIDOS */}
-            {/* Botão Original - Sempre disponível para laudos criados */}
-            {laudo.status !== "Rascunho" && laudo.status !== "Cancelado" && (
+            {/* Botões Download - ATUALIZADOS PARA S3 */}
+            {/* Botão Original - Disponível apenas se laudo NÃO estiver assinado */}
+            {laudo.status !== "Rascunho" && 
+             laudo.status !== "Cancelado" && 
+             laudo.status !== "Laudo assinado" &&
+             !laudo.arquivoPath && 
+             !laudo.laudoAssinado && (
               <button
                 onClick={() => handleDownloadLaudo("original")}
                 disabled={isLoading}
@@ -781,11 +776,11 @@ const DetalhesLaudo = () => {
                 }`}
               >
                 <FaFilePdf />
-                <span>Original</span>
+                <span>Download Original</span>
               </button>
             )}
 
-            {/* Botão Assinado - Com ícone de download */}
+            {/* Botão Assinado - Prioritário quando disponível */}
             {(laudo.arquivoPath || laudo.laudoAssinado) && (
               <button
                 onClick={() => handleDownloadLaudo("assinado")}
@@ -795,7 +790,7 @@ const DetalhesLaudo = () => {
                 }`}
               >
                 <FaDownload className="text-lg" />
-                <span>Download Assinado</span>
+                <span>Download Laudo</span>
               </button>
             )}
           </div>

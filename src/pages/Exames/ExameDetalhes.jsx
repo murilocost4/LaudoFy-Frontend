@@ -84,16 +84,29 @@ const ExameDetalhes = () => {
     fetchExame();
   }, [id, logout]);
 
-  const handleDownload = () => {
-    if (!exame?.arquivo) return;
+  const handleDownload = async () => {
+    if (!exame?.arquivo && !exame?.arquivoKey) return;
 
-    const link = document.createElement("a");
-    link.href = exame.arquivo;
-    link.setAttribute("target", "_blank"); // abrir em nova aba
-    link.setAttribute("download", ""); // sugere download
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // Usar endpoint de download que retorna URL pré-assinada
+      const response = await api.get(`/exames/${exame._id}/download`);
+      
+      if (response.data.downloadUrl) {
+        // Abrir em nova aba para download
+        const link = document.createElement("a");
+        link.href = response.data.downloadUrl;
+        link.setAttribute("target", "_blank");
+        link.setAttribute("download", `exame_${exame._id}.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        setErro("URL de download não disponível");
+      }
+    } catch (error) {
+      console.error("Erro ao baixar arquivo:", error);
+      setErro("Erro ao baixar arquivo. Tente novamente.");
+    }
   };
 
   const handleLaudar = () => {
@@ -238,9 +251,9 @@ const ExameDetalhes = () => {
 
             <button
               onClick={handleDownload}
-              disabled={!exame.arquivo}
+              disabled={!exame.arquivo && !exame.arquivoKey}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors shadow-sm ${
-                exame.arquivo
+                (exame.arquivo || exame.arquivoKey)
                   ? "border-slate-500 text-slate-600 hover:bg-slate-50"
                   : "border-slate-300 text-slate-400 cursor-not-allowed"
               }`}

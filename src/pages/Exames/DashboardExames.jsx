@@ -529,21 +529,33 @@ const DashboardExames = () => {
     // Download sempre disponível
     {
       label: "Download",
-      acao: (exame) => {
-        if (exame.arquivo) {
-          window.open(exame.arquivo, "_blank");
+      acao: async (exame) => {
+        if (exame.arquivo || exame.arquivoKey) {
+          try {
+            // Usar endpoint de download que retorna URL pré-assinada
+            const response = await api.get(`/exames/${exame._id}/download`);
+            
+            if (response.data.downloadUrl) {
+              window.open(response.data.downloadUrl, "_blank");
+            } else {
+              toast.error("URL de download não disponível");
+            }
+          } catch (error) {
+            console.error("Erro ao baixar arquivo:", error);
+            toast.error("Erro ao baixar arquivo. Tente novamente.");
+          }
         } else {
           toast.warning("Arquivo não disponível para download");
         }
       },
       icon: <FiDownload className="h-4 w-4" />,
       style: (exame) =>
-        exame.arquivo
+        (exame.arquivo || exame.arquivoKey)
           ? "text-green-600 hover:text-green-800 hover:bg-green-50"
           : "text-gray-400 cursor-not-allowed",
-      disabled: (exame) => !exame.arquivo,
+      disabled: (exame) => !exame.arquivo && !exame.arquivoKey,
       disabledMessage: (exame) =>
-        !exame.arquivo ? "Arquivo não disponível" : null,
+        (!exame.arquivo && !exame.arquivoKey) ? "Arquivo não disponível" : null,
       mostrar: () => true,
     },
 
