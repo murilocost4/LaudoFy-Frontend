@@ -335,54 +335,6 @@ const ExameDetalhes = () => {
                 </div>
               </div>
             </div>
-
-            {/* Thumbnail do Exame */}
-            {exame.thumbnail && (
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 flex justify-between items-center">
-                  <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                    <IoDocumentTextOutline className="text-slate-500" />
-                    Imagem do Exame
-                  </h2>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={handleDownload}
-                      className="flex items-center gap-1 px-3 py-1 text-sm bg-slate-50 text-slate-600 rounded hover:bg-slate-100 transition-colors"
-                    >
-                      <IoDownloadOutline size={14} />
-                      Baixar
-                    </button>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <div
-                    className="relative cursor-pointer group"
-                    onClick={() => setModalIsOpen(true)}
-                  >
-                    <img
-                      src={`${API_URL}/${exame.thumbnail}`}
-                      alt="Exame thumbnail"
-                      className="w-full h-auto rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-200"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src =
-                          "https://via.placeholder.com/400x300?text=Imagem+não+disponível";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-200 rounded-lg flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        <div className="bg-white bg-opacity-90 rounded-full p-3 shadow-lg">
-                          <IoDocumentTextOutline className="text-slate-700 text-xl" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-500 mt-3 text-center">
-                    Clique na imagem para visualizar em tela cheia
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Modal de Visualização Ampliada */}

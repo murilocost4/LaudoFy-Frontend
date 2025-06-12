@@ -605,7 +605,7 @@ const ConfigurarValores = () => {
 
         {/* Modal completamente modernizado seguindo padrão das outras páginas */}
         {modalOpen && medicoSelecionado && (
-          <div className="fixed inset-0 backdrop-blur-sm bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 backdrop-blur-sm backdrop-brightness-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[95vh] overflow-hidden shadow-2xl">
               {/* Header do Modal modernizado */}
               <div className="bg-gradient-to-r from-slate-50 to-slate-100 px-8 py-6 border-b border-slate-200">

@@ -621,7 +621,7 @@ const DashboardExames = () => {
     <div className="min-h-screen bg-slate-100">
       {/* Modal de Confirmação de Exclusão */}
       {mostrarModalExcluir && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 backdrop-brightness-50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md border border-slate-200">
             <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-red-50 to-red-100">
               <h3 className="text-lg font-bold text-slate-800 flex items-center">

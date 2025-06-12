@@ -71,7 +71,7 @@ const VisualizacaoPublicaLaudo = () => {
   // Modal de autenticação - deve aparecer primeiro
   if (showAuthModal) {
     return (
-      <div className="fixed inset-0 bg-transparent backdrop-blur-md z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 bg-transparent backdrop-blur-md backdrop-brightness-50 z-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-slate-200">
           <div className="px-6 py-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
             <div className="flex items-center gap-3">

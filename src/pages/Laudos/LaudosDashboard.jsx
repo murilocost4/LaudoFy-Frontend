@@ -150,12 +150,8 @@ const LaudosDashboard = () => {
 
   const opcoesStatus = [
     { value: "", label: "Todos" },
-    { value: "Rascunho", label: "Rascunho" },
-    { value: "Laudo em processamento", label: "Em processamento" },
-    { value: "Laudo realizado", label: "Realizado" },
-    { value: "Laudo assinado", label: "Assinado" },
-    { value: "Laudo refeito", label: "Refeito" },
-    { value: "Cancelado", label: "Cancelado" },
+    { value: "Laudo pronto para assinatura", label: "Laudo pronto para assinatura" },
+    { value: "Laudo assinado", label: "Laudo assinado" },
   ];
 
   // Buscar médicos para o filtro
@@ -408,16 +404,11 @@ const LaudosDashboard = () => {
       key: "status",
       render: (value) => {
         const statusCores = {
-          "Laudo em processamento": {
+          "Laudo pronto pra assinatura": {
             bg: "bg-amber-100",
             text: "text-amber-800",
           },
-          "Laudo realizado": { bg: "bg-blue-100", text: "text-blue-800" },
           "Laudo assinado": { bg: "bg-green-100", text: "text-green-800" },
-          "Erro ao gerar PDF": { bg: "bg-red-100", text: "text-red-800" },
-          Cancelado: { bg: "bg-red-100", text: "text-red-800" },
-          Rascunho: { bg: "bg-purple-100", text: "text-purple-800" },
-          "Laudo refeito": { bg: "bg-indigo-100", text: "text-indigo-800" },
         };
 
         const cores = statusCores[value] || {
@@ -561,27 +552,15 @@ const LaudosDashboard = () => {
                 isLoading={!estatisticas}
               />
               <StatCard
-                title="Em Processamento"
+                title="Prontos para Assinatura"
                 value={
                   estatisticas.laudosPorStatus?.find(
-                    (s) => s.status === "Laudo em processamento",
+                    (s) => s.status === "Laudo pronto pra assinatura",
                   )?.total || 0
                 }
                 icon={FiClock}
                 gradient="from-amber-600 to-orange-600"
-                subtitle="Aguardando finalização"
-                isLoading={!estatisticas}
-              />
-              <StatCard
-                title="Realizados"
-                value={
-                  estatisticas.laudosPorStatus?.find(
-                    (s) => s.status === "Laudo realizado",
-                  )?.total || 0
-                }
-                icon={FiActivity}
-                gradient="from-blue-600 to-indigo-600"
-                subtitle="Finalizados"
+                subtitle="Aguardando assinatura"
                 isLoading={!estatisticas}
               />
               <StatCard

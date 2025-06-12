@@ -385,10 +385,54 @@ const LaudoCard = memo(
 export default function PagamentosLaudoTenant() {
   const { usuario } = useAuth();
 
-  // Extract tenant_id properly from array if needed
-  const tenant_id = Array.isArray(usuario?.tenant_id)
-    ? (typeof usuario.tenant_id[0] === 'object' ? usuario.tenant_id[0]._id : usuario.tenant_id[0])
-    : (typeof usuario?.tenant_id === 'object' ? usuario?.tenant_id?._id : usuario?.tenant_id);
+  // Helper function to safely extract tenant_id
+  const extractTenantId = (tenantData) => {
+    console.log('DEBUG: Processing tenant_id:', tenantData, typeof tenantData);
+    
+    if (!tenantData) {
+      console.log('DEBUG: No tenant data provided');
+      return null;
+    }
+
+    // Se for array
+    if (Array.isArray(tenantData)) {
+      console.log('DEBUG: tenant_id is array, length:', tenantData.length);
+      if (tenantData.length === 0) return null;
+      
+      const firstItem = tenantData[0];
+      console.log('DEBUG: First array item:', firstItem, typeof firstItem);
+      
+      if (typeof firstItem === 'object' && firstItem !== null) {
+        const id = firstItem._id || firstItem.id;
+        if (id) {
+          return String(id);
+        }
+        // Se não encontrar _id nem id, tenta converter o objeto para string
+        console.log('DEBUG: Object without _id or id, trying to stringify:', firstItem);
+        return null; // Retorna null se não conseguir extrair um ID válido
+      }
+      return String(firstItem);
+    }
+
+    // Se for objeto
+    if (typeof tenantData === 'object' && tenantData !== null) {
+      console.log('DEBUG: tenant_id is object:', tenantData);
+      const id = tenantData._id || tenantData.id;
+      if (id) {
+        return String(id);
+      }
+      // Se não encontrar _id nem id, retorna null em vez do objeto inteiro
+      console.log('DEBUG: Object without _id or id, cannot extract tenant_id:', tenantData);
+      return null;
+    }
+
+    // Se for string ou outro tipo primitivo
+    console.log('DEBUG: tenant_id is primitive:', tenantData);
+    return String(tenantData);
+  };
+
+  // Extract tenant_id properly
+  const tenant_id = extractTenantId(usuario?.tenant_id);
 
   const [laudos, setLaudos] = useState([]);
   const [medicos, setMedicos] = useState([]);
@@ -552,31 +596,49 @@ export default function PagamentosLaudoTenant() {
   // Callback functions
   const fetchMedicos = useCallback(async () => {
     try {
+      const effectiveTenantId = extractTenantId(usuario?.tenant_id);
+      
+      if (!effectiveTenantId) {
+        console.error('No valid tenant_id found for medicos');
+        toast.error("ID da empresa não encontrado");
+        return;
+      }
+
       const response = await api.get("/usuarios/medicos", {
         params: {
-          tenant_id,
+          tenant_id: String(effectiveTenantId), // Garantir que seja string
         },
       });
       setMedicos(response.data.usuarios || []);
     } catch (err) {
+      console.error('Error in fetchMedicos:', err);
       toast.error("Erro ao carregar médicos");
     }
-  }, [tenant_id]);
+  }, [usuario?.tenant_id]);
 
   const fetchLaudos = useCallback(async () => {
     setLoading(true);
     try {
-      const effectiveTenantId = Array.isArray(usuario?.tenant_id)
-        ? (typeof usuario.tenant_id[0] === 'object' ? usuario.tenant_id[0]._id : usuario.tenant_id[0])
-        : (typeof usuario?.tenant_id === 'object' ? usuario?.tenant_id?._id : usuario?.tenant_id);
+      const effectiveTenantId = extractTenantId(usuario?.tenant_id);
+      
+      console.log('DEBUG: Effective tenant_id for API call:', effectiveTenantId);
+      
+      if (!effectiveTenantId) {
+        console.error('No valid tenant_id found');
+        toast.error("ID da empresa não encontrado");
+        setLaudos([]);
+        return;
+      }
 
       const params = new URLSearchParams({
         medicoId: filtros.medicoId || "",
         status: filtros.status || "",
         dataInicio: filtros.dataInicio || "",
         dataFim: filtros.dataFim || "",
-        tenantId: effectiveTenantId,
+        tenantId: String(effectiveTenantId), // Garantir que seja string
       });
+
+      console.log('DEBUG: API params:', params.toString());
 
       const response = await api.get(`/financeiro/laudos-medico?${params}`);
 
@@ -587,6 +649,7 @@ export default function PagamentosLaudoTenant() {
         toast.error("Formato de resposta inválido da API");
       }
     } catch (err) {
+      console.error('Error in fetchLaudos:', err);
       toast.error("Erro ao carregar laudos");
       setLaudos([]);
     } finally {
@@ -750,6 +813,13 @@ export default function PagamentosLaudoTenant() {
         subtitle: "Base de cálculo",
       },
       {
+        title: "Valor Bruto Total",
+        value: formatCurrency(stats.totalPendente + stats.totalPago),
+        icon: FiDollarSign,
+        gradient: "from-purple-600 to-purple-700",
+        subtitle: "Soma de todos os laudos",
+      },
+      {
         title: "Pendentes",
         value: stats.pendentes.toLocaleString("pt-BR"),
         icon: FiClock,
@@ -808,7 +878,7 @@ export default function PagamentosLaudoTenant() {
         </div>
 
         {/* Cards de Estatísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {statsConfig.map((stat, index) => (
             <StatCard
               key={index}
@@ -1331,10 +1401,10 @@ export default function PagamentosLaudoTenant() {
 
         {/* Modal de Pagamento - versão simplificada mantida */}
         {modalPagamento && (
-          <div className="fixed inset-0 backdrop-blur-sm bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden shadow-2xl">
-              {/* Header do Modal */}
-              <div className="px-6 py-4 border-b border-gray-200 bg-emerald-50">
+          <div className="fixed inset-0 backdrop-blur-sm backdrop-brightness-50 rounded-2xl bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl">
+              {/* Header do Modal - Fixo */}
+              <div className="px-6 py-4 border-b rounded-t-2xl border-gray-200 bg-emerald-50 flex-shrink-0">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 flex items-center justify-center">
@@ -1358,8 +1428,8 @@ export default function PagamentosLaudoTenant() {
                 </div>
               </div>
 
-              {/* Conteúdo do Modal - simplificado */}
-              <div className="p-6 space-y-6">
+              {/* Conteúdo do Modal - Com Scroll */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
                 {/* Informações do médico */}
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
                   <div className="flex items-center space-x-3">
@@ -1395,7 +1465,7 @@ export default function PagamentosLaudoTenant() {
                     <div className="bg-white rounded-lg p-4 text-center">
                       <p className="text-sm text-gray-600">Valor Bruto</p>
                       <p className="text-2xl font-bold text-green-600">
-                        {formatCurrency(formPagamento.valorTotal)}
+                        {formatCurrency(formPagamento.valorTotal || totalSelecionado)}
                       </p>
                     </div>
                   </div>
@@ -1410,7 +1480,7 @@ export default function PagamentosLaudoTenant() {
                     <input
                       type="number"
                       name="valorTotal"
-                      value={formPagamento.valorTotal || ""}
+                      value={formPagamento.valorTotal || totalSelecionado || ""}
                       readOnly
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50"
                     />
@@ -1494,8 +1564,8 @@ export default function PagamentosLaudoTenant() {
                 </div>
               </div>
 
-              {/* Footer do Modal */}
-              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+              {/* Footer do Modal - Fixo */}
+              <div className="px-6 py-4 border-t rounded-b-2xl border-gray-200 bg-gray-50 flex-shrink-0">
                 <div className="flex items-center justify-end space-x-3">
                   <button
                     onClick={() => setModalPagamento(false)}
@@ -1505,9 +1575,80 @@ export default function PagamentosLaudoTenant() {
                   </button>
                   <button
                     onClick={async () => {
-                      // Implementar handleRegistrarPagamento aqui
-                      setModalPagamento(false);
-                      toast.success("Pagamento registrado com sucesso");
+                      try {
+                        setLoading(true);
+
+                        const effectiveTenantId = extractTenantId(usuario?.tenant_id);
+                        
+                        if (!effectiveTenantId) {
+                          toast.error("ID da empresa não encontrado");
+                          return;
+                        }
+
+                        if (!selectedLaudos || selectedLaudos.length === 0) {
+                          toast.error("Nenhum laudo selecionado");
+                          return;
+                        }
+
+                        if (!medicoSelecionadoPagamento) {
+                          toast.error("Nenhum médico selecionado");
+                          return;
+                        }
+
+                        if (!formPagamento.valorFinal || formPagamento.valorFinal <= 0) {
+                          toast.error("Valor final deve ser maior que zero");
+                          return;
+                        }
+
+                        const payload = {
+                          tenantId: String(effectiveTenantId),
+                          laudoIds: selectedLaudos,
+                          valorTotal: formPagamento.valorTotal,
+                          desconto: formPagamento.desconto || 0,
+                          meioPagamento: formPagamento.meioPagamento,
+                          observacoes: formPagamento.observacoes || ""
+                        };
+
+                        console.log('DEBUG: Enviando payload para registrar pagamento:', payload);
+
+                        const response = await api.post('/financeiro/pagamentos', payload);
+
+                        if (response.data) {
+                          toast.success("Pagamento registrado com sucesso!");
+                          
+                          // Limpar seleções
+                          setSelectedLaudos([]);
+                          setMedicoSelecionadoPagamento(null);
+                          setTotalSelecionado(0);
+                          
+                          // Resetar formulário
+                          setFormPagamento({
+                            valorTotal: 0,
+                            desconto: 0,
+                            valorFinal: 0,
+                            meioPagamento: "pix",
+                            observacoes: "",
+                          });
+                          
+                          // Fechar modal
+                          setModalPagamento(false);
+                          
+                          // Recarregar laudos
+                          await fetchLaudos();
+                        }
+                      } catch (error) {
+                        console.error('Erro ao registrar pagamento:', error);
+                        
+                        if (error.response?.data?.erro) {
+                          toast.error(error.response.data.erro);
+                        } else if (error.response?.data?.laudosJaPagos) {
+                          toast.error("Alguns laudos já estão pagos. Recarregue a página.");
+                        } else {
+                          toast.error("Erro ao registrar pagamento");
+                        }
+                      } finally {
+                        setLoading(false);
+                      }
                     }}
                     disabled={loading || formPagamento.valorFinal <= 0}
                     className={`flex items-center px-6 py-2 rounded-lg font-medium transition-all ${

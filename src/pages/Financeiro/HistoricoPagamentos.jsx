@@ -141,11 +141,6 @@ const TableRow = memo(
             </div>
           </td>
           <td className="px-4 py-3 whitespace-nowrap">
-            <div className="text-sm font-semibold text-slate-900">
-              {formatCurrency(pagamento.valorTotal)}
-            </div>
-          </td>
-          <td className="px-4 py-3 whitespace-nowrap">
             {pagamento.valorDesconto > 0 ? (
               <div className="text-sm font-medium text-red-600">
                 -{formatCurrency(pagamento.valorDesconto)}
@@ -197,7 +192,7 @@ const TableRow = memo(
         </tr>
         {isExpanded && (
           <tr className="bg-slate-50">
-            <td colSpan="9" className="px-4 py-4">
+            <td colSpan="8" className="px-4 py-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
                   <h4 className="text-base font-semibold text-slate-900 mb-3 flex items-center">
@@ -400,7 +395,6 @@ export default function HistoricoPagamentos() {
   const [expandedPayment, setExpandedPayment] = useState(null);
   const [stats, setStats] = useState({
     totalPagamentos: 0,
-    valorTotal: 0,
     valorDescontos: 0,
     valorLiquido: 0,
   });
@@ -441,7 +435,7 @@ export default function HistoricoPagamentos() {
         bValue = new Date(bValue);
       }
 
-      if (sortField === "valorTotal" || sortField === "valorFinal") {
+      if (sortField === "valorFinal") {
         aValue = Number(aValue) || 0;
         bValue = Number(bValue) || 0;
       }
@@ -481,10 +475,6 @@ export default function HistoricoPagamentos() {
   // Memoized stats calculation
   const calculatedStats = useMemo(() => {
     const totalPagamentos = filteredPagamentos.length;
-    const valorTotal = filteredPagamentos.reduce(
-      (sum, p) => sum + (Number(p.valorTotal) || 0),
-      0,
-    );
     const valorDescontos = filteredPagamentos.reduce(
       (sum, p) => sum + (Number(p.valorDesconto) || 0),
       0,
@@ -496,7 +486,6 @@ export default function HistoricoPagamentos() {
 
     return {
       totalPagamentos,
-      valorTotal,
       valorDescontos,
       valorLiquido,
     };
@@ -673,7 +662,6 @@ export default function HistoricoPagamentos() {
         const pagamentosFormatados = pagamentosData.map((pagamento) => ({
           ...pagamento,
           medicoNome: pagamento.medicoId?.nome || pagamento.medicoNome || "N/A",
-          valorTotal: Number(pagamento.valorTotal) || 0,
           valorDesconto: Number(pagamento.valorDesconto) || 0,
           valorFinal: Number(pagamento.valorFinal) || 0,
           laudos: pagamento.laudos || [],
@@ -685,7 +673,6 @@ export default function HistoricoPagamentos() {
         if (resumoData) {
           setStats({
             totalPagamentos: Number(resumoData.totalPagamentos) || 0,
-            valorTotal: Number(resumoData.valorTotal) || 0,
             valorDescontos: Number(resumoData.valorDescontos) || 0,
             valorLiquido: Number(resumoData.valorLiquido) || 0,
           });
@@ -694,7 +681,6 @@ export default function HistoricoPagamentos() {
         setPagamentos([]);
         setStats({
           totalPagamentos: 0,
-          valorTotal: 0,
           valorDescontos: 0,
           valorLiquido: 0,
         });
@@ -711,7 +697,6 @@ export default function HistoricoPagamentos() {
       setPagamentos([]);
       setStats({
         totalPagamentos: 0,
-        valorTotal: 0,
         valorDescontos: 0,
         valorLiquido: 0,
       });
@@ -761,14 +746,6 @@ export default function HistoricoPagamentos() {
         gradient: "from-slate-500 to-slate-600",
         bg: "bg-slate-50",
         subtitle: "Registros encontrados",
-      },
-      {
-        title: "Valor Bruto",
-        value: formatCurrency(stats.valorTotal),
-        icon: FiTrendingUp,
-        gradient: "from-slate-500 to-slate-600",
-        bg: "bg-slate-50",
-        subtitle: "Total faturado",
       },
       {
         title: "Descontos",
@@ -1111,21 +1088,6 @@ export default function HistoricoPagamentos() {
                           <FiCalendar className="h-3 w-3" />
                           <span>Data</span>
                           {sortField === "dataPagamento" &&
-                            (sortDirection === "asc" ? (
-                              <FiChevronUp className="h-3 w-3" />
-                            ) : (
-                              <FiChevronDown className="h-3 w-3" />
-                            ))}
-                        </div>
-                      </th>
-                      <th
-                        className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
-                        onClick={() => handleSort("valorTotal")}
-                      >
-                        <div className="flex items-center space-x-1">
-                          <FiDollarSign className="h-3 w-3" />
-                          <span>Valor Bruto</span>
-                          {sortField === "valorTotal" &&
                             (sortDirection === "asc" ? (
                               <FiChevronUp className="h-3 w-3" />
                             ) : (
