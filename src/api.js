@@ -8,24 +8,33 @@ const API_BASE_URL =
 // CSRF Service
 const csrfService = {
   getToken: () => {
-    return localStorage.getItem("csrfToken"); // ← seguro e funciona em mobile
+    const token = localStorage.getItem("csrfToken");
+    console.log("CSRF Service - getToken:", token ? "Token encontrado" : "Token não encontrado");
+    return token;
   },
 
   refreshToken: async () => {
     try {
+      console.log("CSRF Service - Solicitando novo token...");
       const response = await axios.get(`${API_BASE_URL}/csrf-token`, {
         withCredentials: true,
       });
 
       const token = response.data.csrfToken;
-      localStorage.setItem("csrfToken", token); // ← armazena manualmente
+      localStorage.setItem("csrfToken", token);
+      console.log("CSRF Service - Novo token obtido e armazenado");
 
       return token;
     } catch (error) {
-      console.error("CSRF token refresh failed:", error);
+      console.error("CSRF Service - Falha ao obter token:", error);
       throw error;
     }
   },
+
+  clearToken: () => {
+    localStorage.removeItem("csrfToken");
+    console.log("CSRF Service - Token removido");
+  }
 };
 
 // Axios Instance
@@ -39,7 +48,7 @@ const api = axios.create({
 });
 
 // Request Interceptor
-api.interceptors.request.use((config) => {
+api.interceptors.request.use(async (config) => {
   // Skip CSRF for these endpoints
   const excludedEndpoints = [
     "/csrf-token",
@@ -49,6 +58,7 @@ api.interceptors.request.use((config) => {
   ];
 
   if (excludedEndpoints.some((ep) => config.url.includes(ep))) {
+    console.log(`API Request - Endpoint excluído do CSRF: ${config.method.toUpperCase()} ${config.url}`);
     return config;
   }
 
@@ -62,9 +72,25 @@ api.interceptors.request.use((config) => {
   if (
     ["post", "put", "patch", "delete"].includes(config.method.toLowerCase())
   ) {
-    const token = csrfService.getToken();
+    console.log(`API Request - Método ${config.method.toUpperCase()} requer CSRF token`);
+    let token = csrfService.getToken();
+    
+    // **SE NÃO TEM TOKEN CSRF, OBTER UM NOVO**
+    if (!token) {
+      console.log("API Request - Não há CSRF token, obtendo um novo...");
+      try {
+        token = await csrfService.refreshToken();
+        console.log("API Request - CSRF token obtido com sucesso");
+      } catch (error) {
+        console.warn("API Request - Falha ao obter CSRF token:", error);
+      }
+    }
+    
     if (token) {
       config.headers["X-CSRF-Token"] = token;
+      console.log(`API Request - CSRF token adicionado ao header: ${config.method.toUpperCase()} ${config.url}`);
+    } else {
+      console.warn(`API Request - Nenhum CSRF token disponível para: ${config.method.toUpperCase()} ${config.url}`);
     }
   }
 
@@ -77,20 +103,30 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // Handle CSRF token errors
-    if (
-      error.response?.status === 403 &&
-      error.response.data?.error === "Invalid CSRF token" &&
-      !originalRequest._retry
-    ) {
+    // Handle CSRF token errors (múltiplas variações)
+    const isCsrfError = error.response?.status === 403 && (
+      error.response.data?.error === "Invalid CSRF token" ||
+      error.response.data?.code === "EBADCSRFTOKEN" ||
+      error.response.data?.error?.includes("CSRF") ||
+      error.response.data?.message?.includes("csrf")
+    );
+
+    if (isCsrfError && !originalRequest._retry) {
       originalRequest._retry = true;
+      console.log("CSRF token inválido, tentando renovar...");
+      
       try {
+        // Limpar token antigo
+        localStorage.removeItem("csrfToken");
+        
+        // Obter novo token
         const newToken = await csrfService.refreshToken();
         originalRequest.headers["X-CSRF-Token"] = newToken;
+        
+        console.log("CSRF token renovado, reexecutando requisição...");
         return api(originalRequest);
       } catch (refreshError) {
-        console.error("Failed to refresh CSRF token:", refreshError);
-        // Don't redirect for CSRF errors, just let the request fail
+        console.error("Falha ao renovar CSRF token:", refreshError);
         return Promise.reject(error);
       }
     }

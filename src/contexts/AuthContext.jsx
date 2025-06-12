@@ -43,14 +43,46 @@ export const AuthProvider = ({ children }) => {
     setAuthState((prev) => ({ ...prev, csrfToken: token }));
   };
 
+  // **FUNÇÃO PARA GARANTIR QUE TEMOS UM CSRF TOKEN VÁLIDO**
+  const ensureCsrfToken = async () => {
+    const currentToken = localStorage.getItem("csrfToken");
+    if (currentToken) {
+      return currentToken;
+    }
+
+    try {
+      const response = await api.get("/csrf-token");
+      const newToken = response.data.csrfToken;
+      localStorage.setItem("csrfToken", newToken);
+      setAuthState((prev) => ({ ...prev, csrfToken: newToken }));
+      return newToken;
+    } catch (error) {
+      console.error("Falha ao obter CSRF token:", error);
+      throw error;
+    }
+  };
+
   // Efeito para decodificar o token ao carregar
   useEffect(() => {
     if (authState.accessToken) {
       api.defaults.headers.common["Authorization"] =
         `Bearer ${authState.accessToken}`;
       updateUserFromToken(authState.accessToken);
+      
+      // **SE NÃO TEM CSRF TOKEN, OBTER UM**
+      if (!authState.csrfToken) {
+        api.get("/csrf-token")
+          .then(response => {
+            const csrfToken = response.data.csrfToken;
+            localStorage.setItem("csrfToken", csrfToken);
+            setAuthState((prev) => ({ ...prev, csrfToken }));
+          })
+          .catch(error => {
+            console.warn("Falha ao obter CSRF token no carregamento:", error);
+          });
+      }
     }
-  }, [authState.accessToken, authState.csrfToken]);
+  }, [authState.accessToken]);
 
   // Função de login: armazena ambos os tokens
   const login = async (accessToken, refreshToken) => {
@@ -70,6 +102,16 @@ export const AuthProvider = ({ children }) => {
       permissaoFinanceiro: false,
     }));
     updateUserFromToken(accessToken);
+
+    // **OBTER CSRF TOKEN AUTOMATICAMENTE APÓS LOGIN**
+    try {
+      const csrfResponse = await api.get("/csrf-token");
+      const csrfToken = csrfResponse.data.csrfToken;
+      localStorage.setItem("csrfToken", csrfToken);
+      setAuthState((prev) => ({ ...prev, csrfToken }));
+    } catch (error) {
+      console.warn("Falha ao obter CSRF token após login:", error);
+    }
 
     // Redirect based on role
     const decoded = jwtDecode(accessToken);
@@ -114,6 +156,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         ...authState,
         setCsrfToken,
+        ensureCsrfToken,
         login,
         logout,
         isAuthenticated,
