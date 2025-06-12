@@ -18,8 +18,8 @@ const TableRow = memo(
     const rowClass = customRowClass ? customRowClass(item) : "";
     const defaultRowClass =
       index % 2 === 0
-        ? "bg-white hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100"
-        : "bg-slate-50/50 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100";
+        ? "bg-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
+        : "bg-gray-50/50 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100";
 
     return (
       <tr
@@ -31,7 +31,7 @@ const TableRow = memo(
             className={`px-6 py-5 whitespace-nowrap ${coluna.className || ""}`}
           >
             <div
-              className={`text-sm font-medium ${coluna.textColor || "text-slate-700"}`}
+              className={`text-sm font-medium ${coluna.textColor || "text-gray-700"}`}
             >
               {renderCellContent(item, coluna)}
             </div>
@@ -94,8 +94,8 @@ const ActionButton = memo(
       if (isDisabled) {
         return {
           buttonClass:
-            "bg-slate-100/80 text-slate-400 cursor-not-allowed border border-slate-200/60",
-          iconClass: "text-slate-400",
+            "bg-gray-100/80 text-gray-400 cursor-not-allowed border border-gray-200/60",
+          iconClass: "text-gray-400",
           hoverClass: "",
         };
       }
@@ -103,8 +103,8 @@ const ActionButton = memo(
       if (style.includes("blue") || style.includes("slate")) {
         return {
           buttonClass:
-            "bg-gradient-to-br from-slate-50 to-slate-100/70 text-slate-600 border border-slate-200/60 hover:from-slate-100 hover:to-slate-200/80 hover:border-slate-300/80 hover:shadow-lg hover:shadow-slate-500/25 active:scale-95",
-          iconClass: "text-slate-600 group-hover:text-slate-700",
+            "bg-gradient-to-br from-blue-50 to-blue-100/70 text-blue-600 border border-blue-200/60 hover:from-blue-100 hover:to-blue-200/80 hover:border-blue-300/80 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95",
+          iconClass: "text-blue-600 group-hover:text-blue-700",
           hoverClass: "hover:-translate-y-0.5",
         };
       }
@@ -135,8 +135,8 @@ const ActionButton = memo(
 
       return {
         buttonClass:
-          "bg-gradient-to-br from-slate-50 to-slate-100/70 text-slate-600 border border-slate-200/60 hover:from-slate-100 hover:to-slate-200/80 hover:border-slate-300/80 hover:shadow-lg hover:shadow-slate-500/25 active:scale-95",
-        iconClass: "text-slate-600 group-hover:text-slate-700",
+          "bg-gradient-to-br from-blue-50 to-blue-100/70 text-blue-600 border border-blue-200/60 hover:from-blue-100 hover:to-blue-200/80 hover:border-blue-300/80 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95",
+        iconClass: "text-blue-600 group-hover:text-blue-700",
         hoverClass: "hover:-translate-y-0.5",
       };
     };
@@ -183,19 +183,19 @@ const ActionButton = memo(
 
           {/* Indicador de disabled melhorado */}
           {isDisabled && (
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-slate-400 to-slate-500 rounded-full flex items-center justify-center shadow-sm">
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-sm">
               <div className="w-1.5 h-1.5 bg-white rounded-full" />
             </div>
           )}
         </button>
 
         {/* Tooltip moderno com animação suave */}
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-3 py-2 text-xs font-medium text-white bg-gradient-to-r from-slate-900 to-slate-800 backdrop-blur-sm rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:-translate-y-1 transition-all duration-300 ease-out whitespace-nowrap z-50 pointer-events-none shadow-xl border border-slate-700/30">
+        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-3 py-2 text-xs font-medium text-white bg-gradient-to-r from-gray-900 to-gray-800 backdrop-blur-sm rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:-translate-y-1 transition-all duration-300 ease-out whitespace-nowrap z-50 pointer-events-none shadow-xl border border-gray-700/30">
           {isDisabled && disabledMessage ? disabledMessage : acao.label}
 
           {/* Seta do tooltip com gradiente */}
           <div className="absolute top-full left-1/2 transform -translate-x-1/2">
-            <div className="border-4 border-transparent border-t-slate-800" />
+            <div className="border-4 border-transparent border-t-gray-800" />
           </div>
 
           {/* Efeito de brilho no tooltip */}
@@ -295,20 +295,20 @@ const Tabela = ({
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-sm shadow-xl">
-      <table className="w-full divide-y divide-slate-200">
+    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white/95 backdrop-blur-sm shadow-lg">
+      <table className="w-full divide-y divide-gray-200">
         {/* Cabeçalho moderno com efeito de vidro */}
-        <thead className="bg-gradient-to-r from-slate-50 to-slate-100 backdrop-blur-sm">
+        <thead className="bg-gradient-to-r from-gray-50 to-gray-100 backdrop-blur-sm">
           <tr>
             {colunas.map((coluna, index) => (
               <th
                 key={index}
-                className="px-6 py-6 text-left text-xs font-bold text-slate-700 uppercase tracking-wider"
+                className="px-6 py-6 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
               >
                 <div className="flex items-center space-x-2">
-                  <span className="text-slate-800">{coluna.header}</span>
+                  <span className="text-gray-900">{coluna.header}</span>
                   {coluna.sortable && (
-                    <button className="ml-2 text-slate-400 hover:text-slate-600 transition-colors duration-200 p-1 rounded-lg hover:bg-white/50">
+                    <button className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1 rounded-lg hover:bg-white/50">
                       <svg
                         className="w-3 h-3"
                         fill="none"
@@ -328,15 +328,15 @@ const Tabela = ({
               </th>
             ))}
             {acoes && acoes.length > 0 && (
-              <th className="px-6 py-6 text-right text-xs font-bold text-slate-700 uppercase tracking-wider">
-                <span className="text-slate-800">Ações</span>
+              <th className="px-6 py-6 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <span className="text-gray-900">Ações</span>
               </th>
             )}
           </tr>
         </thead>
 
         {/* Corpo da tabela com linhas zebradas e hover suave */}
-        <tbody className="divide-y divide-slate-200 bg-white">
+        <tbody className="divide-y divide-gray-200 bg-white">
           {dados.length > 0 ? (
             dados.map((item, index) => (
               <TableRow
@@ -386,21 +386,21 @@ const Tabela = ({
 
       {/* Rodapé moderno com gradiente sutil */}
       {dados.length > 0 && (
-        <div className="px-6 py-4 bg-gradient-to-r from-slate-50 to-slate-100 border-t border-slate-200 flex items-center justify-between">
-          <div className="text-sm text-slate-600 font-medium">
+        <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200 flex items-center justify-between">
+          <div className="text-sm text-gray-600 font-medium">
             Mostrando{" "}
-            <span className="font-semibold text-slate-800">
+            <span className="font-semibold text-gray-900">
               1-{dados.length}
             </span>{" "}
             de{" "}
-            <span className="font-semibold text-slate-800">{dados.length}</span>{" "}
+            <span className="font-semibold text-gray-900">{dados.length}</span>{" "}
             resultados
           </div>
           <div className="flex space-x-2">
-            <button className="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-white/70 disabled:opacity-50 transition-all duration-200 border border-slate-200">
+            <button className="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-white/70 disabled:opacity-50 transition-all duration-200 border border-gray-200">
               Anterior
             </button>
-            <button className="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-white/70 disabled:opacity-50 transition-all duration-200 border border-slate-200">
+            <button className="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-white/70 disabled:opacity-50 transition-all duration-200 border border-gray-200">
               Próximo
             </button>
           </div>

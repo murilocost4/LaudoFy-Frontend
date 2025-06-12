@@ -176,41 +176,41 @@ const GerenciarCertificados = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-600 mx-auto mb-4"></div>
-          <p className="text-slate-600">Carregando certificados...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Carregando certificados...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6"
+          className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6"
         >
           <div className="flex justify-between items-start">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-slate-100 rounded-lg">
-                  <FaCertificate className="w-6 h-6 text-slate-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <FaCertificate className="w-6 h-6 text-blue-600" />
                 </div>
-                <h1 className="text-3xl font-bold text-slate-800">
+                <h1 className="text-3xl font-bold text-gray-800">
                   Certificados Digitais
                 </h1>
               </div>
-              <p className="text-slate-600">
+              <p className="text-gray-600">
                 Gerencie seus certificados digitais para assinatura de laudos
               </p>
             </div>
             <button
               onClick={() => setShowUploadModal(true)}
-              className="flex items-center gap-2 bg-slate-600 hover:bg-slate-700 text-white px-6 py-3 rounded-lg transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors shadow-sm"
             >
               <FaUpload className="w-4 h-4" />
               Novo Certificado
@@ -226,22 +226,22 @@ const GerenciarCertificados = () => {
             transition={{ delay: 0.1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Total de Certificados</p>
-                  <p className="text-2xl font-bold text-slate-800">{estatisticas.totalCertificados}</p>
+                  <p className="text-sm text-gray-600">Total de Certificados</p>
+                  <p className="text-2xl font-bold text-gray-800">{estatisticas.totalCertificados}</p>
                 </div>
-                <div className="p-3 bg-slate-100 rounded-lg">
-                  <FaCertificate className="w-6 h-6 text-slate-600" />
+                <div className="p-3 bg-gray-100 rounded-lg">
+                  <FaCertificate className="w-6 h-6 text-gray-600" />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Certificados Ativos</p>
+                  <p className="text-sm text-gray-600">Certificados Ativos</p>
                   <p className="text-2xl font-bold text-green-600">{estatisticas.certificadosAtivos}</p>
                 </div>
                 <div className="p-3 bg-green-100 rounded-lg">
@@ -250,10 +250,10 @@ const GerenciarCertificados = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Total de Assinaturas</p>
+                  <p className="text-sm text-gray-600">Total de Assinaturas</p>
                   <p className="text-2xl font-bold text-blue-600">{estatisticas.totalAssinaturas}</p>
                 </div>
                 <div className="p-3 bg-blue-100 rounded-lg">
@@ -262,10 +262,10 @@ const GerenciarCertificados = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600">Próximos ao Vencimento</p>
+                  <p className="text-sm text-gray-600">Próximos ao Vencimento</p>
                   <p className="text-2xl font-bold text-yellow-600">{estatisticas.proximosVencimento}</p>
                 </div>
                 <div className="p-3 bg-yellow-100 rounded-lg">
@@ -305,22 +305,22 @@ const GerenciarCertificados = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden"
+          className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
         >
-          <div className="p-6 border-b border-slate-200">
-            <h2 className="text-xl font-semibold text-slate-800">Meus Certificados</h2>
+          <div className="p-6 border-b border-gray-200">
+            <h2 className="text-xl font-semibold text-gray-800">Meus Certificados</h2>
           </div>
 
           {certificados.length === 0 ? (
             <div className="p-12 text-center">
-              <div className="p-4 bg-slate-100 rounded-full inline-block mb-4">
-                <FaCertificate className="w-8 h-8 text-slate-400" />
+              <div className="p-4 bg-gray-100 rounded-full inline-block mb-4">
+                <FaCertificate className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-lg font-medium text-slate-600 mb-2">Nenhum certificado cadastrado</h3>
-              <p className="text-slate-500 mb-6">Cadastre seu primeiro certificado digital para começar a assinar laudos</p>
+              <h3 className="text-lg font-medium text-gray-600 mb-2">Nenhum certificado cadastrado</h3>
+              <p className="text-gray-500 mb-6">Cadastre seu primeiro certificado digital para começar a assinar laudos</p>
               <button
                 onClick={() => setShowUploadModal(true)}
-                className="bg-slate-600 hover:bg-slate-700 text-white px-6 py-3 rounded-lg transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
               >
                 Cadastrar Certificado
               </button>
@@ -328,36 +328,36 @@ const GerenciarCertificados = () => {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-slate-50">
+                <thead className="bg-gray-50">
                   <tr>
-                    <th className="text-left p-4 text-sm font-medium text-slate-600">Certificado</th>
-                    <th className="text-left p-4 text-sm font-medium text-slate-600">Emissor</th>
-                    <th className="text-left p-4 text-sm font-medium text-slate-600">Vencimento</th>
-                    <th className="text-left p-4 text-sm font-medium text-slate-600">Status</th>
-                    <th className="text-left p-4 text-sm font-medium text-slate-600">Assinaturas</th>
-                    <th className="text-right p-4 text-sm font-medium text-slate-600">Ações</th>
+                    <th className="text-left p-4 text-sm font-medium text-gray-600">Certificado</th>
+                    <th className="text-left p-4 text-sm font-medium text-gray-600">Emissor</th>
+                    <th className="text-left p-4 text-sm font-medium text-gray-600">Vencimento</th>
+                    <th className="text-left p-4 text-sm font-medium text-gray-600">Status</th>
+                    <th className="text-left p-4 text-sm font-medium text-gray-600">Assinaturas</th>
+                    <th className="text-right p-4 text-sm font-medium text-gray-600">Ações</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody className="divide-y divide-gray-200">
                   {certificados.map((cert) => (
-                    <tr key={cert.id} className="hover:bg-slate-50">
+                    <tr key={cert.id} className="hover:bg-gray-50">
                       <td className="p-4">
                         <div>
-                          <div className="font-medium text-slate-800">{cert.nomeCertificado}</div>
-                          <div className="text-sm text-slate-500">
+                          <div className="font-medium text-gray-800">{cert.nomeCertificado}</div>
+                          <div className="text-sm text-gray-500">
                             Cadastrado em {formatarData(cert.createdAt)}
                           </div>
                         </div>
                       </td>
                       <td className="p-4">
-                        <span className="text-sm text-slate-600">{cert.emissor}</span>
+                        <span className="text-sm text-gray-600">{cert.emissor}</span>
                       </td>
                       <td className="p-4">
                         <div>
-                          <div className="text-sm text-slate-800">{formatarData(cert.dataVencimento)}</div>
+                          <div className="text-sm text-gray-800">{formatarData(cert.dataVencimento)}</div>
                           <div className={`text-xs ${
                             cert.diasVencimento <= 30 ? 'text-red-600' : 
-                            cert.diasVencimento <= 90 ? 'text-yellow-600' : 'text-slate-500'
+                            cert.diasVencimento <= 90 ? 'text-yellow-600' : 'text-gray-500'
                           }`}>
                             {cert.diasVencimento > 0 ? `${cert.diasVencimento} dias` : 'Vencido'}
                           </div>
@@ -367,13 +367,13 @@ const GerenciarCertificados = () => {
                         {getStatusBadge(cert.status)}
                       </td>
                       <td className="p-4">
-                        <span className="text-sm text-slate-600">{cert.totalAssinaturas}</span>
+                        <span className="text-sm text-gray-600">{cert.totalAssinaturas}</span>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleVerDetalhes(cert.id)}
-                            className="p-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+                            className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                             title="Ver detalhes"
                           >
                             <FaEye className="w-4 h-4" />
@@ -427,15 +427,15 @@ const GerenciarCertificados = () => {
               className="bg-white rounded-2xl p-6 w-full max-w-md"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-slate-100 rounded-lg">
-                  <FaUpload className="w-5 h-5 text-slate-600" />
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <FaUpload className="w-5 h-5 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800">Novo Certificado</h3>
+                <h3 className="text-xl font-semibold text-gray-800">Novo Certificado</h3>
               </div>
 
               <form onSubmit={handleUploadCertificado} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Arquivo do Certificado (.pfx ou .p12)
                   </label>
                   <div className="relative">
@@ -443,28 +443,28 @@ const GerenciarCertificados = () => {
                       type="file"
                       accept=".pfx,.p12"
                       onChange={(e) => setArquivo(e.target.files[0])}
-                      className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   {arquivo && (
-                    <div className="mt-2 text-sm text-slate-600">
+                    <div className="mt-2 text-sm text-gray-600">
                       Arquivo selecionado: {arquivo.name}
                     </div>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Senha do Certificado
                   </label>
                   <div className="relative">
-                    <FaKey className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                    <FaKey className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
                       type="password"
                       value={senha}
                       onChange={(e) => setSenha(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Digite a senha do certificado"
                       required
                     />
@@ -494,14 +494,14 @@ const GerenciarCertificados = () => {
                       setArquivo(null);
                       setSenha('');
                     }}
-                    className="flex-1 px-4 py-2 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+                    className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     disabled={uploading || !arquivo || !senha}
-                    className="flex-1 px-4 py-2 bg-slate-600 hover:bg-slate-700 disabled:bg-slate-400 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
                   >
                     {uploading ? (
                       <>
@@ -539,14 +539,14 @@ const GerenciarCertificados = () => {
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-100 rounded-lg">
-                    <FaCertificate className="w-5 h-5 text-slate-600" />
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <FaCertificate className="w-5 h-5 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-slate-800">Detalhes do Certificado</h3>
+                  <h3 className="text-xl font-semibold text-gray-800">Detalhes do Certificado</h3>
                 </div>
                 <button
                   onClick={() => setShowDetailsModal(false)}
-                  className="p-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+                  className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <FaTimes className="w-5 h-5" />
                 </button>
@@ -554,45 +554,45 @@ const GerenciarCertificados = () => {
 
               <div className="space-y-6">
                 {/* Status */}
-                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
-                  <span className="font-medium text-slate-700">Status:</span>
+                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <span className="font-medium text-gray-700">Status:</span>
                   {getStatusBadge(selectedCertificado.status)}
                 </div>
 
                 {/* Informações básicas */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Nome do Certificado</label>
-                    <p className="text-slate-800">{selectedCertificado.nomeCertificado}</p>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Nome do Certificado</label>
+                    <p className="text-gray-800">{selectedCertificado.nomeCertificado}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Emissor</label>
-                    <p className="text-slate-800">{selectedCertificado.emissor}</p>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Emissor</label>
+                    <p className="text-gray-800">{selectedCertificado.emissor}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Número de Série</label>
-                    <p className="text-slate-800 font-mono text-sm">{selectedCertificado.numeroSerie}</p>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Número de Série</label>
+                    <p className="text-gray-800 font-mono text-sm">{selectedCertificado.numeroSerie}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Algoritmo</label>
-                    <p className="text-slate-800">{selectedCertificado.algoritmoAssinatura}</p>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Algoritmo</label>
+                    <p className="text-gray-800">{selectedCertificado.algoritmoAssinatura}</p>
                   </div>
                 </div>
 
                 {/* Datas */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Data de Emissão</label>
-                    <p className="text-slate-800">{formatarData(selectedCertificado.dataEmissao)}</p>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Data de Emissão</label>
+                    <p className="text-gray-800">{formatarData(selectedCertificado.dataEmissao)}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Data de Vencimento</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Data de Vencimento</label>
                     <p className={`font-medium ${
                       selectedCertificado.diasVencimento <= 30 ? 'text-red-600' : 
-                      selectedCertificado.diasVencimento <= 90 ? 'text-yellow-600' : 'text-slate-800'
+                      selectedCertificado.diasVencimento <= 90 ? 'text-yellow-600' : 'text-gray-800'
                     }`}>
                       {formatarData(selectedCertificado.dataVencimento)}
-                      <span className="text-sm text-slate-500 ml-2">
+                      <span className="text-sm text-gray-500 ml-2">
                         ({selectedCertificado.diasVencimento > 0 ? `${selectedCertificado.diasVencimento} dias` : 'Vencido'})
                       </span>
                     </p>
@@ -618,26 +618,26 @@ const GerenciarCertificados = () => {
                 </div>
 
                 {/* Informações técnicas */}
-                <div className="border-t border-slate-200 pt-4">
-                  <h4 className="font-medium text-slate-700 mb-3">Informações Técnicas</h4>
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="font-medium text-gray-700 mb-3">Informações Técnicas</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-slate-600">Cadastrado em:</span>
-                      <span className="ml-2 text-slate-800">{formatarData(selectedCertificado.createdAt)}</span>
+                      <span className="text-gray-600">Cadastrado em:</span>
+                      <span className="ml-2 text-gray-800">{formatarData(selectedCertificado.createdAt)}</span>
                     </div>
                     <div>
-                      <span className="text-slate-600">Última atualização:</span>
-                      <span className="ml-2 text-slate-800">{formatarData(selectedCertificado.updatedAt)}</span>
+                      <span className="text-gray-600">Última atualização:</span>
+                      <span className="ml-2 text-gray-800">{formatarData(selectedCertificado.updatedAt)}</span>
                     </div>
                     <div>
-                      <span className="text-slate-600">Validado:</span>
-                      <span className="ml-2 text-slate-800">
+                      <span className="text-gray-600">Validado:</span>
+                      <span className="ml-2 text-gray-800">
                         {selectedCertificado.validado ? 'Sim' : 'Não'}
                       </span>
                     </div>
                     <div>
-                      <span className="text-slate-600">Ativo:</span>
-                      <span className="ml-2 text-slate-800">
+                      <span className="text-gray-600">Ativo:</span>
+                      <span className="ml-2 text-gray-800">
                         {selectedCertificado.ativo ? 'Sim' : 'Não'}
                       </span>
                     </div>
@@ -645,10 +645,10 @@ const GerenciarCertificados = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end pt-6 border-t border-slate-200 mt-6">
+              <div className="flex justify-end pt-6 border-t border-gray-200 mt-6">
                 <button
                   onClick={() => setShowDetailsModal(false)}
-                  className="px-6 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg transition-colors"
+                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
                 >
                   Fechar
                 </button>

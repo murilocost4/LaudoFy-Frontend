@@ -42,8 +42,8 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-500 border-t-transparent"></div>
-    <p className="text-slate-600 text-lg font-medium mt-4">
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+    <p className="text-gray-600 text-lg font-medium mt-4">
       Carregando usuários...
     </p>
   </div>
@@ -78,12 +78,12 @@ const StatCard = memo(
 
     return (
       <div
-        className={`bg-white rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200 ${color}`}
+        className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200 ${color}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-xs font-semibold text-slate-600 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-slate-900 mb-1">{value}</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{title}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{value}</p>
             <div className="flex items-center space-x-1">
               {trend && (
                 <div
@@ -100,7 +100,7 @@ const StatCard = memo(
                   </div>
                 </div>
               )}
-              <span className="text-xs text-slate-500">{subtitle}</span>
+              <span className="text-xs text-gray-500">{subtitle}</span>
             </div>
           </div>
           <div
@@ -306,10 +306,10 @@ const ListaUsuarios = () => {
         key: "nome",
         render: (value, row) => (
           <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center mr-3">
-              <FiUser className="text-slate-600 h-4 w-4" />
+            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+              <FiUser className="text-gray-600 h-4 w-4" />
             </div>
-            <span className="font-medium text-slate-800">
+            <span className="font-medium text-gray-800">
               {value || "Não informado"}
             </span>
           </div>
@@ -319,7 +319,7 @@ const ListaUsuarios = () => {
         header: "Email",
         key: "email",
         render: (value) => (
-          <span className="text-slate-700">{value || "—"}</span>
+          <span className="text-gray-700">{value || "—"}</span>
         ),
       },
       {
@@ -359,11 +359,11 @@ const ListaUsuarios = () => {
         key: "createdAt",
         render: (value) => (
           <div>
-            <p className="text-slate-800 font-medium">
+            <p className="text-gray-800 font-medium">
               {value ? new Date(value).toLocaleDateString("pt-BR") : "—"}
             </p>
             {value && (
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-gray-500">
                 {new Date(value).toLocaleTimeString("pt-BR", {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -383,7 +383,7 @@ const ListaUsuarios = () => {
         label: "Editar",
         acao: (usuario) => navigate(`/usuarios/editar/${usuario._id}`),
         icon: <FiEdit className="h-4 w-4" />,
-        style: "text-slate-600 hover:text-slate-800 hover:bg-slate-50",
+        style: "text-blue-600 hover:text-blue-800 hover:bg-blue-50",
       },
       {
         label: "Excluir",
@@ -409,7 +409,7 @@ const ListaUsuarios = () => {
         title: "Total de Usuários",
         value: estatisticas.totalUsuarios?.toLocaleString("pt-BR") || "0",
         icon: FiDatabase,
-        gradient: "from-slate-600 to-slate-800",
+        gradient: "from-blue-600 to-blue-800",
         subtitle: "Usuários cadastrados",
       },
       {
@@ -430,20 +430,20 @@ const ListaUsuarios = () => {
   }, [estatisticas]);
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Cabeçalho e controles integrados ao fundo da página */}
       <div className="px-6 py-6">
         <div className="flex flex-col gap-6">
           {/* Título e botões de ação */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-slate-800 flex items-center">
-                <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl mr-3 shadow-lg">
+              <h1 className="text-2xl font-bold text-gray-800 flex items-center">
+                <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl mr-3 shadow-lg">
                   <FiUser className="text-white h-5 w-5" />
                 </div>
                 Usuários
               </h1>
-              <p className="text-sm text-slate-600 mt-2 ml-14">
+              <p className="text-sm text-gray-600 mt-2 ml-14">
                 {totalItens > 0
                   ? `${totalItens} usuários encontrados`
                   : "Gerencie e visualize todos os usuários"}
@@ -453,7 +453,7 @@ const ListaUsuarios = () => {
             <div className="flex gap-3">
               <button
                 onClick={fetchUsuarios}
-                className="flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-all duration-200 shadow-sm text-sm font-medium"
+                className="flex items-center justify-center px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-200 shadow-sm text-sm font-medium"
               >
                 <FiRefreshCw className="mr-2 h-4 w-4" />
                 <span>Atualizar</span>
@@ -463,8 +463,8 @@ const ListaUsuarios = () => {
                 onClick={() => setMostrarFiltros(!mostrarFiltros)}
                 className={`flex items-center justify-center px-6 py-3 rounded-xl border font-medium transition-all duration-200 shadow-sm text-sm ${
                   mostrarFiltros
-                    ? "bg-gradient-to-r from-slate-600 to-slate-800 text-white border-slate-600"
-                    : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-800 text-white border-blue-600"
+                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <FiFilter className="mr-2 h-4 w-4" />
@@ -475,7 +475,7 @@ const ListaUsuarios = () => {
               {usuario?.role === "admin" && (
                 <button
                   onClick={() => navigate("/usuarios/novo")}
-                  className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-xl hover:from-slate-700 hover:to-slate-900 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-sm"
+                  className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl hover:from-blue-700 hover:to-blue-900 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-sm"
                 >
                   <FiPlus className="mr-2 h-4 w-4" />
                   <span>Novo Usuário</span>
@@ -497,25 +497,25 @@ const ListaUsuarios = () => {
 
       {/* Container principal */}
       <div className="px-6">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
           {/* Filtros avançados */}
           {mostrarFiltros && (
-            <div className="px-6 py-6 bg-slate-50 border-b border-slate-200">
+            <div className="px-6 py-6 bg-gray-50 border-b border-gray-200">
               <div>
-                <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                  <FiFilter className="text-slate-600 mr-2" />
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                  <FiFilter className="text-gray-600 mr-2" />
                   Filtros Avançados
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {/* Nome */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Nome
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <FiSearch className="text-slate-400" />
+                        <FiSearch className="text-gray-400" />
                       </div>
                       <input
                         type="text"
@@ -523,14 +523,14 @@ const ListaUsuarios = () => {
                         value={filtros.nome}
                         onChange={handleFiltroChange}
                         placeholder="Buscar por nome..."
-                        className="block w-full pl-10 pr-3 py-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors"
+                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email
                     </label>
                     <input
@@ -539,13 +539,13 @@ const ListaUsuarios = () => {
                       value={filtros.email}
                       onChange={handleFiltroChange}
                       placeholder="Buscar por email..."
-                      className="block w-full px-3 py-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors"
+                      className="block w-full px-3 py-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     />
                   </div>
 
                   {/* Função */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Função
                     </label>
                     <div className="relative">
@@ -553,7 +553,7 @@ const ListaUsuarios = () => {
                         name="role"
                         value={filtros.role}
                         onChange={handleFiltroChange}
-                        className="block w-full pl-3 pr-8 py-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 appearance-none transition-colors"
+                        className="block w-full pl-3 pr-8 py-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none transition-colors"
                       >
                         {opcoesRole.map((opcao) => (
                           <option key={opcao.value} value={opcao.value}>
@@ -562,39 +562,39 @@ const ListaUsuarios = () => {
                         ))}
                       </select>
                       <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                        <FiChevronDown className="text-slate-400" />
+                        <FiChevronDown className="text-gray-400" />
                       </div>
                     </div>
                   </div>
 
                   {/* Período */}
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Período de cadastro
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FiCalendar className="text-slate-400" />
+                          <FiCalendar className="text-gray-400" />
                         </div>
                         <InputDataBrasileira
                           name="dataInicio"
                           value={filtros.dataInicio}
                           onChange={handleFiltroChange}
                           placeholder="dd/mm/aaaa"
-                          className="block w-full pl-10 pr-3 py-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors"
+                          className="block w-full pl-10 pr-3 py-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                         />
                       </div>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FiCalendar className="text-slate-400" />
+                          <FiCalendar className="text-gray-400" />
                         </div>
                         <InputDataBrasileira
                           name="dataFim"
                           value={filtros.dataFim}
                           onChange={handleFiltroChange}
                           placeholder="dd/mm/aaaa"
-                          className="block w-full pl-10 pr-3 py-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-colors"
+                          className="block w-full pl-10 pr-3 py-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                         />
                       </div>
                     </div>
@@ -604,13 +604,13 @@ const ListaUsuarios = () => {
                 <div className="flex justify-end mt-6 gap-3">
                   <button
                     onClick={limparFiltros}
-                    className="px-6 py-3 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 focus:ring-2 focus:ring-slate-500 transition-colors"
+                    className="px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 transition-colors"
                   >
                     Limpar Filtros
                   </button>
                   <button
                     onClick={aplicarFiltros}
-                    className="px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl hover:from-slate-700 hover:to-slate-900 focus:ring-2 focus:ring-slate-500 shadow-sm transition-all duration-200"
+                    className="px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl hover:from-blue-700 hover:to-blue-900 focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
                   >
                     Aplicar Filtros
                   </button>
@@ -674,11 +674,11 @@ const ListaUsuarios = () => {
                 acoes={acoes}
                 mensagemSemDados={
                   <div className="text-center py-16">
-                    <FiUser className="mx-auto text-slate-300 text-5xl mb-4" />
-                    <h3 className="text-lg font-semibold text-slate-500 mb-2">
+                    <FiUser className="mx-auto text-gray-300 text-5xl mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-500 mb-2">
                       Nenhum usuário encontrado
                     </h3>
-                    <p className="text-slate-400">
+                    <p className="text-gray-400">
                       Tente ajustar seus filtros de busca ou cadastre um novo
                       usuário
                     </p>
@@ -690,9 +690,9 @@ const ListaUsuarios = () => {
 
           {/* Paginação */}
           {totalPaginas > 1 && (
-            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+            <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-sm text-slate-600 font-medium">
+                <p className="text-sm text-gray-600 font-medium">
                   Exibindo página {paginaAtual} de {totalPaginas} • {totalItens}{" "}
                   registros
                 </p>
@@ -703,8 +703,8 @@ const ListaUsuarios = () => {
                     disabled={paginaAtual === 1 || isLoading}
                     className={`px-4 py-2 rounded-lg border font-medium text-sm transition-colors ${
                       paginaAtual === 1 || isLoading
-                        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-                        : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-400"
+                        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
                     }`}
                   >
                     Anterior
@@ -727,8 +727,8 @@ const ListaUsuarios = () => {
                         disabled={isLoading}
                         className={`px-4 py-2 rounded-lg border font-medium text-sm transition-colors ${
                           paginaAtual === pageNum
-                            ? "bg-gradient-to-r from-slate-600 to-slate-800 text-white border-slate-600 shadow-lg"
-                            : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-400"
+                            ? "bg-gradient-to-r from-blue-600 to-blue-800 text-white border-blue-600 shadow-lg"
+                            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
                         } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                       >
                         {pageNum}
@@ -741,8 +741,8 @@ const ListaUsuarios = () => {
                     disabled={paginaAtual === totalPaginas || isLoading}
                     className={`px-4 py-2 rounded-lg border font-medium text-sm transition-colors ${
                       paginaAtual === totalPaginas || isLoading
-                        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-                        : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-400"
+                        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
                     }`}
                   >
                     Próxima
@@ -758,22 +758,22 @@ const ListaUsuarios = () => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm backdrop-brightness-50 bg-opacity-50 z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-200">
-              <h2 className="text-xl font-bold text-slate-800">
+            <div className="px-6 py-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-800">
                 Confirmar Exclusão
               </h2>
             </div>
 
             <div className="px-6 py-4">
-              <p className="text-slate-600 mb-3">
+              <p className="text-gray-600 mb-3">
                 Tem certeza que deseja excluir o usuário?
               </p>
-              <div className="bg-slate-50 rounded-xl p-4">
-                <p className="font-semibold text-slate-800">
+              <div className="bg-gray-50 rounded-xl p-4">
+                <p className="font-semibold text-gray-800">
                   {selectedUsuario?.nome}
                 </p>
                 {selectedUsuario?.email && (
-                  <p className="text-sm text-slate-600 mt-1">
+                  <p className="text-sm text-gray-600 mt-1">
                     {selectedUsuario.email}
                   </p>
                 )}
@@ -783,11 +783,11 @@ const ListaUsuarios = () => {
               </div>
             </div>
 
-            <div className="px-6 py-4 bg-slate-50 flex justify-end gap-3">
+            <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
               <button
                 onClick={() => setIsModalOpen(false)}
                 disabled={isLoading}
-                className="px-6 py-3 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 focus:ring-2 focus:ring-slate-500 transition-colors"
+                className="px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 transition-colors"
               >
                 Cancelar
               </button>

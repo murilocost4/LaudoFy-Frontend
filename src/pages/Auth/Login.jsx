@@ -113,9 +113,9 @@ const Login = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 items-center justify-center"
+        className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 items-center justify-center"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-600/10 to-slate-700/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200"></div>
         <div className="relative z-10 text-center p-12">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -147,12 +147,12 @@ const Login = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-10"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg mb-6">
               <FiShield className="text-white text-2xl" />
             </div>
             <h1 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">
               <span className="text-slate-700">LAUDO</span>
-              <span className="text-slate-600">FY</span>
+              <span className="text-blue-600">FY</span>
             </h1>
             <p className="text-slate-600 text-sm font-medium">
               Acesse sua conta para continuar
@@ -198,7 +198,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-500 text-slate-900 placeholder-slate-400 text-sm transition-all shadow-sm"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-900 placeholder-slate-400 text-sm transition-all shadow-sm"
                   placeholder="seu@email.com"
                   required
                 />
@@ -218,14 +218,14 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
-                  className="w-full pl-12 pr-12 py-3.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-500 text-slate-900 placeholder-slate-400 text-sm transition-all shadow-sm"
+                  className="w-full pl-12 pr-12 py-3.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-900 placeholder-slate-400 text-sm transition-all shadow-sm"
                   placeholder="••••••••"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-blue-600 transition-colors"
                 >
                   {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
                 </button>
@@ -239,7 +239,7 @@ const Login = () => {
                 whileTap={{ scale: 0.98 }}
                 type="button"
                 onClick={() => navigate("/esqueci-senha")}
-                className="text-sm text-slate-600 hover:text-slate-800 font-medium transition-colors underline-offset-2 hover:underline"
+                className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors underline-offset-2 hover:underline"
               >
                 Esqueceu sua senha?
               </motion.button>
@@ -251,7 +251,7 @@ const Login = () => {
               whileTap={{ scale: loading ? 1 : 0.98 }}
               type="submit"
               disabled={loading}
-              className={`w-full flex justify-center items-center py-3.5 px-4 rounded-xl font-medium text-white bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500/30 shadow-lg hover:shadow-xl transition-all duration-200 ${
+              className={`w-full flex justify-center items-center py-3.5 px-4 rounded-xl font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-lg hover:shadow-xl transition-all duration-200 ${
                 loading ? "opacity-80 cursor-not-allowed" : ""
               }`}
             >

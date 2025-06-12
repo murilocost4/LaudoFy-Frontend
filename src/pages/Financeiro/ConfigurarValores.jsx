@@ -46,8 +46,8 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-500 border-t-transparent"></div>
-    <p className="text-slate-600 text-lg font-medium mt-4">
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+    <p className="text-gray-600 text-lg font-medium mt-4">
       Carregando dados...
     </p>
   </div>
@@ -56,21 +56,21 @@ const LoadingSpinner = memo(() => (
 // Componente de Card de Estatística otimizado
 const StatCard = memo(({ stat, index }) => (
   <div
-    className={`${stat.bg} rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200`}
+    className={`${stat.bg} rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200`}
   >
     <div className="flex items-center justify-between">
       <div className="flex-1">
-        <p className="text-xs font-semibold text-slate-600 mb-1">
+        <p className="text-xs font-semibold text-gray-600 mb-1">
           {stat.title}
         </p>
-        <p className="text-2xl font-bold text-slate-900 mb-1">{stat.value}</p>
+        <p className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</p>
         <div className="flex items-center space-x-1">
           <div
             className={`p-0.5 bg-gradient-to-r ${stat.gradient} rounded-full`}
           >
             <stat.icon className="h-2.5 w-2.5 text-white" />
           </div>
-          <span className="text-xs text-slate-500">{stat.subtitle}</span>
+          <span className="text-xs text-gray-500">{stat.subtitle}</span>
         </div>
       </div>
       <div
@@ -96,28 +96,28 @@ const MedicoCard = memo(
 
     return (
       <div
-        className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer border border-white/50 hover:border-slate-200 group overflow-hidden"
+        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200 group overflow-hidden"
         onClick={() => onOpenModal(medico)}
       >
         <div className="p-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center space-x-3">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-slate-500 to-slate-600 flex items-center justify-center group-hover:from-slate-600 group-hover:to-slate-700 transition-colors">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center group-hover:from-blue-600 group-hover:to-blue-700 transition-colors">
                 <FiUser className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 group-hover:text-slate-700 transition-colors">
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
                   Dr(a). {medico.nome}
                 </h3>
-                <p className="text-sm text-slate-600">CRM: {medico.crm}</p>
+                <p className="text-sm text-gray-600">CRM: {medico.crm}</p>
               </div>
             </div>
-            <FiEdit className="h-5 w-5 text-slate-400 group-hover:text-slate-600 transition-colors" />
+            <FiEdit className="h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
           </div>
 
           <div className="space-y-3">
             <div>
-              <p className="text-sm font-medium text-slate-700 mb-2">
+              <p className="text-sm font-medium text-gray-700 mb-2">
                 Especialidades:
               </p>
               <div className="flex flex-wrap gap-2">
@@ -129,14 +129,14 @@ const MedicoCard = memo(
                   return especialidade ? (
                     <span
                       key={espId}
-                      className="px-3 py-1 bg-gradient-to-r from-slate-100 to-slate-200 text-slate-700 text-xs font-medium rounded-full border border-slate-200"
+                      className="px-3 py-1 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 text-xs font-medium rounded-full border border-gray-200"
                     >
                       {especialidade.nome}
                     </span>
                   ) : null;
                 })}
                 {medico.especialidades.length > 2 && (
-                  <span className="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-medium rounded-full border border-slate-200">
+                  <span className="px-3 py-1 bg-gray-50 text-gray-600 text-xs font-medium rounded-full border border-gray-200">
                     +{medico.especialidades.length - 2} mais
                   </span>
                 )}
@@ -146,12 +146,12 @@ const MedicoCard = memo(
             {totalPossivel > 0 && (
               <div className="pt-2">
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-slate-600">Valores configurados</span>
-                  <span className="font-medium text-slate-900">
+                  <span className="text-gray-600">Valores configurados</span>
+                  <span className="font-medium text-gray-900">
                     {totalConfigurados}/{totalPossivel}
                   </span>
                 </div>
-                <div className="w-full bg-slate-200 rounded-full h-2">
+                <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
                     className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2 rounded-full transition-all"
                     style={{
@@ -163,8 +163,8 @@ const MedicoCard = memo(
             )}
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-100">
-            <button className="w-full flex items-center justify-center py-3 px-4 bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-xl hover:from-slate-700 hover:to-slate-800 transition-all duration-200 font-medium group-hover:shadow-md">
+          <div className="mt-6 pt-4 border-t border-gray-100">
+            <button className="w-full flex items-center justify-center py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium group-hover:shadow-md">
               <FiDollarSign className="mr-2 h-4 w-4" />
               Configurar Valores
             </button>
@@ -406,29 +406,29 @@ const ConfigurarValores = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header modernizado seguindo padrão das outras páginas */}
-        <div className="bg-white rounded-2xl shadow-md border border-white/50 overflow-hidden mb-8">
-          <div className="bg-gradient-to-r from-slate-50 to-slate-100 px-8 py-6 border-b border-slate-200">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-700 rounded-xl shadow-lg">
+                <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-lg">
                   <FiDollarSign className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-900">
+                  <h1 className="text-3xl font-bold text-gray-900">
                     Configurar Valores de Laudos
                   </h1>
-                  <p className="text-slate-600 text-lg mt-1">
+                  <p className="text-gray-600 text-lg mt-1">
                     Configure os valores dos laudos para cada profissional e
                     tipo de exame
                   </p>
                 </div>
               </div>
               <div className="hidden lg:flex items-center space-x-3">
-                <div className="p-2 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl">
-                  <FiSettings className="h-5 w-5 text-slate-600" />
+                <div className="p-2 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl">
+                  <FiSettings className="h-5 w-5 text-gray-600" />
                 </div>
               </div>
             </div>
@@ -442,9 +442,9 @@ const ConfigurarValores = () => {
                   title: "Total de Médicos",
                   value: medicosFiltrados.length,
                   subtitle: "profissionais cadastrados",
-                  gradient: "from-slate-500 to-slate-600",
+                  gradient: "from-blue-500 to-blue-600",
                   icon: FiUser,
-                  bg: "bg-gradient-to-r from-slate-50 to-slate-100",
+                  bg: "bg-gradient-to-r from-blue-50 to-blue-100",
                 }}
               />
               <StatCard
@@ -487,10 +487,10 @@ const ConfigurarValores = () => {
         <div className="bg-white rounded-2xl shadow-md border border-white/50 p-6 mb-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl">
-                <FiFilter className="h-5 w-5 text-slate-600" />
+              <div className="p-2 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl">
+                <FiFilter className="h-5 w-5 text-gray-600" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">
+              <h3 className="text-lg font-semibold text-gray-900">
                 Filtros de Busca
               </h3>
             </div>
@@ -498,33 +498,33 @@ const ConfigurarValores = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="relative">
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 <FiSearch className="inline h-4 w-4 mr-2" />
                 Buscar Médico
               </label>
               <div className="relative">
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
                   placeholder="Digite o nome do médico..."
                   value={filtroMedico}
                   onChange={(e) => setFiltroMedico(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
             <div className="relative">
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 <FiTarget className="inline h-4 w-4 mr-2" />
                 Filtrar por Especialidade
               </label>
               <div className="relative">
-                <FiTarget className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+                <FiTarget className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <select
                   value={filtroEspecialidade}
                   onChange={(e) => setFiltroEspecialidade(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent appearance-none bg-white transition-all"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white transition-all"
                 >
                   <option value="">Todas as especialidades</option>
                   {especialidades.map((esp) => (
@@ -548,20 +548,20 @@ const ConfigurarValores = () => {
           <div className="bg-white rounded-2xl shadow-md border border-white/50 p-20 text-center">
             <div className="flex flex-col items-center space-y-6">
               <div className="relative">
-                <div className="p-6 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl shadow-lg">
-                  <FiUser className="h-20 w-20 text-slate-400" />
+                <div className="p-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl shadow-lg">
+                  <FiUser className="h-20 w-20 text-gray-400" />
                 </div>
                 <div className="absolute -top-2 -right-2 p-2 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full shadow-lg">
                   <FiSearch className="h-4 w-4 text-white" />
                 </div>
               </div>
               <div className="max-w-md">
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
                   {filtroMedico || filtroEspecialidade
                     ? "Nenhum médico encontrado"
                     : "Nenhum médico cadastrado"}
                 </h3>
-                <p className="text-slate-600 text-lg">
+                <p className="text-gray-600 text-lg">
                   {filtroMedico || filtroEspecialidade
                     ? "Tente ajustar os filtros para encontrar mais resultados."
                     : "Ainda não há médicos cadastrados no sistema."}
@@ -573,7 +573,7 @@ const ConfigurarValores = () => {
                     setFiltroMedico("");
                     setFiltroEspecialidade("");
                   }}
-                  className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-slate-500 to-slate-600 text-white rounded-xl font-semibold shadow-lg transition-all duration-200 transform hover:scale-105 hover:from-slate-600 hover:to-slate-700"
+                  className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold shadow-lg transition-all duration-200 transform hover:scale-105 hover:from-blue-700 hover:to-blue-800"
                 >
                   <FiRefreshCw className="h-5 w-5" />
                   <span>Limpar Filtros</span>
@@ -608,22 +608,22 @@ const ConfigurarValores = () => {
           <div className="fixed inset-0 backdrop-blur-sm backdrop-brightness-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[95vh] overflow-hidden shadow-2xl">
               {/* Header do Modal modernizado */}
-              <div className="bg-gradient-to-r from-slate-50 to-slate-100 px-8 py-6 border-b border-slate-200">
+              <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-r from-slate-600 to-slate-700 flex items-center justify-center shadow-lg">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 flex items-center justify-center shadow-lg">
                       <FiUser className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-slate-900">
+                      <h2 className="text-2xl font-bold text-gray-900">
                         Dr(a). {medicoSelecionado.nome}
                       </h2>
-                      <p className="text-sm text-slate-600 mt-1">
+                      <p className="text-sm text-gray-600 mt-1">
                         CRM: {medicoSelecionado.crm}
                       </p>
                       <div className="flex items-center space-x-2 mt-2">
                         <FiCheckCircle className="h-4 w-4 text-emerald-500" />
-                        <span className="text-sm text-slate-600">
+                        <span className="text-sm text-gray-600">
                           {medicoSelecionado.especialidades.length}{" "}
                           especialidade(s)
                         </span>
@@ -634,7 +634,7 @@ const ConfigurarValores = () => {
                     onClick={fecharModal}
                     className="p-3 hover:bg-white hover:bg-opacity-50 rounded-xl transition-colors"
                   >
-                    <FiX className="h-6 w-6 text-slate-600" />
+                    <FiX className="h-6 w-6 text-gray-600" />
                   </button>
                 </div>
               </div>
@@ -671,28 +671,28 @@ const ConfigurarValores = () => {
                       return (
                         <div
                           key={especialidadeId}
-                          className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl p-6 border border-slate-200 shadow-sm"
+                          className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200 shadow-sm"
                         >
                           <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center space-x-3">
-                              <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-slate-500 to-slate-600 flex items-center justify-center">
+                              <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 flex items-center justify-center">
                                 <FiTarget className="h-5 w-5 text-white" />
                               </div>
                               <div>
-                                <h3 className="text-xl font-bold text-slate-900">
+                                <h3 className="text-xl font-bold text-gray-900">
                                   {getEspecialidadeNome(especialidadeId)}
                                 </h3>
-                                <p className="text-sm text-slate-600">
+                                <p className="text-sm text-gray-600">
                                   {tiposExameEspecialidade.length} tipo(s) de
                                   exame disponível(is)
                                 </p>
                               </div>
                             </div>
                             <div className="text-right">
-                              <p className="text-sm text-slate-600">
+                              <p className="text-sm text-gray-600">
                                 Configurados
                               </p>
-                              <p className="text-lg font-bold text-slate-700">
+                              <p className="text-lg font-bold text-gray-700">
                                 {valoresEspecialidade.length}/
                                 {tiposExameEspecialidade.length}
                               </p>
@@ -714,13 +714,13 @@ const ConfigurarValores = () => {
                                   className={`p-4 rounded-xl border-2 transition-all ${
                                     temValor
                                       ? "bg-white border-emerald-200 shadow-sm"
-                                      : "bg-slate-50 border-slate-200 hover:border-slate-300"
+                                      : "bg-gray-50 border-gray-200 hover:border-gray-300"
                                   }`}
                                 >
                                   <div className="flex items-center space-x-4">
                                     <div className="flex-1">
                                       <div className="flex items-center space-x-2 mb-2">
-                                        <h4 className="font-semibold text-slate-900">
+                                        <h4 className="font-semibold text-gray-900">
                                           {tipoExame.nome}
                                         </h4>
                                         {temValor && (
@@ -744,15 +744,15 @@ const ConfigurarValores = () => {
                                             e.target.value,
                                           )
                                         }
-                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                       />
                                     </div>
                                     <div className="w-40">
-                                      <label className="block text-sm font-medium text-slate-700 mb-1">
+                                      <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Valor (R$)
                                       </label>
                                       <div className="relative">
-                                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-sm">
+                                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                                           R$
                                         </span>
                                         <input
@@ -771,7 +771,7 @@ const ConfigurarValores = () => {
                                           className={`w-full pl-8 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent text-right font-medium ${
                                             temValor
                                               ? "border-emerald-300 focus:ring-emerald-500 bg-emerald-50"
-                                              : "border-slate-300 focus:ring-slate-500"
+                                              : "border-gray-300 focus:ring-blue-500"
                                           }`}
                                           placeholder="0,00"
                                         />
@@ -790,7 +790,7 @@ const ConfigurarValores = () => {
               </div>
 
               {/* Footer do Modal modernizado */}
-              <div className="px-8 py-6 border-t border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
+              <div className="px-8 py-6 border-t border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     {temAlteracoes() && (
@@ -805,7 +805,7 @@ const ConfigurarValores = () => {
                   <div className="flex space-x-3">
                     <button
                       onClick={fecharModal}
-                      className="px-6 py-3 text-slate-600 hover:text-slate-800 font-medium transition-colors"
+                      className="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium transition-colors"
                     >
                       Cancelar
                     </button>
@@ -815,7 +815,7 @@ const ConfigurarValores = () => {
                       className={`flex items-center px-6 py-3 rounded-xl font-medium transition-all ${
                         temAlteracoes() && !salvando
                           ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:from-emerald-700 hover:to-emerald-800 shadow-lg hover:shadow-xl"
-                          : "bg-slate-300 text-slate-500 cursor-not-allowed"
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
                       }`}
                     >
                       {salvando ? (

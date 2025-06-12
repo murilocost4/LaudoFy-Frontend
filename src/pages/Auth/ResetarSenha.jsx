@@ -56,20 +56,20 @@ const ResetarSenha = () => {
 
   if (!token) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-blue-50">
         {/* Card de Token Inválido */}
         <div className="w-full max-w-md px-6 py-8">
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-blue-200">
             <div className="text-center">
               <div className="flex justify-center mb-3">
                 <div className="p-3 bg-red-100 rounded-lg shadow">
                   <FiAlertCircle className="w-7 h-7 text-red-500" />
                 </div>
               </div>
-              <h1 className="text-2xl font-bold text-slate-800 mb-1">
+              <h1 className="text-2xl font-bold text-blue-800 mb-1">
                 Token Inválido
               </h1>
-              <p className="text-slate-500 text-sm mb-5">
+              <p className="text-blue-500 text-sm mb-5">
                 O link de recuperação está incompleto ou expirado.
               </p>
               <button
@@ -86,10 +86,10 @@ const ResetarSenha = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <div className="min-h-screen flex items-center justify-center bg-blue-50">
       {/* Card Principal */}
       <div className="w-full max-w-md px-6 py-8">
-        <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+        <div className="bg-white p-8 rounded-xl shadow-sm border border-blue-200">
           {/* Cabeçalho */}
           <div className="text-center mb-8">
             <div className="mb-4 flex justify-center">
@@ -109,10 +109,10 @@ const ResetarSenha = () => {
                 </svg>
               </div>
             </div>
-            <h1 className="text-2xl font-bold text-slate-800 mb-1">
+            <h1 className="text-2xl font-bold text-blue-800 mb-1">
               Redefinir Senha
             </h1>
-            <p className="text-slate-500 text-sm">
+            <p className="text-blue-500 text-sm">
               Digite e confirme sua nova senha
             </p>
           </div>
@@ -141,14 +141,14 @@ const ResetarSenha = () => {
           {/* Formulário */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-blue-400">
                 <FiLock size={16} />
               </div>
               <input
                 type="password"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-slate-700 placeholder-slate-400 text-sm transition-all"
+                className="w-full pl-9 pr-4 py-2.5 bg-blue-50 border border-blue-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-blue-700 placeholder-blue-400 text-sm transition-all"
                 placeholder="Nova senha"
                 required
                 minLength="6"
@@ -156,14 +156,14 @@ const ResetarSenha = () => {
             </div>
 
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-blue-400">
                 <FiLock size={16} />
               </div>
               <input
                 type="password"
                 value={confirmarSenha}
                 onChange={(e) => setConfirmarSenha(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-slate-700 placeholder-slate-400 text-sm transition-all"
+                className="w-full pl-9 pr-4 py-2.5 bg-blue-50 border border-blue-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-blue-700 placeholder-blue-400 text-sm transition-all"
                 placeholder="Confirmar nova senha"
                 required
                 minLength="6"
@@ -210,7 +210,7 @@ const ResetarSenha = () => {
           </form>
 
           {/* Rodapé */}
-          <div className="mt-6 pt-5 border-t border-slate-100 text-center">
+          <div className="mt-6 pt-5 border-t border-blue-100 text-center">
             <button
               onClick={() => navigate("/login")}
               className="flex items-center justify-center text-xs text-blue-600 hover:text-blue-800 font-medium transition-colors mx-auto"

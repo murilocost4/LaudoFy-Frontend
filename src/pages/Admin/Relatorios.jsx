@@ -48,8 +48,8 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-500 border-t-transparent"></div>
-    <p className="text-slate-600 text-lg font-medium mt-4">
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+    <p className="text-gray-600 text-lg font-medium mt-4">
       Gerando relatório...
     </p>
   </div>
@@ -75,13 +75,13 @@ const StatCard = memo(
 
     return (
       <div
-        className={`bg-white rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200 ${color}`}
+        className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200 ${color}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-xs font-semibold text-slate-600 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-slate-900 mb-1">{value}</p>
-            <span className="text-xs text-slate-500">{subtitle}</span>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{title}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{value}</p>
+            <span className="text-xs text-gray-500">{subtitle}</span>
           </div>
           <div
             className={`p-3 bg-gradient-to-r ${gradient} rounded-xl shadow-md`}
@@ -133,7 +133,7 @@ const Relatorios = () => {
         title: "Total de Laudos",
         value: relatorio?.totais?.quantidade?.toLocaleString("pt-BR") || "0",
         icon: FiDatabase,
-        gradient: "from-slate-600 to-slate-800",
+        gradient: "from-blue-600 to-blue-800",
         subtitle: "Laudos no período",
       },
       {
@@ -296,25 +296,25 @@ const Relatorios = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Cabeçalho Moderno */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl shadow-lg">
+              <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg">
                 <HiOutlineDocumentReport className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">
+                <h1 className="text-3xl font-bold text-gray-900">
                   Relatórios
                 </h1>
-                <p className="text-slate-600 mt-1">
+                <p className="text-gray-600 mt-1">
                   Gere relatórios personalizados dos laudos médicos
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-slate-500">
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
               <FiCalendar className="h-4 w-4" />
               <span>
                 {new Date().toLocaleDateString("pt-BR", {
@@ -346,10 +346,10 @@ const Relatorios = () => {
         )}
 
         {/* Filtros */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-r from-slate-500 to-slate-600 rounded-lg">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
+              <div className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
                 <FiFilter className="h-5 w-5 text-white" />
               </div>
               Filtros do Relatório
@@ -368,7 +368,7 @@ const Relatorios = () => {
                   statusLaudo: "",
                 })
               }
-              className="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <FiRefreshCw className="h-4 w-4" />
               Limpar
@@ -380,7 +380,7 @@ const Relatorios = () => {
             <div className="xl:col-span-2">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold mb-3 text-slate-700">
+                  <label className="block text-sm font-semibold mb-3 text-gray-700">
                     Data Inicial
                   </label>
                   <DatePicker
@@ -388,7 +388,7 @@ const Relatorios = () => {
                     onChange={(date) =>
                       setFiltros({ ...filtros, dataInicio: date })
                     }
-                    className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                    className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                     dateFormat="dd/MM/yyyy"
                     selectsStart
                     startDate={filtros.dataInicio}
@@ -401,7 +401,7 @@ const Relatorios = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-3 text-slate-700">
+                  <label className="block text-sm font-semibold mb-3 text-gray-700">
                     Data Final
                   </label>
                   <DatePicker
@@ -409,7 +409,7 @@ const Relatorios = () => {
                     onChange={(date) =>
                       setFiltros({ ...filtros, dataFim: date })
                     }
-                    className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                    className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                     dateFormat="dd/MM/yyyy"
                     selectsEnd
                     startDate={filtros.dataInicio}
@@ -427,13 +427,13 @@ const Relatorios = () => {
             {/* Médico (para admin e recepcionista) */}
             {["admin", "recepcionista"].includes(usuario?.role) && (
               <div>
-                <label className="block text-sm font-semibold mb-3 text-slate-700">
+                <label className="block text-sm font-semibold mb-3 text-gray-700">
                   Médico
                 </label>
                 {loadingMedicos ? (
-                  <div className="p-3 border border-slate-300 rounded-xl bg-slate-50 text-slate-500 text-sm animate-pulse">
+                  <div className="p-3 border border-gray-300 rounded-xl bg-gray-50 text-gray-500 text-sm animate-pulse">
                     <div className="flex items-center gap-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-slate-400 border-t-transparent"></div>
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-400 border-t-transparent"></div>
                       Carregando médicos...
                     </div>
                   </div>
@@ -443,7 +443,7 @@ const Relatorios = () => {
                     onChange={(e) =>
                       setFiltros({ ...filtros, medicoId: e.target.value })
                     }
-                    className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                    className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                   >
                     <option value="">Todos os médicos</option>
                     {medicos.map((medico) => (
@@ -458,7 +458,7 @@ const Relatorios = () => {
 
             {/* Status do Laudo */}
             <div>
-              <label className="block text-sm font-semibold mb-3 text-slate-700">
+              <label className="block text-sm font-semibold mb-3 text-gray-700">
                 Status do Laudo
               </label>
               <select
@@ -466,7 +466,7 @@ const Relatorios = () => {
                 onChange={(e) =>
                   setFiltros({ ...filtros, statusLaudo: e.target.value })
                 }
-                className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
               >
                 <option value="">Todos os status</option>
                 <option value="Laudo realizado">Realizado</option>
@@ -477,14 +477,14 @@ const Relatorios = () => {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 pt-6 border-t border-slate-200">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-200">
             <button
               onClick={gerarRelatorio}
               disabled={loading}
               className={`flex items-center justify-center gap-3 px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-200 w-full lg:w-auto ${
                 loading
-                  ? "bg-slate-400 cursor-not-allowed text-white"
-                  : "bg-gradient-to-r from-slate-600 to-slate-800 hover:from-slate-700 hover:to-slate-900 text-white hover:shadow-xl transform hover:-translate-y-0.5"
+                  ? "bg-gray-400 cursor-not-allowed text-white"
+                  : "bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white hover:shadow-xl transform hover:-translate-y-0.5"
               }`}
             >
               {loading ? (
@@ -543,25 +543,25 @@ const Relatorios = () => {
 
         {/* Resultados */}
         {relatorio && !loading && (
-          <div className="bg-white rounded-2xl shadow-md border border-white/50 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
             {/* Cabeçalho do Relatório */}
-            <div className="px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+            <div className="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-lg">
                     <MdOutlineMedicalServices className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-slate-900">
+                    <h2 className="text-2xl font-bold text-gray-900">
                       Relatório de Laudos
                     </h2>
-                    <p className="text-slate-600 mt-1">
+                    <p className="text-gray-600 mt-1">
                       Período: {formatarData(relatorio.periodo?.inicio)} até{" "}
                       {formatarData(relatorio.periodo?.fim)}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-slate-500 bg-slate-100 px-3 py-2 rounded-lg">
+                <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-100 px-3 py-2 rounded-lg">
                   <FiCalendar className="h-4 w-4" />
                   <span>
                     Gerado em: {new Date().toLocaleDateString("pt-BR")}
@@ -572,39 +572,39 @@ const Relatorios = () => {
 
             <div className="p-6">
               {/* Tabela de Detalhes */}
-              <div className="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
-                <table className="min-w-full divide-y divide-slate-200">
-                  <thead className="bg-gradient-to-r from-slate-50 to-slate-100">
+              <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                     <tr>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         ID
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         Data
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         Médico
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         Paciente
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         Tipo Exame
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         Status
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         Assinatura
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-slate-100">
+                  <tbody className="bg-white divide-y divide-gray-100">
                     {relatorio.laudos && relatorio.laudos.length > 0 ? (
                       relatorio.laudos.map((laudo, index) => (
                         <tr
                           key={laudo._id || index}
-                          className="hover:bg-slate-50 transition-colors duration-150"
+                          className="hover:bg-gray-50 transition-colors duration-150"
                         >
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             {isValidId(laudo._id) ? (
@@ -617,21 +617,21 @@ const Relatorios = () => {
                                 {laudo._id.substring(0, 8)}
                               </a>
                             ) : (
-                              <span className="text-slate-500 font-mono bg-slate-50 px-2 py-1 rounded">
+                              <span className="text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded">
                                 {laudo._id?.substring(0, 8) || "-"}
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">
                             {formatarData(laudo.createdAt)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-800">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
                             {typeof laudo.medicoResponsavel === 'string' ? laudo.medicoResponsavel : laudo.medicoResponsavel?.toString() || "-"}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                             {typeof laudo.exame?.paciente?.nome === 'string' ? laudo.exame.paciente.nome : laudo.exame?.paciente?.nome?.toString() || "-"}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                             {typeof laudo.exame?.tipoExame === 'string' ? laudo.exame.tipoExame : laudo.exame?.tipoExame?.toString() || "-"}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -649,14 +649,14 @@ const Relatorios = () => {
                               {laudo.status || "Não informado"}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                             {laudo.dataAssinatura ? (
                               <div className="flex items-center gap-2">
                                 <FaCheckCircle className="h-4 w-4 text-emerald-500" />
                                 {formatarData(laudo.dataAssinatura)}
                               </div>
                             ) : (
-                              <span className="text-slate-400">
+                              <span className="text-gray-400">
                                 Não assinado
                               </span>
                             )}
@@ -667,14 +667,14 @@ const Relatorios = () => {
                       <tr>
                         <td colSpan="7" className="px-6 py-12 text-center">
                           <div className="flex flex-col items-center gap-3">
-                            <div className="p-4 bg-slate-100 rounded-full">
-                              <FiFileText className="h-8 w-8 text-slate-400" />
+                            <div className="p-4 bg-gray-100 rounded-full">
+                              <FiFileText className="h-8 w-8 text-gray-400" />
                             </div>
                             <div>
-                              <h3 className="text-lg font-semibold text-slate-600">
+                              <h3 className="text-lg font-semibold text-gray-600">
                                 Nenhum laudo encontrado
                               </h3>
-                              <p className="text-slate-500">
+                              <p className="text-gray-500">
                                 Ajuste os filtros e tente novamente
                               </p>
                             </div>

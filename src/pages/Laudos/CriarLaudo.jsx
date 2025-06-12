@@ -33,20 +33,20 @@ const CriarLaudo = () => {
   const [mostrarModalAssinatura, setMostrarModalAssinatura] = useState(false);
   const [temCertificado, setTemCertificado] = useState(false);
 
-  // Paleta de cores moderna - Sistema de design Slate
+  // Paleta de cores moderna - atualizada para o padrão azul/cinza
   const COLORS = {
-    primary: "#475569",
-    primaryLight: "#94A3B8",
-    primaryDark: "#334155",
-    secondary: "#10B981",
-    accent: "#6366F1",
+    primary: "#2563eb", // blue-600
+    primaryLight: "#60a5fa", // blue-400
+    primaryDark: "#1d4ed8", // blue-700
+    secondary: "#10B981", // emerald-500
+    accent: "#6366f1", // indigo-500
     warning: "#F59E0B",
     danger: "#EF4444",
-    background: "#F1F5F9",
+    background: "#f9fafb", // gray-50
     cardBg: "#FFFFFF",
-    text: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
+    text: "#0f172a", // slate-900
+    muted: "#64748b", // slate-500
+    border: "#e2e8f0", // slate-200
   };
 
   useEffect(() => {
@@ -289,10 +289,10 @@ const CriarLaudo = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-slate-500 mx-auto"></div>
-          <p className="mt-4 text-slate-700 font-medium">Processando...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-700 font-medium">Processando...</p>
         </div>
       </div>
     );
@@ -300,14 +300,14 @@ const CriarLaudo = () => {
 
   if (!exame) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-xl shadow-md max-w-md w-full text-center border border-slate-200">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="bg-white p-6 rounded-xl shadow-md max-w-md w-full text-center border border-gray-200">
           <p className="text-red-500 font-medium mb-4">
             {erro || "Carregando informações..."}
           </p>
           <button
             onClick={handleVoltar}
-            className="bg-gradient-to-r from-slate-600 to-slate-700 text-white px-4 py-2 rounded-lg hover:from-slate-700 hover:to-slate-800 transition-all shadow-sm"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm"
           >
             Voltar
           </button>
@@ -317,22 +317,22 @@ const CriarLaudo = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 p-6">
+    <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto">
         {/* Cabeçalho */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div className="flex items-center gap-4">
             <button
               onClick={handleVoltar}
-              className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <IoArrowBack className="text-lg" />
               <span className="font-medium">Voltar</span>
             </button>
 
-            <div className="hidden md:block h-6 w-px bg-slate-300"></div>
+            <div className="hidden md:block h-6 w-px bg-gray-300"></div>
 
-            <h1 className="text-2xl font-bold text-slate-800">
+            <h1 className="text-2xl font-bold text-gray-800">
               Criar Laudo Médico
             </h1>
           </div>
@@ -384,64 +384,64 @@ const CriarLaudo = () => {
         {!laudoCriado ? (
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+            className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
           >
             {/* Seção Informações do Exame */}
-            <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                <FaFileMedicalAlt className="text-slate-500" />
+            <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <FaFileMedicalAlt className="text-blue-600" />
                 Informações do Exame
               </h2>
             </div>
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 text-slate-500">
+                  <div className="mt-1 text-blue-600">
                     <IoPersonOutline />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500">
+                    <p className="text-sm font-medium text-gray-500">
                       Paciente
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {exame.paciente?.nome || "Não identificado"}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 text-slate-500">
+                  <div className="mt-1 text-blue-600">
                     <IoDocumentTextOutline />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500">
+                    <p className="text-sm font-medium text-gray-500">
                       Tipo de Exame
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {exame.tipoExame || "Não informado"}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 text-slate-500">
+                  <div className="mt-1 text-blue-600">
                     <IoCalendarOutline />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500">Data</p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="text-sm font-medium text-gray-500">Data</p>
+                    <p className="font-semibold text-gray-800">
                       {new Date(exame.dataExame).toLocaleDateString("pt-BR")}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="mt-1 text-slate-500">
+                  <div className="mt-1 text-blue-600">
                     <IoTimeOutline />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500">Hora</p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="text-sm font-medium text-gray-500">Hora</p>
+                    <p className="font-semibold text-gray-800">
                       {new Date(exame.dataExame).toLocaleTimeString("pt-BR", {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -453,15 +453,15 @@ const CriarLaudo = () => {
             </div>
 
             {/* Seção Conclusão */}
-            <div className="px-6 py-4 border-t border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                <FaFileMedicalAlt className="text-slate-500" />
+            <div className="px-6 py-4 border-t border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <FaFileMedicalAlt className="text-blue-600" />
                 Conclusão Médica
               </h2>
             </div>
             <div className="p-6">
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Descreva detalhadamente as suas conclusões{" "}
                   <span className="text-red-500">*</span>
                 </label>
@@ -471,7 +471,7 @@ const CriarLaudo = () => {
                     setConclusao(e.target.value);
                     setErro("");
                   }}
-                  className="w-full px-4 py-3 border border-slate-300 text-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 text-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   rows="10"
                   placeholder="Descreva os achados do exame, diagnóstico e recomendações..."
                   required
@@ -480,14 +480,14 @@ const CriarLaudo = () => {
             </div>
 
             {/* Botão de Envio */}
-            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+            <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
               <button
                 type="submit"
                 disabled={isLoading}
                 className={`w-full py-3 rounded-lg font-semibold text-white transition-all flex items-center justify-center gap-2 ${
                   isLoading
-                    ? "bg-slate-400"
-                    : "bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                    ? "bg-gray-400"
+                    : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-sm"
                 }`}
               >
                 {isLoading ? (
@@ -524,10 +524,10 @@ const CriarLaudo = () => {
             </div>
           </form>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             {/* Seção Sucesso */}
-            <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
+            <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
                 <IoCheckmarkCircleOutline className="text-green-500" />
                 Laudo Criado com Sucesso
               </h2>
@@ -537,7 +537,7 @@ const CriarLaudo = () => {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <IoCheckmarkCircleOutline className="text-green-500 text-3xl" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-2">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
                   {laudoCriado.status === 'Laudo assinado' 
                     ? 'Laudo criado e assinado digitalmente'
                     : laudoCriado.status === 'Laudo pronto para assinatura'
@@ -545,7 +545,7 @@ const CriarLaudo = () => {
                     : 'Laudo registrado no sistema'
                   }
                 </h3>
-                <p className="text-slate-600 mb-6">
+                <p className="text-gray-600 mb-6">
                   {laudoCriado.status === 'Laudo assinado' 
                     ? `O laudo foi criado e assinado digitalmente com sucesso.`
                     : laudoCriado.status === 'Laudo pronto para assinatura'
@@ -566,7 +566,7 @@ const CriarLaudo = () => {
                   ) : (
                     <button
                       onClick={() => navigate(`/laudos`)}
-                      className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-lg hover:from-slate-700 hover:to-slate-800 transition-all"
+                      className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all"
                     >
                       <IoDocumentTextOutline />
                       <span>Ir para laudos</span>

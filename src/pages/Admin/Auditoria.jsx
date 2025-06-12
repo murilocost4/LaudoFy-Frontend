@@ -50,8 +50,8 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-500 border-t-transparent"></div>
-    <p className="text-slate-600 text-lg font-medium mt-4">
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+    <p className="text-gray-600 text-lg font-medium mt-4">
       Carregando registros...
     </p>
   </div>
@@ -60,30 +60,29 @@ const LoadingSpinner = memo(() => (
 // Componente de Card de Estatística otimizado
 const StatCard = memo(
   ({ title, value, icon: Icon, color, gradient, subtitle, isLoading }) => {
-    if (isLoading) {
-      return (
-        <div className="bg-white rounded-2xl p-4 shadow-md border border-white/50 animate-pulse">
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <div className="h-3 bg-gray-200 rounded w-1/2 mb-1"></div>
-              <div className="h-6 bg-gray-200 rounded w-16 mb-1"></div>
-              <div className="h-2 bg-gray-200 rounded w-2/3"></div>
-            </div>
-            <div className="w-10 h-10 bg-gray-200 rounded-xl"></div>
+    if (isLoading) {    return (
+      <div className="bg-white rounded-2xl p-4 shadow-lg border border-gray-100 animate-pulse">
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <div className="h-3 bg-gray-200 rounded w-1/2 mb-1"></div>
+            <div className="h-6 bg-gray-200 rounded w-16 mb-1"></div>
+            <div className="h-2 bg-gray-200 rounded w-2/3"></div>
           </div>
+          <div className="w-10 h-10 bg-gray-200 rounded-xl"></div>
         </div>
-      );
+      </div>
+    );
     }
 
     return (
       <div
-        className={`bg-white rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200 ${color}`}
+        className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200 ${color}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-xs font-semibold text-slate-600 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-slate-900 mb-1">{value}</p>
-            <span className="text-xs text-slate-500">{subtitle}</span>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{title}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{value}</p>
+            <span className="text-xs text-gray-500">{subtitle}</span>
           </div>
           <div
             className={`p-3 bg-gradient-to-r ${gradient} rounded-xl shadow-md`}
@@ -181,7 +180,7 @@ const Auditoria = () => {
         title: "Total de Registros",
         value: totalRegistros.toLocaleString("pt-BR"),
         icon: FiDatabase,
-        gradient: "from-slate-600 to-slate-800",
+        gradient: "from-blue-600 to-blue-800",
         subtitle: "No período selecionado",
       },
       {
@@ -295,23 +294,23 @@ const Auditoria = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-100 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Cabeçalho Moderno */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl shadow-lg">
+              <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg">
                 <MdOutlineSecurity className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">Auditoria</h1>
-                <p className="text-slate-600 mt-1">
+                <h1 className="text-3xl font-bold text-gray-900">Auditoria</h1>
+                <p className="text-gray-600 mt-1">
                   Monitoramento e registro de atividades do sistema
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-slate-500">
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
               <FiCalendar className="h-4 w-4" />
               <span>
                 {new Date().toLocaleDateString("pt-BR", {
@@ -341,10 +340,10 @@ const Auditoria = () => {
         </div>
 
         {/* Filtros */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-r from-slate-500 to-slate-600 rounded-lg">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
+              <div className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
                 <FiFilter className="h-5 w-5 text-white" />
               </div>
               Filtros de Busca
@@ -362,7 +361,7 @@ const Auditoria = () => {
                   status: "",
                 })
               }
-              className="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <FiRefreshCw className="h-4 w-4" />
               Limpar
@@ -374,7 +373,7 @@ const Auditoria = () => {
             <div className="xl:col-span-2">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold mb-3 text-slate-700">
+                  <label className="block text-sm font-semibold mb-3 text-gray-700">
                     Data Inicial
                   </label>
                   <DatePicker
@@ -382,7 +381,7 @@ const Auditoria = () => {
                     onChange={(date) =>
                       setFiltros({ ...filtros, dataInicio: date })
                     }
-                    className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-0 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                    className="w-full p-3 border border-gray-200 text-gray-700 rounded-xl focus:ring-0 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                     dateFormat="dd/MM/yyyy"
                     selectsStart
                     startDate={filtros.dataInicio}
@@ -395,7 +394,7 @@ const Auditoria = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-3 text-slate-700">
+                  <label className="block text-sm font-semibold mb-3 text-gray-700">
                     Data Final
                   </label>
                   <DatePicker
@@ -403,7 +402,7 @@ const Auditoria = () => {
                     onChange={(date) =>
                       setFiltros({ ...filtros, dataFim: date })
                     }
-                    className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-0 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                    className="w-full p-3 border border-gray-200 text-gray-700 rounded-xl focus:ring-0 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                     dateFormat="dd/MM/yyyy"
                     selectsEnd
                     startDate={filtros.dataInicio}
@@ -420,7 +419,7 @@ const Auditoria = () => {
 
             {/* Ação */}
             <div>
-              <label className="block text-sm font-semibold mb-3 text-slate-700">
+              <label className="block text-sm font-semibold mb-3 text-gray-700">
                 Ação
               </label>
               <select
@@ -428,7 +427,7 @@ const Auditoria = () => {
                 onChange={(e) =>
                   setFiltros({ ...filtros, action: e.target.value })
                 }
-                className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-0 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                className="w-full p-3 border border-gray-200 text-gray-700 rounded-xl focus:ring-0 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
               >
                 {opcoesAcao.map((opcao) => (
                   <option key={opcao.value} value={opcao.value}>
@@ -440,7 +439,7 @@ const Auditoria = () => {
 
             {/* Coleção */}
             <div>
-              <label className="block text-sm font-semibold mb-3 text-slate-700">
+              <label className="block text-sm font-semibold mb-3 text-gray-700">
                 Coleção
               </label>
               <select
@@ -448,7 +447,7 @@ const Auditoria = () => {
                 onChange={(e) =>
                   setFiltros({ ...filtros, collectionName: e.target.value })
                 }
-                className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-0 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                className="w-full p-3 border border-gray-200 text-gray-700 rounded-xl focus:ring-0 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
               >
                 {opcoesColecao.map((opcao) => (
                   <option key={opcao.value} value={opcao.value}>
@@ -465,8 +464,8 @@ const Auditoria = () => {
               disabled={loading}
               className={`flex items-center justify-center gap-3 px-6 py-3 rounded-xl text-white font-semibold shadow-lg transition-all duration-200 transform hover:scale-105 ${
                 loading
-                  ? "bg-gradient-to-r from-slate-400 to-slate-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 hover:shadow-xl"
+                  ? "bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl"
               } w-full sm:w-auto`}
             >
               {loading ? (
@@ -496,7 +495,7 @@ const Auditoria = () => {
 
         {/* Mensagens de erro */}
         {error && (
-          <div className="bg-white rounded-2xl p-6 shadow-md border border-red-200">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-red-200">
             <div className="flex items-start gap-4">
               <div className="p-2 bg-red-100 rounded-lg flex-shrink-0">
                 <FaTimesCircle className="h-5 w-5 text-red-600" />
@@ -513,23 +512,23 @@ const Auditoria = () => {
 
         {/* Loading State */}
         {loading && (
-          <div className="bg-white rounded-2xl shadow-md border border-white/50">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100">
             <LoadingSpinner />
           </div>
         )}
 
         {/* Tabela de Resultados */}
         {!loading && registros.length > 0 && (
-          <div className="bg-white rounded-2xl shadow-md border border-white/50 overflow-hidden">
-            <div className="px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="px-6 py-5 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-r from-slate-500 to-slate-600 rounded-lg">
+                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
+                  <div className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
                     <HiOutlineDocumentReport className="h-5 w-5 text-white" />
                   </div>
                   Registros de Atividade
                 </h2>
-                <div className="flex items-center gap-2 text-sm text-slate-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <FiBarChart className="h-4 w-4" />
                   <span>
                     {totalRegistros.toLocaleString("pt-BR")} registros
@@ -540,36 +539,36 @@ const Auditoria = () => {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-slate-200">
-                <thead className="bg-slate-50">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                       Data/Hora
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                       Ação
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                       Usuário
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                       Coleção
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                       Descrição
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                       Status
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-slate-100">
+                <tbody className="bg-white divide-y divide-gray-100">
                   {registros.map((registro, index) => (
                     <tr
                       key={registro._id}
-                      className={`hover:bg-slate-50 transition-colors duration-200 ${index % 2 === 0 ? "bg-white" : "bg-slate-50/30"}`}
+                      className={`hover:bg-gray-50 transition-colors duration-200 ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
                     >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">
                         {formatarData(registro.timestamp || registro.createdAt)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -600,19 +599,19 @@ const Auditoria = () => {
                           ].includes(registro.action) && registro.action}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700 font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 font-medium">
                         <div className="flex items-center gap-2">
-                          <FiUser className="h-4 w-4 text-slate-400" />
+                          <FiUser className="h-4 w-4 text-gray-400" />
                           {registro.userId?.nome || "Sistema"}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium">
-                        <span className="inline-flex items-center px-2 py-1 text-xs bg-slate-100 text-slate-700 rounded-md border border-slate-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">
+                        <span className="inline-flex items-center px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md border border-gray-200">
                           {registro.collectionName}
                         </span>
                       </td>
                       <td
-                        className="px-6 py-4 text-sm text-slate-600 max-w-xs truncate"
+                        className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate"
                         title={registro.description}
                       >
                         {registro.description}
@@ -646,15 +645,15 @@ const Auditoria = () => {
 
             {/* Paginação */}
             {pagination.totalPages > 1 && (
-              <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
                 <div className="flex justify-between items-center">
                   <button
                     onClick={() => handlePageChange(pagination.page - 1)}
                     disabled={pagination.page === 1}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                       pagination.page === 1
-                        ? "bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200"
-                        : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-300 hover:border-slate-400 shadow-sm hover:shadow"
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200"
+                        : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 hover:border-gray-400 shadow-sm hover:shadow"
                     }`}
                   >
                     <FiChevronLeft className="h-4 w-4" />
@@ -662,10 +661,10 @@ const Auditoria = () => {
                   </button>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-slate-600 font-medium">
+                    <span className="text-sm text-gray-600 font-medium">
                       Página {pagination.page} de {pagination.totalPages}
                     </span>
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-gray-400">
                       ({totalRegistros.toLocaleString("pt-BR")} registros)
                     </span>
                   </div>
@@ -675,8 +674,8 @@ const Auditoria = () => {
                     disabled={pagination.page === pagination.totalPages}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                       pagination.page === pagination.totalPages
-                        ? "bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200"
-                        : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-300 hover:border-slate-400 shadow-sm hover:shadow"
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200"
+                        : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 hover:border-gray-400 shadow-sm hover:shadow"
                     }`}
                   >
                     <span>Próxima</span>
@@ -690,15 +689,15 @@ const Auditoria = () => {
 
         {/* Estado vazio */}
         {!loading && registros.length === 0 && !error && (
-          <div className="bg-white rounded-2xl p-12 shadow-md border border-white/50 text-center">
+          <div className="bg-white rounded-2xl p-12 shadow-lg border border-gray-100 text-center">
             <div className="flex flex-col items-center">
-              <div className="p-4 bg-slate-100 rounded-full mb-4">
-                <FiDatabase className="h-8 w-8 text-slate-400" />
+              <div className="p-4 bg-gray-100 rounded-full mb-4">
+                <FiDatabase className="h-8 w-8 text-gray-400" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Nenhum registro encontrado
               </h3>
-              <p className="text-slate-600 mb-6 max-w-md">
+              <p className="text-gray-600 mb-6 max-w-md">
                 Não foram encontrados registros de auditoria com os filtros
                 selecionados. Tente ajustar os critérios de busca.
               </p>

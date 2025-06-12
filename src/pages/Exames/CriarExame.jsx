@@ -377,10 +377,10 @@ const CriarExame = () => {
   // Loading state para carregamento do exame
   if (isEdicao && loadingExame) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-500 mx-auto mb-4"></div>
-          <p className="text-slate-600">Carregando dados do exame...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Carregando dados do exame...</p>
         </div>
       </div>
     );
@@ -413,22 +413,22 @@ const CriarExame = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Cabeçalho */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate("/exames")}
-              className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <IoArrowBack className="text-lg" />
               <span className="font-medium">Voltar</span>
             </button>
 
-            <div className="hidden md:block h-6 w-px bg-slate-300"></div>
+            <div className="hidden md:block h-6 w-px bg-gray-200"></div>
 
-            <h1 className="text-2xl font-bold text-slate-800">
+            <h1 className="text-2xl font-bold text-gray-900">
               {isEdicao ? "Editar Exame" : "Novo Exame"}
             </h1>
           </div>
@@ -478,15 +478,15 @@ const CriarExame = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+          className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
         >
           {/* Seção Informações Básicas */}
-          <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 backdrop-blur-sm">
-            <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
+          <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-gray-50 backdrop-blur-sm">
+            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               {isEdicao ? (
-                <IoSaveOutline className="text-slate-500" />
+                <IoSaveOutline className="text-blue-600" />
               ) : (
-                <IoAddCircleOutline className="text-slate-500" />
+                <IoAddCircleOutline className="text-blue-600" />
               )}
               Informações Básicas
             </h2>
@@ -494,8 +494,8 @@ const CriarExame = () => {
           <div className="p-6 space-y-6">
             {/* Seção Paciente */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoPersonOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoPersonOutline className="text-blue-600" />
                 Paciente *
               </label>
               <div className="relative">
@@ -508,26 +508,26 @@ const CriarExame = () => {
                       setShowPacientesDropdown(true);
                     }
                   }}
-                  className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Digite o nome do paciente"
                   required
                 />
                 {showPacientesDropdown && pacientes.length > 0 && (
-                  <ul className="absolute z-10 mt-1 w-full bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-100 rounded-lg shadow-lg max-h-60 overflow-y-auto">
                     {pacientes.map((paciente) => (
                       <li
                         key={paciente._id}
                         onClick={() => selecionarPaciente(paciente)}
-                        className="px-4 py-3 hover:bg-slate-50 cursor-pointer transition-colors flex items-center gap-3"
+                        className="px-4 py-3 hover:bg-blue-50 cursor-pointer transition-colors flex items-center gap-3"
                       >
-                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center">
-                          <FaUserAlt className="text-slate-500 text-sm" />
+                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
+                          <FaUserAlt className="text-blue-600 text-sm" />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-800">
+                          <p className="font-medium text-gray-900">
                             {paciente.nome}
                           </p>
-                          <p className="text-sm text-slate-500">
+                          <p className="text-sm text-gray-500">
                             {paciente.cpf}
                           </p>
                         </div>
@@ -540,14 +540,14 @@ const CriarExame = () => {
 
             {/* Seção Tipo de Exame */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoDocumentTextOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoDocumentTextOutline className="text-blue-600" />
                 Tipo de Exame *
               </label>
               <select
                 value={tipoExame}
                 onChange={handleTipoExameChange}
-                className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all appearance-none"
+                className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
                 required
               >
                 <option value="">Selecione um tipo de exame</option>
@@ -561,14 +561,14 @@ const CriarExame = () => {
 
             {/* Seção Observações */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <GiHeartBeats className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <GiHeartBeats className="text-blue-600" />
                 Observações *
               </label>
               <textarea
                 value={observacoes}
                 onChange={(e) => setObservacoes(e.target.value)}
-                className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 rows="3"
                 placeholder="Descreva as observações e sintomas apresentados pelo paciente ou informações relevantes sobre o exame"
                 required
@@ -666,17 +666,17 @@ const CriarExame = () => {
           */}
 
           {/* Seção Dados Antropométricos */}
-          <div className="px-6 py-4 border-t border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 backdrop-blur-sm">
-            <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-              <IoBodyOutline className="text-slate-500" />
+          <div className="px-6 py-4 border-t border-b border-gray-100 bg-gradient-to-r from-blue-50 to-gray-50 backdrop-blur-sm">
+            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <IoBodyOutline className="text-blue-600" />
               Dados Antropométricos
             </h2>
           </div>
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <FaRulerVertical className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <FaRulerVertical className="text-blue-600" />
                   Altura (cm)
                 </label>
                 <div className="relative">
@@ -685,18 +685,18 @@ const CriarExame = () => {
                     min="0"
                     value={altura}
                     onChange={(e) => setAltura(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="170"
                   />
-                  <span className="absolute right-3 top-3 text-slate-400">
+                  <span className="absolute right-3 top-3 text-gray-400">
                     cm
                   </span>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <FaWeight className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <FaWeight className="text-blue-600" />
                   Peso (kg)
                 </label>
                 <div className="relative">
@@ -706,10 +706,10 @@ const CriarExame = () => {
                     step="0.1"
                     value={peso}
                     onChange={(e) => setPeso(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-200 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="70"
                   />
-                  <span className="absolute right-3 top-3 text-slate-400">
+                  <span className="absolute right-3 top-3 text-gray-400">
                     kg
                   </span>
                 </div>
@@ -718,9 +718,9 @@ const CriarExame = () => {
           </div>
 
           {/* Seção Arquivo */}
-          <div className="px-6 py-4 border-t border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 backdrop-blur-sm">
-            <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-              <FaFileUpload className="text-slate-500" />
+          <div className="px-6 py-4 border-t border-b border-gray-100 bg-gradient-to-r from-blue-50 to-gray-50 backdrop-blur-sm">
+            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <FaFileUpload className="text-blue-600" />
               Arquivo do Exame{" "}
               {isEdicao && "(opcional - deixe em branco para manter o atual)"}
             </h2>
@@ -729,17 +729,17 @@ const CriarExame = () => {
             <div className="space-y-4">
               {/* Mostrar arquivo atual em modo de edição */}
               {isEdicao && arquivoAtual && (
-                <div className="mb-4 p-3 bg-slate-50 border border-slate-200 rounded-lg">
-                  <p className="text-sm font-medium text-slate-800 mb-2">
+                <div className="mb-4 p-3 bg-blue-50 border border-gray-100 rounded-lg">
+                  <p className="text-sm font-medium text-gray-900 mb-2">
                     Arquivo atual:
                   </p>
                   <div className="flex items-center gap-2">
-                    <FaFileUpload className="text-slate-600" />
+                    <FaFileUpload className="text-blue-600" />
                     <a
                       href={arquivoAtual}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-600 hover:text-slate-800 underline text-sm"
+                      className="text-blue-600 hover:text-blue-800 underline text-sm"
                     >
                       Visualizar arquivo atual
                     </a>
@@ -748,23 +748,23 @@ const CriarExame = () => {
               )}
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   {isEdicao ? "Novo arquivo (opcional)" : "Selecione o arquivo"}{" "}
                   (PDF, JPG, PNG)
                 </label>
 
                 {arquivo ? (
-                  <div className="border border-slate-200 rounded-lg p-4 bg-slate-50">
+                  <div className="border border-gray-100 rounded-lg p-4 bg-gray-50">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
-                          <FaFileUpload className="text-slate-500" />
+                        <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+                          <FaFileUpload className="text-blue-600" />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-800">
+                          <p className="font-medium text-gray-900">
                             {arquivo.name}
                           </p>
-                          <p className="text-sm text-slate-500">
+                          <p className="text-sm text-gray-500">
                             {(arquivo.size / 1024 / 1024).toFixed(2)} MB
                           </p>
                         </div>
@@ -772,20 +772,20 @@ const CriarExame = () => {
                       <button
                         type="button"
                         onClick={removeFile}
-                        className="text-slate-400 hover:text-slate-600 transition-colors"
+                        className="text-gray-400 hover:text-gray-600 transition-colors"
                       >
                         <IoClose className="text-lg" />
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-300 rounded-lg cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors">
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-200 rounded-lg cursor-pointer bg-gray-50 hover:bg-blue-50 transition-colors">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <FaFileUpload className="text-2xl text-slate-400 mb-2" />
-                      <p className="text-sm text-slate-500">
+                      <FaFileUpload className="text-2xl text-gray-400 mb-2" />
+                      <p className="text-sm text-gray-500">
                         Clique para selecionar ou arraste o arquivo
                       </p>
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-gray-400 mt-1">
                         Tamanho máximo: 100MB
                       </p>
                     </div>
@@ -802,14 +802,14 @@ const CriarExame = () => {
           </div>
 
           {/* Botão de Envio */}
-          <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+          <div className="px-6 py-4 border-t border-gray-100 bg-gray-50">
             <button
               type="submit"
               disabled={isLoading}
               className={`w-full py-3 rounded-lg font-semibold text-white transition-all duration-200 flex items-center justify-center gap-2 ${
                 isLoading
-                  ? "bg-slate-400"
-                  : "bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                  ? "bg-gray-400"
+                  : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg"
               }`}
             >
               {isLoading ? (

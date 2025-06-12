@@ -78,20 +78,20 @@ const CriarPaciente = () => {
     return '';
   };
 
-  // Sistema de cores moderno - Slate
+  // Sistema de cores moderno - Blue/Gray
   const COLORS = {
-    primary: "#475569",
-    primaryLight: "#94A3B8",
-    primaryDark: "#334155",
-    secondary: "#10B981",
-    accent: "#6366F1",
+    primary: "#2563eb", // blue-600
+    primaryLight: "#60a5fa", // blue-400
+    primaryDark: "#1d4ed8", // blue-700
+    secondary: "#10B981", // emerald-500
+    accent: "#6366f1", // indigo-500
     warning: "#F59E0B",
     danger: "#EF4444",
-    background: "#F1F5F9",
+    background: "#f9fafb", // gray-50
     cardBg: "#FFFFFF",
-    text: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
+    text: "#0f172a", // slate-900
+    muted: "#64748b", // slate-500
+    border: "#e2e8f0", // slate-200
   };
 
   useEffect(() => {
@@ -372,10 +372,10 @@ const CriarPaciente = () => {
 
   if (isLoading && id && activeTab === "dados") {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-slate-500 mx-auto"></div>
-          <p className="mt-4 text-slate-700 font-medium">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-700 font-medium">
             Carregando dados do paciente...
           </p>
         </div>
@@ -384,22 +384,22 @@ const CriarPaciente = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Cabeçalho */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate("/pacientes")}
-              className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <IoArrowBack className="text-lg" />
               <span className="font-medium">Voltar</span>
             </button>
 
-            <div className="hidden md:block h-6 w-px bg-slate-300"></div>
+            <div className="hidden md:block h-6 w-px bg-gray-300"></div>
 
-            <h1 className="text-2xl font-bold text-slate-800">
+            <h1 className="text-2xl font-bold text-gray-800">
               {id
                 ? usuario?.role === "medico"
                   ? "Visualizar Paciente"
@@ -461,14 +461,14 @@ const CriarPaciente = () => {
 
         {/* Abas */}
         {id && (
-          <div className="mb-6 border-b border-slate-200 bg-white rounded-t-xl">
+          <div className="mb-6 border-b border-gray-200 bg-white rounded-t-xl">
             <nav className="-mb-px flex space-x-8 px-6">
               <button
                 onClick={() => setActiveTab("dados")}
                 className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
                   activeTab === "dados"
-                    ? "border-slate-500 text-slate-600"
-                    : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
+                    ? "border-blue-600 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-blue-600 hover:border-gray-300"
                 }`}
               >
                 <FaUserAlt className="text-xs" />
@@ -478,8 +478,8 @@ const CriarPaciente = () => {
                 onClick={() => setActiveTab("historico")}
                 className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
                   activeTab === "historico"
-                    ? "border-slate-500 text-slate-600"
-                    : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
+                    ? "border-blue-600 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-blue-600 hover:border-gray-300"
                 }`}
               >
                 <FaHistory className="text-xs" />
@@ -492,20 +492,20 @@ const CriarPaciente = () => {
         {activeTab === "dados" ? (
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+            className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
           >
             {/* Seção Informações Pessoais */}
-            <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                <FaUserAlt className="text-slate-500" />
+            <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <FaUserAlt className="text-blue-600" />
                 Informações Pessoais
               </h2>
             </div>
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Campo Nome */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <IoPersonOutline className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <IoPersonOutline className="text-blue-600" />
                   Nome Completo *
                 </label>
                 <input
@@ -514,8 +514,8 @@ const CriarPaciente = () => {
                   value={formData.nome}
                   onChange={handleChange}
                   disabled={!podeEditar()}
-                  className={`w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all ${
-                    !podeEditar() ? "bg-slate-50 cursor-not-allowed" : ""
+                  className={`w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                    !podeEditar() ? "bg-gray-50 cursor-not-allowed" : ""
                   }`}
                   placeholder="Digite o nome completo"
                   required
@@ -524,8 +524,8 @@ const CriarPaciente = () => {
 
               {/* Campo CPF */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <FaIdCard className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <FaIdCard className="text-blue-600" />
                   CPF *
                 </label>
                 <input
@@ -542,8 +542,8 @@ const CriarPaciente = () => {
                     }
                   }}
                   disabled={!podeEditar()}
-                  className={`w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all ${
-                    !podeEditar() ? "bg-slate-50 cursor-not-allowed" : ""
+                  className={`w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                    !podeEditar() ? "bg-gray-50 cursor-not-allowed" : ""
                   }`}
                   placeholder="000.000.000-00"
                   maxLength="14"
@@ -553,8 +553,8 @@ const CriarPaciente = () => {
 
               {/* Campo Data de Nascimento */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <IoCalendarOutline className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <IoCalendarOutline className="text-blue-600" />
                   Data de Nascimento *
                 </label>
                 <input
@@ -563,8 +563,8 @@ const CriarPaciente = () => {
                   value={formData.dataNascimento || ''}
                   onChange={handleDateChange}
                   disabled={!podeEditar()}
-                  className={`w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all ${
-                    !podeEditar() ? "bg-slate-50 cursor-not-allowed" : ""
+                  className={`w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                    !podeEditar() ? "bg-gray-50 cursor-not-allowed" : ""
                   }`}
                   placeholder="dd/mm/aaaa"
                   maxLength="10"
@@ -572,7 +572,7 @@ const CriarPaciente = () => {
                 />
                 {formData.dataNascimento && formData.dataNascimento.length === 10 && (
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-gray-500">
                       Idade: {calcularIdade(converterDataParaISO(formData.dataNascimento)) || 'Não calculável'} anos
                     </span>
                   </div>
@@ -581,8 +581,8 @@ const CriarPaciente = () => {
 
               {/* Campo Endereço */}
               <div className="space-y-2 md:col-span-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <IoLocationOutline className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <IoLocationOutline className="text-blue-600" />
                   Endereço Completo *
                 </label>
                 <input
@@ -591,8 +591,8 @@ const CriarPaciente = () => {
                   value={formData.endereco}
                   onChange={handleChange}
                   disabled={!podeEditar()}
-                  className={`w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all ${
-                    !podeEditar() ? "bg-slate-50 cursor-not-allowed" : ""
+                  className={`w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                    !podeEditar() ? "bg-gray-50 cursor-not-allowed" : ""
                   }`}
                   placeholder="Digite o endereço completo"
                   required
@@ -601,17 +601,17 @@ const CriarPaciente = () => {
             </div>
 
             {/* Seção Informações de Contato */}
-            <div className="px-6 py-4 border-t border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                <IoCallOutline className="text-slate-500" />
+            <div className="px-6 py-4 border-t border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <IoCallOutline className="text-blue-600" />
                 Informações de Contato
               </h2>
             </div>
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Campo Telefone */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <IoCallOutline className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <IoCallOutline className="text-blue-600" />
                   Telefone *
                 </label>
                 <input
@@ -628,8 +628,8 @@ const CriarPaciente = () => {
                     }
                   }}
                   disabled={!podeEditar()}
-                  className={`w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all ${
-                    !podeEditar() ? "bg-slate-50 cursor-not-allowed" : ""
+                  className={`w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                    !podeEditar() ? "bg-gray-50 cursor-not-allowed" : ""
                   }`}
                   placeholder="(00) 00000-0000"
                   maxLength="15"
@@ -639,8 +639,8 @@ const CriarPaciente = () => {
 
               {/* Campo Email */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                  <IoMailOutline className="text-slate-500" />
+                <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                  <IoMailOutline className="text-blue-600" />
                   Email
                 </label>
                 <input
@@ -649,8 +649,8 @@ const CriarPaciente = () => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={!podeEditar()}
-                  className={`w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all ${
-                    !podeEditar() ? "bg-slate-50 cursor-not-allowed" : ""
+                  className={`w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                    !podeEditar() ? "bg-gray-50 cursor-not-allowed" : ""
                   }`}
                   placeholder="Digite o email"
                 />
@@ -659,14 +659,14 @@ const CriarPaciente = () => {
 
             {/* Botão de Envio - Só aparece se pode editar */}
             {podeEditar() && (
-              <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
                 <button
                   type="submit"
                   disabled={isLoading}
                   className={`w-full py-3 rounded-lg font-semibold text-white transition-all flex items-center justify-center gap-2 ${
                     isLoading
-                      ? "bg-slate-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-sm"
                   }`}
                 >
                   {isLoading ? (
@@ -707,7 +707,7 @@ const CriarPaciente = () => {
 
             {/* Mensagem para médicos */}
             {!podeEditar() && (
-              <div className="px-6 py-4 border-t border-slate-200 bg-amber-50">
+              <div className="px-6 py-4 border-t border-gray-200 bg-amber-50">
                 <div className="flex items-center justify-center gap-2 text-amber-800">
                   <IoShieldCheckmarkOutline className="text-lg" />
                   <span className="font-medium">
@@ -718,10 +718,10 @@ const CriarPaciente = () => {
             )}
           </form>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                <FaHistory className="text-slate-500" />
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <FaHistory className="text-blue-600" />
                 Histórico de Laudos
               </h2>
             </div>
@@ -730,35 +730,35 @@ const CriarPaciente = () => {
             {loadingLaudos ? (
               <div className="p-8 flex justify-center">
                 <div className="text-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-slate-500 mx-auto"></div>
-                  <p className="mt-2 text-slate-600 text-sm">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+                  <p className="mt-2 text-gray-600 text-sm">
                     Carregando histórico...
                   </p>
                 </div>
               </div>
             ) : laudos.length === 0 ? (
               <div className="p-8 text-center">
-                <FaFileMedicalAlt className="text-4xl text-slate-300 mx-auto mb-4" />
-                <p className="text-slate-500 font-medium">
+                <FaFileMedicalAlt className="text-4xl text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 font-medium">
                   Nenhum laudo encontrado
                 </p>
-                <p className="text-slate-400 text-sm mt-1">
+                <p className="text-gray-400 text-sm mt-1">
                   Este paciente ainda não possui laudos médicos registrados.
                 </p>
               </div>
             ) : (
-              <div className="divide-y divide-slate-200">
+              <div className="divide-y divide-gray-200">
                 {laudos.map((laudo, index) => (
                   <div
                     key={laudo.id}
-                    className="p-6 hover:bg-slate-50 transition-colors group"
+                    className="p-6 hover:bg-gray-50 transition-colors group"
                   >
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="flex items-center gap-2">
-                            <FaFileMedicalAlt className="text-slate-500" />
-                            <h3 className="font-semibold text-slate-800">
+                            <FaFileMedicalAlt className="text-blue-600" />
+                            <h3 className="font-semibold text-gray-800">
                               Laudo #{laudo.id}
                             </h3>
                           </div>
@@ -775,15 +775,15 @@ const CriarPaciente = () => {
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-600 mb-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600 mb-3">
                           <div className="flex items-center gap-2">
-                            <IoCalendarOutline className="text-slate-400" />
+                            <IoCalendarOutline className="text-gray-400" />
                             <span>
                               {formatarDataHora(laudo.createdAt)}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <FaStethoscope className="text-slate-400" />
+                            <FaStethoscope className="text-gray-400" />
                             <span>
                               {laudo.medicoResponsavel ||
                                 "Médico não informado"}
@@ -792,9 +792,9 @@ const CriarPaciente = () => {
                         </div>
 
                         {laudo.conclusao && (
-                          <div className="mt-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
-                            <p className="text-sm text-slate-700 line-clamp-3">
-                              <span className="font-medium text-slate-800">
+                          <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p className="text-sm text-gray-700 line-clamp-3">
+                              <span className="font-medium text-gray-800">
                                 Conclusão:{" "}
                               </span>
                               {laudo.conclusao}
@@ -806,7 +806,7 @@ const CriarPaciente = () => {
                       <div className="ml-4 flex flex-col gap-2">
                         <button
                           onClick={() => navigate(`/laudos/${laudo.id}`)}
-                          className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 transition-all flex items-center gap-2"
+                          className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-all flex items-center gap-2"
                         >
                           <IoEyeOutline className="text-sm" />
                           Ver Detalhes
@@ -827,7 +827,7 @@ const CriarPaciente = () => {
                         <button
                           onClick={() => handleDownloadLaudo(laudo, "original")}
                           disabled={loadingLaudos}
-                          className="px-4 py-2 bg-slate-50 text-slate-600 rounded-lg text-sm font-medium hover:bg-slate-100 transition-all flex items-center gap-2 border border-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="px-4 py-2 bg-gray-50 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-100 transition-all flex items-center gap-2 border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           <FaFilePdf className="text-sm text-red-500" />
                           {loadingLaudos ? "Baixando..." : "Download Original"}

@@ -56,8 +56,8 @@ import api from "../api";
 const LoadingSpinner = memo(function LoadingSpinner() {
   return (
     <div className="flex flex-col justify-center items-center p-20">
-      <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-600 border-t-transparent"></div>
-      <p className="text-slate-600 text-lg font-medium mt-4">
+      <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+      <p className="text-gray-600 text-lg font-medium mt-4">
         Carregando dashboard...
       </p>
     </div>
@@ -68,19 +68,19 @@ const LoadingSpinner = memo(function LoadingSpinner() {
 const StatCard = memo(function StatCard({ stat, index }) {
   return (
     <div
-      className={`${stat.bg} rounded-2xl p-6 shadow-xl border border-slate-200 hover:shadow-2xl transition-all duration-300 group overflow-hidden relative`}
+      className={`${stat.bg} rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group overflow-hidden relative`}
     >
       <div className="flex items-center justify-between relative z-10">
         <div className="flex-1">
-          <p className="text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wider">
+          <p className="text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wider">
             {stat.title}
           </p>
-          <p className="text-3xl font-bold text-slate-800 mb-2">{stat.value}</p>
+          <p className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</p>
           <div className="flex items-center space-x-2">
             <div className={`p-1 bg-gradient-to-r ${stat.gradient} rounded-full`}>
               <stat.icon className="h-3 w-3 text-white" />
             </div>
-            <span className="text-xs text-slate-500">{stat.subtitle}</span>
+            <span className="text-xs text-gray-500">{stat.subtitle}</span>
           </div>
         </div>
         <div
@@ -89,7 +89,7 @@ const StatCard = memo(function StatCard({ stat, index }) {
           <stat.icon className="h-8 w-8 text-white" />
         </div>
       </div>
-      <div className="mt-4 h-2 w-full bg-slate-100 overflow-hidden rounded-full">
+      <div className="mt-4 h-2 w-full bg-gray-100 overflow-hidden rounded-full">
         <div
           className={`h-full bg-gradient-to-r ${stat.gradient} transition-all duration-500 ease-out`}
           style={{ width: `${stat.percentage || 100}%` }}
@@ -103,7 +103,7 @@ const StatCard = memo(function StatCard({ stat, index }) {
 const QuickActionCard = memo(function QuickActionCard({ action, onClick }) {
   return (
     <div
-      className="bg-white p-6 rounded-2xl shadow-xl border border-slate-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+      className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer group"
       onClick={onClick}
     >
       <div className="flex items-center justify-between">
@@ -114,13 +114,13 @@ const QuickActionCard = memo(function QuickActionCard({ action, onClick }) {
             <action.icon className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
               {action.title}
             </h3>
-            <p className="text-sm text-slate-600">{action.subtitle}</p>
+            <p className="text-sm text-gray-600">{action.subtitle}</p>
           </div>
         </div>
-        <FiArrowRight className="h-5 w-5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+        <FiArrowRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
       </div>
     </div>
   );
@@ -137,25 +137,25 @@ const ExameCard = memo(function ExameCard({ exame, onClick }) {
       case "Cancelado":
         return "bg-red-100 text-red-800 border-red-200";
       default:
-        return "bg-slate-100 text-slate-800 border-slate-200";
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
   }, []);
 
   return (
     <tr
-      className="hover:bg-slate-50 cursor-pointer transition-all duration-200 group"
+      className="hover:bg-gray-50 cursor-pointer transition-all duration-200 group"
       onClick={onClick}
     >
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="flex items-center space-x-3">
-          <div className="h-10 w-10 rounded-full bg-gradient-to-r from-slate-600 to-slate-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+          <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
             <FiUser className="h-5 w-5 text-white" />
           </div>
           <div>
-            <div className="text-sm font-semibold text-slate-800">
+            <div className="text-sm font-semibold text-gray-900">
               {exame.paciente?.nome || "Não informado"}
             </div>
-            <div className="text-xs text-slate-500">
+            <div className="text-xs text-gray-500">
               {exame.paciente?.idade
                 ? `${exame.paciente.idade} anos`
                 : "Idade não informada"}
@@ -164,7 +164,7 @@ const ExameCard = memo(function ExameCard({ exame, onClick }) {
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm font-medium text-slate-800">
+        <div className="text-sm font-medium text-gray-900">
           {exame.tipoExame?.nome || exame.tipoExame || "Não informado"}
         </div>
       </td>
@@ -176,15 +176,15 @@ const ExameCard = memo(function ExameCard({ exame, onClick }) {
         </span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-slate-800">
+        <div className="text-sm text-gray-900">
           {exame.dataExame ? (
             format(parseISO(exame.dataExame), "dd/MM/yyyy", { locale: ptBR })
           ) : (
-            <span className="text-slate-400">Não informado</span>
+            <span className="text-gray-400">Não informado</span>
           )}
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
         {exame.tecnico?.nome || "Não atribuído"}
       </td>
     </tr>
@@ -194,7 +194,7 @@ const ExameCard = memo(function ExameCard({ exame, onClick }) {
 // Card de Notificação otimizado
 const NotificationCard = memo(function NotificationCard({ notification }) {
   return (
-    <div className="p-4 hover:bg-slate-50 transition-colors duration-200 cursor-pointer group">
+    <div className="p-4 hover:bg-gray-50 transition-colors duration-200 cursor-pointer group">
       <div className="flex items-start space-x-3">
         <div
           className={`p-2 rounded-full ${notification.bgColor} ${notification.iconColor} group-hover:scale-110 transition-transform duration-200`}
@@ -202,10 +202,10 @@ const NotificationCard = memo(function NotificationCard({ notification }) {
           <notification.icon className="h-4 w-4" />
         </div>
         <div className="flex-1">
-          <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+          <h4 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
             {notification.title}
           </h4>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-gray-600 mt-1">
             {notification.description}
           </p>
         </div>
@@ -226,24 +226,24 @@ const Dashboard = () => {
 
   const COLORS = useMemo(
     () => ({
-      primary: "#475569", // slate-600
-      primaryLight: "#94A3B8", // slate-400
-      primaryDark: "#1E293B", // slate-800
+      primary: "#2563eb", // blue-600
+      primaryLight: "#3b82f6", // blue-500
+      primaryDark: "#1d4ed8", // blue-700
       secondary: "#10B981", // emerald-500
       accent: "#6366F1", // indigo-500
       warning: "#F59E0B", // amber-500
       danger: "#EF4444", // red-500
-      background: "#F8FAFC", // slate-50
+      background: "#f9fafb", // gray-50
       cardBg: "#FFFFFF", // white
-      text: "#1E293B", // slate-800
-      muted: "#64748B", // slate-500
-      border: "#E2E8F0", // slate-200
+      text: "#111827", // gray-900
+      muted: "#6b7280", // gray-500
+      border: "#e5e7eb", // gray-200
     }),
     [],
   );
 
   const chartColors = useMemo(
-    () => ["#475569", "#1E293B", "#10B981", "#6366F1", "#F59E0B", "#EF4444"],
+    () => ["#2563eb", "#1d4ed8", "#10B981", "#6366F1", "#F59E0B", "#EF4444"],
     [],
   );
 
@@ -306,8 +306,8 @@ const Dashboard = () => {
         title: "Total de Exames",
         value: stats.totalExames?.toLocaleString("pt-BR") || "0",
         icon: FiDatabase,
-        gradient: "from-slate-600 to-slate-800",
-        bg: "bg-slate-50",
+        gradient: "from-blue-600 to-blue-800",
+        bg: "bg-blue-50",
         subtitle: "Exames registrados",
         percentage: 100,
       },
@@ -360,7 +360,7 @@ const Dashboard = () => {
         title: "Novo Exame",
         subtitle: "Registrar novo exame",
         icon: FiPlus,
-        gradient: "from-slate-600 to-slate-800",
+        gradient: "from-blue-600 to-blue-800",
         onClick: () => navigate("/exames/novo"),
       },
       {
@@ -445,9 +445,9 @@ const Dashboard = () => {
 
   if (error)
     return (
-      <div className="min-h-screen bg-slate-100">
+      <div className="min-h-screen bg-gray-50">
         <div className="container mx-auto px-4 py-6">
-          <div className="bg-white p-6 rounded-2xl shadow-xl border border-slate-200">
+          <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
             <div className="text-red-500 text-center py-8 flex flex-col items-center">
               <FiAlertCircle className="h-16 w-16 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Erro no Sistema</h3>
@@ -459,82 +459,107 @@ const Dashboard = () => {
     );
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <div className="container mx-auto px-6 py-6">
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-10">
         {/* Header */}
-        <div className="mb-8 bg-white rounded-2xl shadow-xl border border-slate-200 p-6">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
-            <div className="flex items-center space-x-4 mb-4 lg:mb-0">
-              <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl shadow-lg">
-                <FiMonitor className="h-8 w-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 bg-clip-text text-transparent">
-                  Dashboard
-                </h1>
-                <p className="text-slate-600 flex items-center space-x-2">
-                  <FiAward className="h-4 w-4 text-slate-500" />
-                  <span>Visão geral do sistema médico</span>
-                </p>
-              </div>
+        <div className="mb-10 bg-white rounded-2xl border border-gray-100 p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 shadow-md">
+          <div className="flex items-center gap-5">
+            <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl shadow-md">
+              <FiMonitor className="h-8 w-8 text-white" />
             </div>
-
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={fetchData}
-                disabled={loading}
-                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-slate-600 to-slate-800 hover:from-slate-700 hover:to-slate-900 text-white rounded-lg font-medium transition-all duration-200 shadow-md disabled:opacity-70"
-              >
-                <FiActivity
-                  className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
-                />
-                <span>Atualizar</span>
-              </button>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+                Dashboard
+              </h1>
+              <p className="text-gray-500 flex items-center gap-2 text-base mt-1">
+                <FiAward className="h-5 w-5 text-blue-400" />
+                <span>Visão geral do sistema médico</span>
+              </p>
             </div>
           </div>
+          <button
+            onClick={fetchData}
+            disabled={loading}
+            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold transition-all duration-200 shadow-md disabled:opacity-70"
+          >
+            <FiActivity className={`h-5 w-5 ${loading ? "animate-spin" : ""}`} />
+            <span>Atualizar</span>
+          </button>
+        </div>
 
-          {/* Cards Estatísticos */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {statsConfig.map((stat, index) => (
-              <StatCard key={index} stat={stat} index={index} />
-            ))}
-          </div>
+        {/* Cards Estatísticos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 mb-12">
+          {statsConfig.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl p-6 border border-gray-100 flex flex-col gap-3 shadow-md hover:shadow-lg transition-shadow duration-200"
+            >
+              <div className="flex items-center gap-4 mb-2">
+                <div
+                  className={`p-3 rounded-lg bg-gradient-to-br ${stat.gradient} shadow-md`}
+                >
+                  <stat.icon className="h-6 w-6 text-white" />
+                </div>
+                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
+                  {stat.title}
+                </span>
+              </div>
+              <div className="text-3xl font-extrabold text-gray-900">
+                {stat.value}
+              </div>
+              <div className="text-xs text-gray-500">{stat.subtitle}</div>
+              <div className="w-full h-2 bg-gray-100 rounded-full mt-2">
+                <div
+                  className={`h-full rounded-full bg-gradient-to-r ${stat.gradient} transition-all duration-500`}
+                  style={{ width: `${stat.percentage || 100}%` }}
+                ></div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Ações Rápidas */}
-        <div className="mb-8 bg-white rounded-2xl shadow-xl border border-slate-200 p-6">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="p-2 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-lg">
-              <FiZap className="h-5 w-5 text-white" />
+        <div className="mb-12 bg-white rounded-2xl border border-gray-100 p-8 shadow-md">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="p-3 bg-gradient-to-br from-emerald-600 to-emerald-400 rounded-xl shadow-md">
+              <FiZap className="h-6 w-6 text-white" />
             </div>
-            <h2 className="text-xl font-bold text-slate-800">Ações Rápidas</h2>
+            <h2 className="text-xl font-bold text-gray-900">Ações Rápidas</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {quickActions.map((action, index) => (
-              <QuickActionCard
+              <div
                 key={index}
-                action={action}
+                className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center gap-5 cursor-pointer hover:bg-blue-50 transition-colors shadow group"
                 onClick={action.onClick}
-              />
+              >
+                <div className="p-3 rounded-lg bg-gradient-to-br from-blue-600 to-blue-400 group-hover:scale-105 transition-transform shadow">
+                  <action.icon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                    {action.title}
+                  </h3>
+                  <p className="text-xs text-gray-500">{action.subtitle}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Gráficos */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mb-12">
           {/* Distribuição de Tipos */}
-          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gradient-to-r from-slate-600 to-slate-800 rounded-lg">
-                  <FiPieChart className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-slate-800">
-                    Distribuição por Tipo
-                  </h3>
-                  <p className="text-sm text-slate-600">Por tipo de exame</p>
-                </div>
+          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-md">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl shadow-md">
+                <FiPieChart className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">
+                  Distribuição por Tipo
+                </h3>
+                <p className="text-xs text-gray-500">Por tipo de exame</p>
               </div>
             </div>
             <div className="h-80">
@@ -588,18 +613,16 @@ const Dashboard = () => {
           </div>
 
           {/* Evolução Mensal */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gradient-to-r from-emerald-600 to-green-600 rounded-lg">
-                  <FiActivity className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Evolução Mensal
-                  </h3>
-                  <p className="text-sm text-gray-600">Últimos 12 meses</p>
-                </div>
+          <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-md">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-gradient-to-br from-emerald-600 to-emerald-400 rounded-xl shadow-md">
+                <FiActivity className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">
+                  Evolução Mensal
+                </h3>
+                <p className="text-xs text-gray-500">Últimos 12 meses</p>
               </div>
             </div>
             <div className="h-80">
@@ -664,27 +687,27 @@ const Dashboard = () => {
         </div>
 
         {/* Seção Inferior */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7">
           {/* Tabela de Exames Recentes */}
-          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+          <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-md">
+            <div className="px-8 py-5 border-b border-gray-100 bg-gray-50">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg">
-                    <FiFileText className="h-5 w-5 text-white" />
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl shadow-md">
+                    <FiFileText className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-base font-bold text-gray-900">
                       Exames Recentes
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-xs text-gray-500">
                       Últimos 5 exames registrados
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => navigate("/exames")}
-                  className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                  className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold transition-colors"
                 >
                   <span>Ver todos</span>
                   <FiArrowRight className="h-4 w-4" />
@@ -740,19 +763,17 @@ const Dashboard = () => {
           </div>
 
           {/* Seção de Notificações */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gradient-to-r from-amber-600 to-orange-600 rounded-lg">
-                  <FiBell className="h-5 w-5 text-white" />
+          <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-md">
+            <div className="px-8 py-5 border-b border-gray-100 bg-gray-50">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-400 rounded-xl shadow-md">
+                  <FiBell className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
+                  <h3 className="text-base font-bold text-gray-900">
                     Avisos & Alertas
                   </h3>
-                  <p className="text-sm text-gray-600">
-                    Informações importantes
-                  </p>
+                  <p className="text-xs text-gray-500">Informações importantes</p>
                 </div>
               </div>
             </div>
@@ -764,24 +785,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
-        {/* Estilo personalizado */}
-        <style>{`
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
-          }
-        `}</style>
       </div>
     </div>
   );

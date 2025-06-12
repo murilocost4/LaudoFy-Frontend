@@ -115,39 +115,39 @@ const Sidebar = () => {
       {/* Backdrop overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
           onClick={close}
         />
       )}
 
-      {/* Sidebar modernizado com tema slate */}
+      {/* Sidebar minimalista e moderno */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-white shadow-xl z-50 md:z-30 transform transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-72 bg-white shadow-lg z-50 md:z-30 transform transition-all duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 lg:top-16 lg:h-[calc(100vh-4rem)] border-r border-slate-200`}
+        } lg:translate-x-0 lg:top-16 lg:h-[calc(100vh-4rem)] border-r border-gray-100`}
       >
         <div className="flex flex-col h-full">
           {/* Mobile Header */}
-          <div className="lg:hidden p-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
+          <div className="lg:hidden p-4 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-r from-slate-600 to-slate-700 flex items-center justify-center shadow-md">
+                <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center shadow-sm">
                   <span className="text-lg font-semibold text-white">
                     {usuario?.nome?.charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-medium text-slate-900">
+                  <h3 className="font-medium text-gray-900">
                     {usuario?.nome}
                   </h3>
-                  <p className="text-sm text-slate-600 capitalize">
+                  <p className="text-sm text-gray-500 capitalize">
                     {usuario?.role}
                   </p>
                 </div>
               </div>
               <button
                 onClick={close}
-                className="p-2 rounded-lg text-slate-500 hover:bg-slate-200 hover:text-slate-700 transition-colors"
+                className="p-2 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
               >
                 <FiX className="h-5 w-5" />
               </button>
@@ -186,7 +186,7 @@ const Sidebar = () => {
 
               return (
                 <div key={`group-${index}`}>
-                  <h3 className="px-3 text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">
+                  <h3 className="px-3 text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
                     {group.title}
                   </h3>
 
@@ -208,23 +208,23 @@ const Sidebar = () => {
                           onClick={close}
                           className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group ${
                             active
-                              ? "bg-slate-100 text-slate-900 border-l-4 border-slate-600 shadow-sm"
-                              : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                              ? "bg-blue-50 text-blue-700 border-r-2 border-blue-600"
+                              : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                           }`}
                         >
                           <item.icon
                             className={`flex-shrink-0 w-5 h-5 transition-colors ${
                               active
-                                ? "text-slate-600"
-                                : "text-slate-500 group-hover:text-slate-600"
+                                ? "text-blue-600"
+                                : "text-gray-400 group-hover:text-gray-600"
                             }`}
                           />
                           <span>{item.label}</span>
-                          {active ? (
-                            <FiChevronDown className="ml-auto text-slate-600" />
-                          ) : (
-                            <FiChevronRight className="ml-auto text-slate-400 group-hover:text-slate-600" />
-                          )}
+                          <div className="ml-auto">
+                            {active && (
+                              <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                            )}
+                          </div>
                         </Link>
                       );
                     })}
@@ -235,13 +235,13 @@ const Sidebar = () => {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t border-slate-200">
+          <div className="p-4 border-t border-gray-100">
             <button
               onClick={() => {
                 close();
                 logout();
               }}
-              className="flex items-center gap-2 px-3 py-2.5 w-full text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2.5 w-full text-sm font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
             >
               <FiLogOut className="w-5 h-5" />
               Sair

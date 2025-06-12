@@ -64,7 +64,7 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-emerald-500 border-t-transparent"></div>
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
     <p className="text-gray-600 text-lg font-medium mt-4">
       Carregando laudos...
     </p>
@@ -91,13 +91,13 @@ const StatCard = memo(
 
     return (
       <div
-        className={`bg-white rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200 ${color}`}
+        className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200 ${color}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-xs font-semibold text-slate-600 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-slate-900 mb-1">{value}</p>
-            <span className="text-xs text-slate-500">{subtitle}</span>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{title}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{value}</p>
+            <span className="text-xs text-gray-500">{subtitle}</span>
           </div>
           <div
             className={`p-3 bg-gradient-to-r ${gradient} rounded-xl shadow-md`}
@@ -809,7 +809,7 @@ export default function PagamentosLaudoTenant() {
         title: "Total de Laudos",
         value: stats.total.toLocaleString("pt-BR"),
         icon: FiTarget,
-        gradient: "from-slate-600 to-slate-800",
+        gradient: "from-blue-600 to-blue-800",
         subtitle: "Base de cálculo",
       },
       {
@@ -845,25 +845,25 @@ export default function PagamentosLaudoTenant() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-100 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Cabeçalho Moderno */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
             <div className="flex items-center space-x-4">
               <div className="p-3 bg-gradient-to-r from-emerald-600 to-emerald-800 rounded-xl shadow-lg">
                 <FiDollarSign className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">
+                <h1 className="text-3xl font-bold text-gray-900">
                   Pagamentos de Laudos
                 </h1>
-                <p className="text-slate-600 mt-1">
+                <p className="text-gray-600 mt-1">
                   Gerencie os pagamentos dos laudos médicos
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-2 text-sm text-slate-500">
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
               <FiCalendar className="h-4 w-4" />
               <span>
                 {new Date().toLocaleDateString("pt-BR", {
@@ -893,7 +893,7 @@ export default function PagamentosLaudoTenant() {
         </div>
 
         {/* Botões de Ação Modernizados */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
             {/* Botões de controle */}
             <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
@@ -902,7 +902,7 @@ export default function PagamentosLaudoTenant() {
                 className={`flex items-center gap-3 px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-200 transform hover:scale-105 ${
                   showFilters
                     ? "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white"
-                    : "bg-gradient-to-r from-slate-100 to-slate-200 text-slate-700 hover:from-slate-200 hover:to-slate-300"
+                    : "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 hover:from-gray-200 hover:to-gray-300"
                 } w-full sm:w-auto`}
               >
                 <FiFilter className="h-5 w-5" />
@@ -919,8 +919,8 @@ export default function PagamentosLaudoTenant() {
                 disabled={loading}
                 className={`flex items-center justify-center gap-3 px-6 py-3 rounded-xl text-white font-semibold shadow-lg transition-all duration-200 transform hover:scale-105 ${
                   loading
-                    ? "bg-gradient-to-r from-slate-400 to-slate-500 cursor-not-allowed"
-                    : "bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 hover:shadow-xl"
+                    ? "bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed"
+                    : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl"
                 } w-full sm:w-auto`}
               >
                 {loading ? (
@@ -940,7 +940,7 @@ export default function PagamentosLaudoTenant() {
             {/* Botão de processar pagamento */}
             {selectedLaudos.length > 0 && (
               <div className="flex items-center gap-4 w-full lg:w-auto">
-                <div className="hidden lg:flex items-center gap-2 text-sm text-slate-600">
+                <div className="hidden lg:flex items-center gap-2 text-sm text-gray-600">
                   <div className="p-1 bg-emerald-100 rounded">
                     <FiCheckCircle className="h-3 w-3 text-emerald-600" />
                   </div>
@@ -973,7 +973,7 @@ export default function PagamentosLaudoTenant() {
                   <h3 className="text-sm font-semibold text-emerald-800 mb-1">
                     Médico selecionado para pagamento
                   </h3>
-                  <p className="text-2xl font-bold text-slate-900">
+                  <p className="text-2xl font-bold text-gray-900">
                     Dr(a).{" "}
                     {medicos.find((m) => m._id === medicoSelecionadoPagamento)
                       ?.nome || "Carregando..."}
@@ -983,7 +983,7 @@ export default function PagamentosLaudoTenant() {
                       <FiFileText className="h-4 w-4 mr-2" />
                       {selectedLaudos.length} laudo(s)
                     </span>
-                    <span className="text-sm font-bold text-slate-900 bg-white px-3 py-1 rounded-full shadow-sm">
+                    <span className="text-sm font-bold text-gray-900 bg-white px-3 py-1 rounded-full shadow-sm">
                       {formatCurrency(totalSelecionado)}
                     </span>
                   </div>
@@ -1005,9 +1005,9 @@ export default function PagamentosLaudoTenant() {
 
         {/* Filtros */}
         {showFilters && (
-          <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
                 <div className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg">
                   <FiFilter className="h-5 w-5 text-white" />
                 </div>
@@ -1017,7 +1017,7 @@ export default function PagamentosLaudoTenant() {
                 {hasActiveFilters && (
                   <button
                     onClick={limparFiltros}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                   >
                     <FiRefreshCw className="h-4 w-4" />
                     Limpar
@@ -1025,7 +1025,7 @@ export default function PagamentosLaudoTenant() {
                 )}
                 <button
                   onClick={() => setShowFilters(false)}
-                  className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <FiX className="h-5 w-5" />
                 </button>
@@ -1034,31 +1034,31 @@ export default function PagamentosLaudoTenant() {
 
             {/* Barra de Pesquisa */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold mb-3 text-slate-700">
+              <label className="block text-sm font-semibold mb-3 text-gray-700">
                 Pesquisar
               </label>
               <div className="relative">
-                <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Pesquisar por médico, paciente ou tipo de exame..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
               <div>
-                <label className="block text-sm font-semibold mb-3 text-slate-700">
+                <label className="block text-sm font-semibold mb-3 text-gray-700">
                   Médico
                 </label>
                 <select
                   name="medicoId"
                   value={filtros.medicoId}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                  className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                 >
                   <option value="">Todos os médicos</option>
                   {medicos.map((medico) => (
@@ -1070,14 +1070,14 @@ export default function PagamentosLaudoTenant() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3 text-slate-700">
+                <label className="block text-sm font-semibold mb-3 text-gray-700">
                   Status
                 </label>
                 <select
                   name="status"
                   value={filtros.status}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                  className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                 >
                   <option value="">Todos</option>
                   <option value="pendente">Pendentes</option>
@@ -1086,7 +1086,7 @@ export default function PagamentosLaudoTenant() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3 text-slate-700">
+                <label className="block text-sm font-semibold mb-3 text-gray-700">
                   Data Inicial
                 </label>
                 <InputDataBrasileira
@@ -1094,12 +1094,12 @@ export default function PagamentosLaudoTenant() {
                   value={filtros.dataInicio}
                   onChange={handleInputChange}
                   placeholder="dd/mm/aaaa"
-                  className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                  className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3 text-slate-700">
+                <label className="block text-sm font-semibold mb-3 text-gray-700">
                   Data Final
                 </label>
                 <InputDataBrasileira
@@ -1107,7 +1107,7 @@ export default function PagamentosLaudoTenant() {
                   value={filtros.dataFim}
                   onChange={handleInputChange}
                   placeholder="dd/mm/aaaa"
-                  className="w-full p-3 border border-slate-300 text-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
+                  className="w-full p-3 border border-gray-300 text-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm transition-all duration-200"
                 />
               </div>
             </div>
@@ -1115,19 +1115,19 @@ export default function PagamentosLaudoTenant() {
         )}
 
         {/* Controles de visualização */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-white/50">
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-4">
-              <span className="text-sm font-semibold text-slate-700">
+              <span className="text-sm font-semibold text-gray-700">
                 Visualização:
               </span>
-              <div className="flex items-center bg-slate-100 rounded-xl p-1 shadow-sm">
+              <div className="flex items-center bg-gray-100 rounded-xl p-1 shadow-sm">
                 <button
                   onClick={() => setViewMode("table")}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                     viewMode === "table"
-                      ? "bg-white text-slate-900 shadow-md"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white text-gray-900 shadow-md"
+                      : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   <FiLayers className="h-4 w-4" />
@@ -1137,8 +1137,8 @@ export default function PagamentosLaudoTenant() {
                   onClick={() => setViewMode("cards")}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                     viewMode === "cards"
-                      ? "bg-white text-slate-900 shadow-md"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white text-gray-900 shadow-md"
+                      : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   <FiEye className="h-4 w-4" />
@@ -1148,7 +1148,7 @@ export default function PagamentosLaudoTenant() {
             </div>
 
             {filteredLaudos.length > 0 && (
-              <div className="flex items-center space-x-2 text-sm text-slate-600 bg-slate-100 px-4 py-2 rounded-xl">
+              <div className="flex items-center space-x-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-xl">
                 <FiFileText className="h-4 w-4 text-emerald-500" />
                 <span className="font-semibold">
                   {filteredLaudos.length} laudos encontrados
@@ -1159,7 +1159,7 @@ export default function PagamentosLaudoTenant() {
         </div>
 
         {/* Conteúdo principal */}
-        <div className="bg-white rounded-2xl shadow-md border border-white/50 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
           {loading ? (
             <LoadingSpinner />
           ) : currentItems.length === 0 ? (
@@ -1167,20 +1167,20 @@ export default function PagamentosLaudoTenant() {
             <div className="p-20 text-center">
               <div className="flex flex-col items-center space-y-6">
                 <div className="relative">
-                  <div className="p-6 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl shadow-lg">
-                    <FiFileText className="h-20 w-20 text-slate-400" />
+                  <div className="p-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl shadow-lg">
+                    <FiFileText className="h-20 w-20 text-gray-400" />
                   </div>
                   <div className="absolute -top-2 -right-2 p-2 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full shadow-lg">
                     <FiSearch className="h-4 w-4 text-white" />
                   </div>
                 </div>
                 <div className="max-w-md">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     {searchTerm || hasActiveFilters
                       ? "Nenhum laudo encontrado"
                       : "Nenhum laudo disponível"}
                   </h3>
-                  <p className="text-slate-600 text-lg">
+                  <p className="text-gray-600 text-lg">
                     {searchTerm || hasActiveFilters
                       ? "Tente ajustar os filtros para encontrar mais resultados."
                       : "Ainda não há laudos disponíveis no sistema."}
@@ -1223,9 +1223,9 @@ export default function PagamentosLaudoTenant() {
             // Vista de Tabela Modernizada
             <div className="overflow-hidden">
               {/* Header da tabela modernizado */}
-              <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
+              <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <h2 className="text-xl font-bold text-slate-900 flex items-center gap-3">
+                  <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
                     <div className="p-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl shadow-lg">
                       <FiFileText className="h-5 w-5 text-white" />
                     </div>
@@ -1253,60 +1253,60 @@ export default function PagamentosLaudoTenant() {
 
               {/* Tabela modernizada */}
               <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-slate-200">
-                  <thead className="bg-gradient-to-r from-slate-50 to-slate-100">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                     <tr>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiCheckSquare className="h-4 w-4 text-emerald-500" />
                           Seleção
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiCalendar className="h-4 w-4 text-blue-500" />
                           Data
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiUser className="h-4 w-4 text-emerald-500" />
                           Médico
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiUsers className="h-4 w-4 text-purple-500" />
                           Paciente
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiFileText className="h-4 w-4 text-blue-500" />
                           Exame
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiDollarSign className="h-4 w-4 text-green-500" />
                           Valor
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center gap-2">
                           <FiActivity className="h-4 w-4 text-amber-500" />
                           Status
                         </div>
                       </th>
-                      <th className="px-6 py-4 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
+                      <th className="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">
                         <div className="flex items-center justify-center gap-2">
-                          <FiSettings className="h-4 w-4 text-slate-500" />
+                          <FiSettings className="h-4 w-4 text-gray-500" />
                           Ações
                         </div>
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-slate-200">
+                  <tbody className="bg-white divide-y divide-gray-200">
                     {currentItems.map((laudo, index) => (
                       <TableRow
                         key={laudo._id}
@@ -1330,9 +1330,9 @@ export default function PagamentosLaudoTenant() {
 
               {/* Paginação Modernizada */}
               {totalPages > 1 && (
-                <div className="px-6 py-4 border-t border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
+                <div className="px-6 py-4 border-t border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
                   <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <div className="flex items-center space-x-2 text-sm text-slate-600">
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <div className="p-2 bg-white rounded-lg shadow-sm">
                         <FiFileText className="h-4 w-4 text-emerald-500" />
                       </div>
@@ -1354,23 +1354,23 @@ export default function PagamentosLaudoTenant() {
                         disabled={currentPage === 1}
                         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm shadow-md transition-all duration-200 ${
                           currentPage === 1
-                            ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                            : "bg-white text-slate-700 hover:bg-gradient-to-r hover:from-slate-600 hover:to-slate-700 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
+                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                            : "bg-white text-gray-700 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
                         }`}
                       >
                         <FiChevronLeft className="h-4 w-4" />
                         <span className="hidden sm:inline">Anterior</span>
                       </button>
 
-                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-md border border-slate-200">
-                        <span className="text-sm font-semibold text-slate-600">
+                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-md border border-gray-200">
+                        <span className="text-sm font-semibold text-gray-600">
                           Página
                         </span>
                         <span className="px-2 py-1 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg text-sm font-bold">
                           {currentPage}
                         </span>
-                        <span className="text-sm text-slate-400">de</span>
-                        <span className="text-sm font-semibold text-slate-800">
+                        <span className="text-sm text-gray-400">de</span>
+                        <span className="text-sm font-semibold text-gray-800">
                           {totalPages}
                         </span>
                       </div>
@@ -1384,8 +1384,8 @@ export default function PagamentosLaudoTenant() {
                         disabled={currentPage === totalPages}
                         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm shadow-md transition-all duration-200 ${
                           currentPage === totalPages
-                            ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                            : "bg-white text-slate-700 hover:bg-gradient-to-r hover:from-slate-600 hover:to-slate-700 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
+                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                            : "bg-white text-gray-700 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
                         }`}
                       >
                         <span className="hidden sm:inline">Próximo</span>

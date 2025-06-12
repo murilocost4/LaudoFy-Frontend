@@ -47,20 +47,20 @@ const CriarUsuario = () => {
   );
   const [loadingEspecialidades, setLoadingEspecialidades] = useState(false);
 
-  // Sistema de cores moderno - Slate
+  // Sistema de cores moderno - Blue/Gray
   const COLORS = {
-    primary: "#475569",
-    primaryLight: "#94A3B8",
-    primaryDark: "#334155",
-    secondary: "#10B981",
-    accent: "#6366F1",
+    primary: "#2563eb", // blue-600
+    primaryLight: "#60a5fa", // blue-400
+    primaryDark: "#1d4ed8", // blue-700
+    secondary: "#10B981", // emerald-500
+    accent: "#6366f1", // indigo-500
     warning: "#F59E0B",
     danger: "#EF4444",
-    background: "#F1F5F9",
+    background: "#f9fafb", // gray-50
     cardBg: "#FFFFFF",
-    text: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
+    text: "#0f172a", // slate-900
+    muted: "#64748b", // slate-500
+    border: "#e2e8f0", // slate-200
   };
 
   useEffect(() => {
@@ -298,10 +298,10 @@ const CriarUsuario = () => {
 
   if (isLoading && id) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-slate-500 mx-auto"></div>
-          <p className="mt-4 text-slate-700 font-medium">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-700 font-medium">
             Carregando dados do usuário...
           </p>
         </div>
@@ -310,29 +310,29 @@ const CriarUsuario = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Cabeçalho */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate("/usuarios")}
-              className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <IoArrowBack className="text-lg" />
               <span className="font-medium">Voltar</span>
             </button>
 
-            <div className="hidden md:block h-6 w-px bg-slate-300"></div>
+            <div className="hidden md:block h-6 w-px bg-gray-300"></div>
 
-            <h1 className="text-2xl font-bold text-slate-800">
+            <h1 className="text-2xl font-bold text-gray-800">
               {modoEdicao ? "Editar Usuário" : "Cadastrar Novo Usuário"}
             </h1>
           </div>
 
           {/* Badge indicativo do tipo de operação */}
-          <div className="flex items-center gap-2 px-3 py-2 bg-slate-50 text-slate-700 rounded-lg border border-slate-200">
-            <FaUsers className="text-sm text-slate-500" />
+          <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 text-gray-700 rounded-lg border border-gray-200">
+            <FaUsers className="text-sm text-blue-600" />
             <span className="text-sm font-medium">
               {modoEdicao ? "Modo Edição" : "Novo Cadastro"}
             </span>
@@ -399,20 +399,20 @@ const CriarUsuario = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+          className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
         >
           {/* Seção Informações Básicas */}
-          <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-            <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-              <FaUserAlt className="text-slate-500" />
+          <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+            <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+              <FaUserAlt className="text-blue-600" />
               Informações Básicas
             </h2>
           </div>
           <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Campo Nome */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoPersonOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoPersonOutline className="text-blue-600" />
                 Nome Completo *
               </label>
               <input
@@ -420,7 +420,7 @@ const CriarUsuario = () => {
                 name="nome"
                 value={formData.nome}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                 placeholder="Digite o nome completo"
                 required
               />
@@ -428,12 +428,12 @@ const CriarUsuario = () => {
 
             {/* Campo Email */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoMailOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoMailOutline className="text-blue-600" />
                 Email *
                 {verificandoMedico && formData.role === "medico" && (
                   <div className="ml-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-slate-500"></div>
+                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-500"></div>
                   </div>
                 )}
               </label>
@@ -442,7 +442,7 @@ const CriarUsuario = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                 placeholder="Digite o email"
                 required
               />
@@ -450,15 +450,15 @@ const CriarUsuario = () => {
 
             {/* Campo Função */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <FaUserShield className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <FaUserShield className="text-blue-600" />
                 Função *
               </label>
               <select
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all bg-white"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white"
                 required
               >
                 <option value="tecnico">Técnico</option>
@@ -470,8 +470,8 @@ const CriarUsuario = () => {
 
             {/* Campo Senha */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoLockClosedOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoLockClosedOutline className="text-blue-600" />
                 Senha {!modoEdicao && <span className="text-red-500">*</span>}
               </label>
               <input
@@ -479,7 +479,7 @@ const CriarUsuario = () => {
                 name="senha"
                 value={formData.senha}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                 placeholder={
                   modoEdicao
                     ? "Deixe em branco para manter"
@@ -488,7 +488,7 @@ const CriarUsuario = () => {
                 required={!modoEdicao}
               />
               {modoEdicao && (
-                <p className="mt-1 text-xs text-slate-500">
+                <p className="mt-1 text-xs text-gray-500">
                   Deixe em branco para manter a senha atual
                 </p>
               )}
@@ -496,8 +496,8 @@ const CriarUsuario = () => {
 
             {/* Campo Status Ativo */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoShieldCheckmarkOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoShieldCheckmarkOutline className="text-blue-600" />
                 Status do Usuário
               </label>
               <div className="flex items-center space-x-3">
@@ -516,7 +516,7 @@ const CriarUsuario = () => {
                     className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
                       formData.ativo === true
                         ? "border-green-500 bg-green-500"
-                        : "border-slate-300"
+                        : "border-gray-300"
                     }`}
                   >
                     {formData.ativo === true && (
@@ -527,7 +527,7 @@ const CriarUsuario = () => {
                     className={`ml-2 text-sm font-medium ${
                       formData.ativo === true
                         ? "text-green-700"
-                        : "text-slate-600"
+                        : "text-gray-600"
                     }`}
                   >
                     Ativo
@@ -549,7 +549,7 @@ const CriarUsuario = () => {
                     className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
                       formData.ativo === false
                         ? "border-red-500 bg-red-500"
-                        : "border-slate-300"
+                        : "border-gray-300"
                     }`}
                   >
                     {formData.ativo === false && (
@@ -560,22 +560,22 @@ const CriarUsuario = () => {
                     className={`ml-2 text-sm font-medium ${
                       formData.ativo === false
                         ? "text-red-700"
-                        : "text-slate-600"
+                        : "text-gray-600"
                     }`}
                   >
                     Inativo
                   </span>
                 </label>
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-gray-500">
                 Usuários inativos não conseguem fazer login no sistema
               </p>
             </div>
 
             {/* Campo Permissão Financeira */}
             <div className="md:col-span-2 space-y-2">
-              <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                <IoShieldCheckmarkOutline className="text-slate-500" />
+              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                <IoShieldCheckmarkOutline className="text-blue-600" />
                 Permissão Financeira
               </label>
               <div className="flex space-x-6">
@@ -597,7 +597,7 @@ const CriarUsuario = () => {
                     className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
                       formData.permissaoFinanceiro === true
                         ? "border-green-500 bg-green-500"
-                        : "border-slate-300"
+                        : "border-gray-300"
                     }`}
                   >
                     {formData.permissaoFinanceiro === true && (
@@ -608,7 +608,7 @@ const CriarUsuario = () => {
                     className={`ml-2 text-sm font-medium ${
                       formData.permissaoFinanceiro === true
                         ? "text-green-700"
-                        : "text-slate-600"
+                        : "text-gray-600"
                     }`}
                   >
                     Conceder permissão
@@ -633,7 +633,7 @@ const CriarUsuario = () => {
                     className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
                       formData.permissaoFinanceiro === false
                         ? "border-red-500 bg-red-500"
-                        : "border-slate-300"
+                        : "border-gray-300"
                     }`}
                   >
                     {formData.permissaoFinanceiro === false && (
@@ -644,14 +644,14 @@ const CriarUsuario = () => {
                     className={`ml-2 text-sm font-medium ${
                       formData.permissaoFinanceiro === false
                         ? "text-red-700"
-                        : "text-slate-600"
+                        : "text-gray-600"
                     }`}
                   >
                     Sem permissão
                   </span>
                 </label>
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-gray-500">
                 Usuários com permissão financeira podem acessar módulos de
                 pagamentos, relatórios financeiros e configurações de valores
               </p>
@@ -661,21 +661,21 @@ const CriarUsuario = () => {
           {/* Seção específica para médicos */}
           {formData.role === "medico" && (
             <>
-              <div className="px-6 py-4 border-t border-b border-slate-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <FaStethoscope className="text-blue-500" />
+              <div className="px-6 py-4 border-t border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                  <FaStethoscope className="text-blue-600" />
                   Informações Médicas
                 </h2>
               </div>
               <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Campo CRM */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                    <IoMedicalOutline className="text-slate-500" />
+                  <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                    <IoMedicalOutline className="text-blue-600" />
                     CRM *
                     {verificandoMedico && (
                       <div className="ml-2">
-                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-slate-500"></div>
+                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-500"></div>
                       </div>
                     )}
                   </label>
@@ -684,7 +684,7 @@ const CriarUsuario = () => {
                     name="crm"
                     value={formData.crm}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="Digite o CRM do médico (ex: CRM/SP 123456)"
                     required
                   />
@@ -692,17 +692,17 @@ const CriarUsuario = () => {
 
                 {/* Campo Especialidades */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 mb-1 flex items-center gap-2">
-                    <IoSchoolOutline className="text-slate-500" />
+                  <label className="text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                    <IoSchoolOutline className="text-blue-600" />
                     Especialidades *
                     {loadingEspecialidades && (
                       <div className="ml-2">
-                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-slate-500"></div>
+                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-500"></div>
                       </div>
                     )}
                   </label>
                   {loadingEspecialidades ? (
-                    <div className="w-full px-4 py-3 border border-slate-300 rounded-lg bg-slate-100 text-slate-500 text-sm">
+                    <div className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-500 text-sm">
                       Carregando especialidades...
                     </div>
                   ) : (
@@ -722,50 +722,50 @@ const CriarUsuario = () => {
                         control: (provided, state) => ({
                           ...provided,
                           minHeight: "48px",
-                          borderColor: state.isFocused ? "#475569" : "#CBD5E1",
+                          borderColor: state.isFocused ? "#2563eb" : "#d1d5db",
                           boxShadow: state.isFocused
-                            ? "0 0 0 2px rgba(71, 85, 105, 0.2)"
+                            ? "0 0 0 2px rgba(37, 99, 235, 0.2)"
                             : "none",
                           "&:hover": {
-                            borderColor: "#475569",
+                            borderColor: "#2563eb",
                           },
                         }),
                         multiValue: (provided) => ({
                           ...provided,
-                          backgroundColor: "#F1F5F9",
-                          border: "1px solid #CBD5E1",
+                          backgroundColor: "#dbeafe",
+                          border: "1px solid #93c5fd",
                         }),
                         multiValueLabel: (provided) => ({
                           ...provided,
-                          color: "#334155",
+                          color: "#1e40af",
                           fontWeight: "500",
                         }),
                         multiValueRemove: (provided) => ({
                           ...provided,
-                          color: "#475569",
+                          color: "#2563eb",
                           "&:hover": {
-                            backgroundColor: "#E2E8F0",
-                            color: "#334155",
+                            backgroundColor: "#bfdbfe",
+                            color: "#1d4ed8",
                           },
                         }),
                         option: (provided, state) => ({
                           ...provided,
                           backgroundColor: state.isSelected
-                            ? "#475569"
+                            ? "#2563eb"
                             : state.isFocused
-                              ? "#F1F5F9"
+                              ? "#dbeafe"
                               : "white",
-                          color: state.isSelected ? "white" : "#334155",
+                          color: state.isSelected ? "white" : "#374151",
                           "&:hover": {
                             backgroundColor: state.isSelected
-                              ? "#475569"
-                              : "#F1F5F9",
+                              ? "#2563eb"
+                              : "#dbeafe",
                           },
                         }),
                       }}
                     />
                   )}
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-gray-500">
                     Selecione uma ou mais especialidades do médico
                   </p>
                 </div>
@@ -801,7 +801,7 @@ const CriarUsuario = () => {
           )}
 
           {/* Botão de Envio */}
-          <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+          <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
             <button
               type="submit"
               disabled={
@@ -809,8 +809,8 @@ const CriarUsuario = () => {
               }
               className={`w-full py-3 rounded-lg font-semibold text-white transition-all flex items-center justify-center gap-2 ${
                 isLoading || (formData.role === "medico" && avisoMedico)
-                  ? "bg-slate-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-sm"
               }`}
             >
               {isLoading ? (

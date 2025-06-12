@@ -43,8 +43,8 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-500 border-t-transparent"></div>
-    <p className="text-slate-600 text-lg font-medium mt-4">
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+    <p className="text-gray-600 text-lg font-medium mt-4">
       Carregando laudos...
     </p>
   </div>
@@ -79,12 +79,12 @@ const StatCard = memo(
 
     return (
       <div
-        className={`bg-white rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200 ${color}`}
+        className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200 ${color}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-xs font-semibold text-slate-600 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-slate-900 mb-1">{value}</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{title}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{value}</p>
             <div className="flex items-center space-x-1">
               {trend && (
                 <div
@@ -483,22 +483,22 @@ const LaudosDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Cabeçalho e controles integrados ao fundo da página */}
       <div className="px-6 py-6">
         <div className="flex flex-col gap-6">
           {/* Título e botões de ação */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-slate-800 flex items-center">
-                <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl mr-3 shadow-lg">
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center">
+                <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl mr-3 shadow-lg">
                   <FiFileText className="text-white h-5 w-5" />
                 </div>
                 {usuario.role === "medico"
                   ? "Meus Laudos"
                   : "Dashboard de Laudos"}
               </h1>
-              <p className="text-sm text-slate-600 mt-2 ml-14">
+              <p className="text-sm text-gray-600 mt-2 ml-14">
                 {usuario.role === "medico"
                   ? "Gerencie e visualize seus laudos médicos"
                   : "Gerencie e visualize todos os laudos da empresa"}
@@ -508,7 +508,7 @@ const LaudosDashboard = () => {
             <div className="flex gap-3">
               <button
                 onClick={fetchLaudos}
-                className="flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-all duration-200 shadow-sm text-sm font-medium"
+                className="flex items-center justify-center px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-200 shadow-sm text-sm font-medium"
               >
                 <FiRefreshCw className="mr-2 h-4 w-4" />
                 <span>Atualizar</span>
@@ -518,7 +518,7 @@ const LaudosDashboard = () => {
                 onClick={() => setMostrarFiltros(!mostrarFiltros)}
                 className={`flex items-center justify-center px-6 py-3 rounded-xl border font-medium transition-all duration-200 shadow-sm text-sm ${
                   mostrarFiltros
-                    ? "bg-gradient-to-r from-slate-600 to-slate-800 text-white border-slate-600"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-800 text-white border-blue-600"
                     : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
                 }`}
               >
@@ -531,7 +531,7 @@ const LaudosDashboard = () => {
               {usuario.role === "medico" && (
                 <button
                   onClick={() => navigate("/laudos/novo")}
-                  className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-xl hover:from-slate-700 hover:to-slate-900 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-sm"
+                  className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl hover:from-blue-700 hover:to-blue-900 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-sm"
                 >
                   <FiPlus className="mr-2 h-4 w-4" />
                   <span>Novo Laudo</span>
@@ -547,7 +547,7 @@ const LaudosDashboard = () => {
                 title="Total de Laudos"
                 value={estatisticas.totalLaudos || 0}
                 icon={FiDatabase}
-                gradient="from-slate-600 to-slate-800"
+                gradient="from-blue-600 to-blue-800"
                 subtitle="Total geral"
                 isLoading={!estatisticas}
               />
@@ -580,16 +580,16 @@ const LaudosDashboard = () => {
 
           {/* Seção de filtros integrada ao fundo */}
           {mostrarFiltros && (
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
               <div className="flex flex-col gap-6">
-                <h3 className="text-lg font-bold text-slate-800 mb-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
                   Filtros de Busca
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {/* Médico - Não mostrar para médicos */}
                   {usuario.role !== "medico" && (
                     <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Médico Responsável
                       </label>
                       <div className="relative">
@@ -597,7 +597,7 @@ const LaudosDashboard = () => {
                           name="medicoId"
                           value={filtros.medicoId}
                           onChange={handleFiltroChange}
-                          className="block w-full pl-3 pr-10 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 appearance-none bg-white transition-all duration-200 text-slate-700 font-medium text-sm"
+                          className="block w-full pl-3 pr-10 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white transition-all duration-200 text-gray-700 font-medium text-sm"
                         >
                           {medicos.map((medico) => (
                             <option key={medico.value} value={medico.value}>

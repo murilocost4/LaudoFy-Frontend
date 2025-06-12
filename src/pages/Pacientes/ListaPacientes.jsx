@@ -39,8 +39,8 @@ const useDebounce = (value, delay) => {
 // Componente de Loading otimizado
 const LoadingSpinner = memo(() => (
   <div className="flex flex-col justify-center items-center p-20">
-    <div className="animate-spin rounded-full h-16 w-16 border-4 border-slate-500 border-t-transparent"></div>
-    <p className="text-slate-600 text-lg font-medium mt-4">
+    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
+    <p className="text-gray-600 text-lg font-medium mt-4">
       Carregando pacientes...
     </p>
   </div>
@@ -75,12 +75,12 @@ const StatCard = memo(
 
     return (
       <div
-        className={`bg-white rounded-2xl p-4 shadow-md border border-white/50 hover:shadow-lg transition-shadow duration-200 ${color}`}
+        className={`bg-white rounded-2xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200 ${color}`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-xs font-semibold text-slate-600 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-slate-900 mb-1">{value}</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{title}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{value}</p>
             <div className="flex items-center space-x-1">
               {trend && (
                 <div
@@ -97,7 +97,7 @@ const StatCard = memo(
                   </div>
                 </div>
               )}
-              <span className="text-xs text-slate-500">{subtitle}</span>
+              <span className="text-xs text-gray-500">{subtitle}</span>
             </div>
           </div>
           <div
@@ -330,10 +330,10 @@ const ListaPacientes = () => {
         key: "nome",
         render: (value, row) => (
           <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center mr-3">
-              <FiUser className="text-slate-600" />
+            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+              <FiUser className="text-gray-600" />
             </div>
-            <span className="font-medium text-slate-800">
+            <span className="font-medium text-gray-800">
               {value || "Não informado"}
             </span>
           </div>
@@ -343,7 +343,7 @@ const ListaPacientes = () => {
         header: "Email",
         key: "email",
         render: (value) => (
-          <span className="text-slate-700">{value || "—"}</span>
+          <span className="text-gray-700">{value || "—"}</span>
         ),
       },
       {
@@ -351,9 +351,9 @@ const ListaPacientes = () => {
         key: "telefone",
         render: (value) =>
           value ? (
-            <span className="text-slate-700">{value}</span>
+            <span className="text-gray-700">{value}</span>
           ) : (
-            <span className="text-slate-400">—</span>
+            <span className="text-gray-400">—</span>
           ),
       },
       {
@@ -362,13 +362,13 @@ const ListaPacientes = () => {
         render: (value) =>
           value ? (
             <div>
-              <p className="text-slate-800">{formatarDataLocal(value)}</p>
-              <p className="text-xs text-slate-500">
+              <p className="text-gray-800">{formatarDataLocal(value)}</p>
+              <p className="text-xs text-gray-500">
                 {calcularIdade(value)} anos
               </p>
             </div>
           ) : (
-            <span className="text-slate-400">—</span>
+            <span className="text-gray-400">—</span>
           ),
       },
       // Add company column if user is medico or adminMaster
@@ -378,7 +378,7 @@ const ListaPacientes = () => {
               header: "Empresa",
               key: "tenant_id",
               render: (value, paciente) => (
-                <span className="text-slate-800">
+                <span className="text-gray-800">
                   {paciente.tenant_id?.nomeFantasia || "Não informado"}
                 </span>
               ),
@@ -395,7 +395,7 @@ const ListaPacientes = () => {
         label: "Editar",
         acao: (paciente) => navigate(`/pacientes/editar/${paciente._id}`),
         icon: <FiEdit className="h-4 w-4" />,
-        style: "text-slate-600 hover:text-slate-800 hover:bg-slate-50",
+        style: "text-blue-600 hover:text-blue-800 hover:bg-blue-50",
         mostrar: () => true,
       },
       {
@@ -422,7 +422,7 @@ const ListaPacientes = () => {
         title: "Total de Pacientes",
         value: estatisticas.totalPacientes?.toLocaleString("pt-BR") || "0",
         icon: FiDatabase,
-        gradient: "from-slate-600 to-slate-800",
+        gradient: "from-blue-600 to-blue-800",
         subtitle: "Pacientes cadastrados",
       },
       {
@@ -443,20 +443,20 @@ const ListaPacientes = () => {
   }, [estatisticas]);
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Cabeçalho e controles integrados ao fundo da página */}
       <div className="px-6 py-6">
         <div className="flex flex-col gap-6">
           {/* Título e botões de ação */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-slate-800 flex items-center">
-                <div className="p-3 bg-gradient-to-r from-slate-600 to-slate-800 rounded-xl mr-3 shadow-lg">
+              <h1 className="text-2xl font-bold text-gray-800 flex items-center">
+                <div className="p-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl mr-3 shadow-lg">
                   <FiUser className="text-white h-5 w-5" />
                 </div>
                 Pacientes
               </h1>
-              <p className="text-sm text-slate-600 mt-2 ml-14">
+              <p className="text-sm text-gray-600 mt-2 ml-14">
                 {totalItens > 0
                   ? `${totalItens} pacientes encontrados`
                   : "Gerencie e visualize todos os pacientes"}
@@ -466,7 +466,7 @@ const ListaPacientes = () => {
             <div className="flex gap-3">
               <button
                 onClick={fetchPacientes}
-                className="flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition-all duration-200 shadow-sm text-sm font-medium"
+                className="flex items-center justify-center px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-200 shadow-sm text-sm font-medium"
               >
                 <FiRefreshCw className="mr-2 h-4 w-4" />
                 <span>Atualizar</span>
@@ -476,8 +476,8 @@ const ListaPacientes = () => {
                 onClick={() => setMostrarFiltros(!mostrarFiltros)}
                 className={`flex items-center justify-center px-6 py-3 rounded-xl border font-medium transition-all duration-200 shadow-sm text-sm ${
                   mostrarFiltros
-                    ? "bg-gradient-to-r from-slate-600 to-slate-800 text-white border-slate-600"
-                    : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-800 text-white border-blue-600"
+                    : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 <FiFilter className="mr-2 h-4 w-4" />
@@ -487,7 +487,7 @@ const ListaPacientes = () => {
 
               <button
                 onClick={() => navigate("/pacientes/novo")}
-                className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-slate-600 to-slate-800 text-white rounded-xl hover:from-slate-700 hover:to-slate-900 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-sm"
+                className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl hover:from-blue-700 hover:to-blue-900 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-sm"
               >
                 <FiPlus className="mr-2 h-4 w-4" />
                 <span>Novo Paciente</span>
@@ -508,25 +508,25 @@ const ListaPacientes = () => {
 
       {/* Container principal */}
       <div className="px-6">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
           {/* Filtros avançados */}
           {mostrarFiltros && (
-            <div className="px-6 py-6 bg-slate-50 border-b border-slate-200">
+            <div className="px-6 py-6 bg-gray-50 border-b border-gray-200">
               <div>
-                <h3 className="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                  <FiFilter className="text-slate-600 mr-2" />
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                  <FiFilter className="text-gray-600 mr-2" />
                   Filtros Avançados
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {/* Nome */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Nome
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <FiSearch className="text-slate-400" />
+                        <FiSearch className="text-gray-400" />
                       </div>
                       <input
                         type="text"
@@ -534,14 +534,14 @@ const ListaPacientes = () => {
                         value={filtros.nome}
                         onChange={handleFiltroChange}
                         placeholder="Buscar por nome..."
-                        className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 text-slate-700 outline-none rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all duration-200"
+                        className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 text-gray-700 outline-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                       />
                     </div>
                   </div>
 
                   {/* CPF */}
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       CPF
                     </label>
                     <input
@@ -551,9 +551,9 @@ const ListaPacientes = () => {
                       onChange={handleFiltroChange}
                       placeholder="000.000.000-00"
                       maxLength="14"
-                      className="block w-full px-3 py-2.5 border border-slate-300 text-slate-700 outline-none rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-slate-500 transition-all duration-200"
+                      className="block w-full px-3 py-2.5 border border-gray-300 text-gray-700 outline-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                     />
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-gray-500 mt-1">
                       Digite pelo menos 3 números para buscar
                     </p>
                   </div>
@@ -562,13 +562,13 @@ const ListaPacientes = () => {
                 <div className="flex justify-end mt-6 gap-3">
                   <button
                     onClick={limparFiltros}
-                    className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 focus:ring-2 focus:ring-slate-500 transition-all duration-200"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
                   >
                     Limpar
                   </button>
                   <button
                     onClick={aplicarFiltros}
-                    className="px-4 py-2 text-sm font-medium text-white bg-slate-600 rounded-xl hover:bg-slate-700 focus:ring-2 focus:ring-slate-500 shadow-sm transition-all duration-200"
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 shadow-sm transition-all duration-200"
                   >
                     Aplicar Filtros
                   </button>
@@ -631,17 +631,17 @@ const ListaPacientes = () => {
                 acoes={acoes}
                 mensagemSemDados={
                   <div className="text-center py-16">
-                    <FiUser className="mx-auto text-slate-300 text-5xl mb-4" />
-                    <h3 className="text-xl font-semibold text-slate-600 mb-2">
+                    <FiUser className="mx-auto text-gray-300 text-5xl mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-600 mb-2">
                       Nenhum paciente encontrado
                     </h3>
-                    <p className="text-slate-400">
+                    <p className="text-gray-400">
                       Tente ajustar seus filtros de busca ou cadastre um novo
                       paciente
                     </p>
                     <button
                       onClick={() => navigate("/pacientes/novo")}
-                      className="mt-4 px-4 py-2 bg-slate-600 text-white rounded-xl hover:bg-slate-700 transition-all duration-200 shadow-sm"
+                      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-sm"
                     >
                       <FiPlus className="inline mr-2" />
                       Novo Paciente
@@ -654,9 +654,9 @@ const ListaPacientes = () => {
 
           {/* Paginação */}
           {totalPaginas > 1 && (
-            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
+            <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-gray-600">
                   Página {paginaAtual} de {totalPaginas} • {totalItens}{" "}
                   pacientes
                 </p>
@@ -667,8 +667,8 @@ const ListaPacientes = () => {
                     disabled={paginaAtual === 1}
                     className={`px-4 py-2 rounded-xl border transition-all duration-200 ${
                       paginaAtual === 1
-                        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-                        : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-400 shadow-sm hover:shadow-md"
+                        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400 shadow-sm hover:shadow-md"
                     }`}
                   >
                     Anterior
@@ -690,8 +690,8 @@ const ListaPacientes = () => {
                         onClick={() => mudarPagina(pageNum)}
                         className={`px-4 py-2 rounded-xl border transition-all duration-200 ${
                           paginaAtual === pageNum
-                            ? "bg-slate-600 text-white border-slate-600 shadow-md"
-                            : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-400 shadow-sm hover:shadow-md"
+                            ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                            : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400 shadow-sm hover:shadow-md"
                         }`}
                       >
                         {pageNum}
@@ -704,8 +704,8 @@ const ListaPacientes = () => {
                     disabled={paginaAtual === totalPaginas}
                     className={`px-4 py-2 rounded-xl border transition-all duration-200 ${
                       paginaAtual === totalPaginas
-                        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-                        : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-400 shadow-sm hover:shadow-md"
+                        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400 shadow-sm hover:shadow-md"
                     }`}
                   >
                     Próxima
@@ -720,13 +720,13 @@ const ListaPacientes = () => {
       {/* Modal de Confirmação */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm backdrop-brightness-50 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-2xl shadow-2xl max-w-md w-full mx-4 border border-slate-200">
-            <h2 className="text-xl font-bold text-slate-800 mb-4">
+          <div className="bg-white p-6 rounded-2xl shadow-2xl max-w-md w-full mx-4 border border-gray-200">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
               Confirmar Exclusão
             </h2>
-            <p className="text-slate-600 mb-6">
+            <p className="text-gray-600 mb-6">
               Tem certeza que deseja excluir o paciente{" "}
-              <strong className="text-slate-800">
+              <strong className="text-gray-800">
                 {selectedPaciente?.nome}
               </strong>
               ? Esta ação não pode ser desfeita.
@@ -734,7 +734,7 @@ const ListaPacientes = () => {
             <div className="flex justify-end space-x-3">
               <button
                 onClick={handleCancelDelete}
-                className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all duration-200"
+                className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-200"
               >
                 Cancelar
               </button>

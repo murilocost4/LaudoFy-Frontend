@@ -46,13 +46,13 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40 border-b border-slate-200">
-      <div className="mx-auto px-6 flex justify-between items-center h-16 bg-gradient-to-r from-slate-50 to-slate-100">
+    <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-sm z-40 border-b border-gray-100">
+      <div className="mx-auto px-6 flex justify-between items-center h-16">
         {/* Left Side */}
         <div className="flex items-center space-x-4">
           <button
             onClick={toggleSidebarBasedOnRole}
-            className="text-slate-600 hover:text-slate-900 hover:bg-slate-200 p-2 rounded-lg transition-all duration-200 lg:hidden"
+            className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 p-2 rounded-lg transition-all duration-200 lg:hidden"
             aria-label="Toggle sidebar"
           >
             <FiMenu className="h-5 w-5" />
@@ -60,8 +60,8 @@ const Header = () => {
 
           <div className="flex items-center">
             <h1 className="text-2xl font-bold tracking-tight">
-              <span className="font-black text-slate-900">LAUDO</span>
-              <span className="text-slate-600">FY</span>
+              <span className="font-black text-gray-900">LAUDO</span>
+              <span className="text-blue-600">FY</span>
             </h1>
           </div>
         </div>
@@ -71,7 +71,7 @@ const Header = () => {
           {/* Help/Documentation Button */}
           <button
             onClick={openModal}
-            className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-200 rounded-lg transition-all duration-200"
+            className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
             aria-label="Documentação do Sistema"
           >
             <FiInfo className="h-5 w-5" />
@@ -82,31 +82,31 @@ const Header = () => {
             <div className="relative group">
               <div className="flex items-center space-x-3 cursor-pointer">
                 <div className="hidden md:block text-right">
-                  <p className="text-sm font-medium text-slate-900">
+                  <p className="text-sm font-medium text-gray-900">
                     {usuario?.nome}
                   </p>
-                  <p className="text-xs text-slate-600 font-medium capitalize">
+                  <p className="text-xs text-gray-500 font-medium capitalize">
                     {usuario?.role}
                   </p>
                 </div>
 
-                <div className="w-9 h-9 rounded-full bg-gradient-to-r from-slate-600 to-slate-700 flex items-center justify-center text-white font-semibold shadow-md">
+                <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold shadow-sm">
                   {usuario?.nome?.charAt(0).toUpperCase()}
                 </div>
               </div>
 
               {/* Dropdown Menu */}
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-1 z-50 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 border border-slate-200">
-                <div className="px-4 py-2 text-sm text-slate-600 border-b border-slate-200">
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 border border-gray-100">
+                <div className="px-4 py-2 text-sm text-gray-600 border-b border-gray-100">
                   Logado como{" "}
-                  <span className="font-medium text-slate-900">
+                  <span className="font-medium text-gray-900">
                     {usuario?.email}
                   </span>
                 </div>
                 <div>
                   <button
                     onClick={logout}
-                    className="flex items-center px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 w-full text-left transition-colors duration-200"
+                    className="flex items-center px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-red-600 w-full text-left transition-colors duration-200"
                   >
                     <FiLogOut className="mr-2" />
                     Sair
@@ -127,48 +127,48 @@ const Header = () => {
         >
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-800">
-              <h2 className="text-xl font-bold text-white">
+            <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-gray-900">
                 Documentação do Sistema
               </h2>
               <button
                 onClick={closeModal}
-                className="text-slate-300 hover:text-white transition-colors p-1"
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1"
               >
                 <FiX className="h-5 w-5" />
               </button>
             </div>
 
             {/* Navigation Tabs */}
-            <div className="border-b border-slate-200">
+            <div className="border-b border-gray-100">
               <nav className="flex -mb-px">
                 <button
                   onClick={() => setActiveTab("about")}
-                  className={`px-4 py-3 text-sm font-medium ${activeTab === "about" ? "text-slate-900 border-b-2 border-blue-500" : "text-slate-500 hover:text-slate-700"}`}
+                  className={`px-4 py-3 text-sm font-medium ${activeTab === "about" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
                 >
                   Sobre
                 </button>
                 <button
                   onClick={() => setActiveTab("users")}
-                  className={`px-4 py-3 text-sm font-medium ${activeTab === "users" ? "text-slate-900 border-b-2 border-blue-500" : "text-slate-500 hover:text-slate-700"}`}
+                  className={`px-4 py-3 text-sm font-medium ${activeTab === "users" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
                 >
                   Tipos de Usuário
                 </button>
                 <button
                   onClick={() => setActiveTab("steps")}
-                  className={`px-4 py-3 text-sm font-medium ${activeTab === "steps" ? "text-slate-900 border-b-2 border-blue-500" : "text-slate-500 hover:text-slate-700"}`}
+                  className={`px-4 py-3 text-sm font-medium ${activeTab === "steps" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
                 >
                   Passos de Uso
                 </button>
                 <button
                   onClick={() => setActiveTab("files")}
-                  className={`px-4 py-3 text-sm font-medium ${activeTab === "files" ? "text-slate-900 border-b-2 border-blue-500" : "text-slate-500 hover:text-slate-700"}`}
+                  className={`px-4 py-3 text-sm font-medium ${activeTab === "files" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
                 >
                   Arquivos e Laudos
                 </button>
                 <button
                   onClick={() => setActiveTab("security")}
-                  className={`px-4 py-3 text-sm font-medium ${activeTab === "security" ? "text-slate-900 border-b-2 border-blue-500" : "text-slate-500 hover:text-slate-700"}`}
+                  className={`px-4 py-3 text-sm font-medium ${activeTab === "security" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700"}`}
                 >
                   Segurança
                 </button>
@@ -179,10 +179,10 @@ const Header = () => {
             <div className="flex-1 overflow-y-auto p-6">
               {activeTab === "about" && (
                 <div>
-                  <h3 className="text-lg font-medium text-slate-800 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     🧾 Sobre o Sistema
                   </h3>
-                  <p className="text-slate-600">
+                  <p className="text-gray-600 leading-relaxed">
                     O LaudoFy é um sistema de gestão de laudos médicos com
                     recursos para criação, assinatura digital e liberação de
                     acesso público de documentos.
@@ -192,23 +192,23 @@ const Header = () => {
 
               {activeTab === "users" && (
                 <div>
-                  <h3 className="text-lg font-medium text-slate-800 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     👥 Tipos de Usuário
                   </h3>
-                  <ul className="space-y-3 text-slate-600">
+                  <ul className="space-y-3 text-gray-600">
                     <li>
-                      <strong>Técnico:</strong> Cadastra pacientes e exames,
+                      <strong className="text-gray-900">Técnico:</strong> Cadastra pacientes e exames,
                       gerencia arquivos
                     </li>
                     <li>
-                      <strong>Médico:</strong> Cria e assina laudos médicos
+                      <strong className="text-gray-900">Médico:</strong> Cria e assina laudos médicos
                     </li>
                     <li>
-                      <strong>Admin:</strong> Gerencia usuários e configurações
+                      <strong className="text-gray-900">Admin:</strong> Gerencia usuários e configurações
                       do sistema
                     </li>
                     <li>
-                      <strong>Recepcionista:</strong> Cadastra pacientes e
+                      <strong className="text-gray-900">Recepcionista:</strong> Cadastra pacientes e
                       visualiza relatórios
                     </li>
                   </ul>
@@ -217,10 +217,10 @@ const Header = () => {
 
               {activeTab === "steps" && (
                 <div>
-                  <h3 className="text-lg font-medium text-slate-800 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     📌 Passos de Uso
                   </h3>
-                  <ol className="list-decimal pl-5 space-y-2 text-slate-600">
+                  <ol className="list-decimal pl-5 space-y-2 text-gray-600">
                     <li>Cadastrar paciente</li>
                     <li>Criar exame associado ao paciente</li>
                     <li>Médico cria laudo baseado no exame</li>
@@ -234,22 +234,22 @@ const Header = () => {
 
               {activeTab === "files" && (
                 <div>
-                  <h3 className="text-lg font-medium text-slate-800 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     📁 Arquivos e Laudos
                   </h3>
-                  <ul className="space-y-3 text-slate-600">
+                  <ul className="space-y-3 text-gray-600">
                     <li>
-                      <strong>Formatos aceitos:</strong> PDF, JPG, PNG
+                      <strong className="text-gray-900">Formatos aceitos:</strong> PDF, JPG, PNG
                     </li>
                     <li>
-                      <strong>Armazenamento:</strong> Arquivos são armazenados
+                      <strong className="text-gray-900">Armazenamento:</strong> Arquivos são armazenados
                       no UploadCare
                     </li>
                     <li>
-                      <strong>Limite de tamanho:</strong> 20MB por arquivo
+                      <strong className="text-gray-900">Limite de tamanho:</strong> 20MB por arquivo
                     </li>
                     <li>
-                      <strong>Assinatura digital:</strong> Laudos podem ser
+                      <strong className="text-gray-900">Assinatura digital:</strong> Laudos podem ser
                       assinados digitalmente
                     </li>
                   </ul>
@@ -258,10 +258,10 @@ const Header = () => {
 
               {activeTab === "security" && (
                 <div>
-                  <h3 className="text-lg font-medium text-slate-800 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     🔒 Segurança
                   </h3>
-                  <ul className="space-y-3 text-slate-600">
+                  <ul className="space-y-3 text-gray-600">
                     <li>
                       Acesso ao sistema requer autenticação com login e senha
                     </li>
@@ -280,8 +280,8 @@ const Header = () => {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50">
-              <p className="text-sm text-slate-600">
+            <div className="px-6 py-4 border-t border-gray-100 bg-gray-50">
+              <p className="text-sm text-gray-600">
                 🆘 <strong>Dúvidas?</strong> Entre em contato com o suporte
                 interno (support@fytenza.com.br) ou seu administrador do
                 sistema.
@@ -291,7 +291,7 @@ const Header = () => {
                   href="/termos"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   Termos de Uso
                 </a>
@@ -299,7 +299,7 @@ const Header = () => {
                   href="/privacidade"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   Política de Privacidade
                 </a>

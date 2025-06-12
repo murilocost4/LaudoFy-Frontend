@@ -73,20 +73,20 @@ const DetalhesLaudo = () => {
   const [mostrarModalAssinatura, setMostrarModalAssinatura] = useState(false);
   const [certificadosDisponiveis, setCertificadosDisponiveis] = useState([]);
 
-  // Paleta de cores moderna - Sistema de design Slate
+  // Paleta de cores moderna - atualizada para o padrão azul/cinza
   const COLORS = {
-    primary: "#475569",
-    primaryLight: "#94A3B8",
-    primaryDark: "#334155",
-    secondary: "#10B981",
-    accent: "#6366F1",
+    primary: "#2563eb", // blue-600
+    primaryLight: "#60a5fa", // blue-400
+    primaryDark: "#1d4ed8", // blue-700
+    secondary: "#10B981", // emerald-500
+    accent: "#6366f1", // indigo-500
     warning: "#F59E0B",
     danger: "#EF4444",
-    background: "#F1F5F9",
+    background: "#f9fafb", // gray-50
     cardBg: "#FFFFFF",
-    text: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
+    text: "#0f172a", // slate-900
+    muted: "#64748b", // slate-500
+    border: "#e2e8f0", // slate-200
   };
 
   // Buscar dados do laudo
@@ -609,10 +609,10 @@ const DetalhesLaudo = () => {
   // Renderização condicional para estados de carregamento e erro
   if (isLoading && !laudo) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-slate-500 mx-auto"></div>
-          <p className="mt-4 text-slate-700 font-medium">Carregando laudo...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-700 font-medium">Carregando laudo...</p>
         </div>
       </div>
     );
@@ -620,12 +620,12 @@ const DetalhesLaudo = () => {
 
   if (erro && !laudo) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-xl shadow-md max-w-md w-full text-center border border-slate-200">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="bg-white p-6 rounded-xl shadow-md max-w-md w-full text-center border border-gray-200">
           <p className="text-red-500 font-medium mb-4">{erro}</p>
           <button
             onClick={() => navigate(-1)}
-            className="bg-gradient-to-r from-slate-600 to-slate-700 text-white px-4 py-2 rounded-lg hover:from-slate-700 hover:to-slate-800 transition-all shadow-sm"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm"
           >
             Voltar
           </button>
@@ -637,7 +637,7 @@ const DetalhesLaudo = () => {
   if (!laudo) return null;
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Cabeçalho */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -650,21 +650,21 @@ const DetalhesLaudo = () => {
                     : "/laudos",
                 )
               }
-              className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
             >
               <IoArrowBack className="text-lg" />
               <span className="font-medium">Voltar</span>
             </button>
 
-            <div className="hidden md:block h-6 w-px bg-slate-300"></div>
+            <div className="hidden md:block h-6 w-px bg-gray-300"></div>
 
-            <h1 className="text-2xl font-bold text-slate-800">
+            <h1 className="text-2xl font-bold text-gray-800">
               Laudo{" "}
-              <span className="text-slate-600">
+              <span className="text-blue-600">
                 #{laudo._id?.toString()?.substring(0, 8)}
               </span>
               {laudo.versao > 1 && (
-                <span className="ml-2 text-sm bg-slate-100 text-slate-800 px-2 py-1 rounded-full">
+                <span className="ml-2 text-sm bg-gray-100 text-gray-800 px-2 py-1 rounded-full">
                   Versão {laudo.versao}
                 </span>
               )}
@@ -709,10 +709,10 @@ const DetalhesLaudo = () => {
                 disabled={estaEnviandoEmail || !podeReenviarEmail()}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all shadow-sm ${
                   estaEnviandoEmail
-                    ? "bg-slate-400 cursor-not-allowed"
+                    ? "bg-gray-400 cursor-not-allowed"
                     : podeReenviarEmail()
-                      ? "bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800"
-                      : "bg-slate-200 text-slate-500 cursor-not-allowed"
+                      ? "bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800"
+                      : "bg-gray-200 text-gray-500 cursor-not-allowed"
                 } text-white`}
               >
                 {estaEnviandoEmail ? (
@@ -771,7 +771,7 @@ const DetalhesLaudo = () => {
               <button
                 onClick={() => handleDownloadLaudo("original")}
                 disabled={isLoading}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-500 text-slate-600 hover:bg-slate-50 transition-all shadow-sm ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-500 text-gray-600 hover:bg-gray-50 transition-all shadow-sm ${
                   isLoading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
@@ -802,14 +802,14 @@ const DetalhesLaudo = () => {
             className={`fixed top-4 right-4 z-50 p-4 rounded-md shadow-lg ${
               mensagem.tipo === "sucesso"
                 ? "bg-green-100 text-green-800 border-l-4 border-green-500"
-                : "bg-slate-100 text-slate-800 border-l-4 border-slate-500"
+                : "bg-blue-100 text-blue-800 border-l-4 border-blue-500"
             }`}
           >
             <div className="flex items-center gap-2">
               {mensagem.tipo === "sucesso" ? (
                 <FaCheckCircle className="text-green-500" />
               ) : (
-                <FaInfoCircle className="text-slate-500" />
+                <FaInfoCircle className="text-blue-500" />
               )}
               <span>{mensagem.texto}</span>
               <button
@@ -825,10 +825,10 @@ const DetalhesLaudo = () => {
         {/* Status do Laudo e Email */}
         <div className="space-y-4 mb-8">
           {/* Status do Laudo - MODERNIZADO */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all duration-300">
-            <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-              <h3 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                <FaFileMedicalAlt className="text-slate-500" />
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300">
+            <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+              <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <FaFileMedicalAlt className="text-blue-600" />
                 Status do Laudo
               </h3>
             </div>
@@ -842,7 +842,7 @@ const DetalhesLaudo = () => {
                       laudo.status === "Laudo assinado"
                         ? "bg-green-100"
                         : laudo.status === "Laudo realizado"
-                          ? "bg-slate-100"
+                          ? "bg-gray-100"
                           : laudo.status === "Laudo refeito"
                             ? "bg-yellow-100"
                             : laudo.status === "Laudo em processamento"
@@ -853,14 +853,14 @@ const DetalhesLaudo = () => {
                                   ? "bg-red-100"
                                   : laudo.status === "Rascunho"
                                     ? "bg-purple-100"
-                                    : "bg-slate-100"
+                                    : "bg-gray-100"
                     }`}
                   >
                     {laudo.status === "Laudo assinado" && (
                       <FaCheckCircle className="text-2xl text-green-600" />
                     )}
                     {laudo.status === "Laudo realizado" && (
-                      <FaFilePdf className="text-2xl text-slate-600" />
+                      <FaFilePdf className="text-2xl text-gray-600" />
                     )}
                     {laudo.status === "Laudo pronto para assinatura" && (
                       <FaShieldAlt className="text-2xl text-blue-600" />
@@ -890,7 +890,7 @@ const DetalhesLaudo = () => {
                       "Cancelado",
                       "Rascunho",
                     ].includes(laudo.status) && (
-                      <FaInfoCircle className="text-2xl text-slate-600" />
+                      <FaInfoCircle className="text-2xl text-gray-600" />
                     )}
                   </div>
 
@@ -900,7 +900,7 @@ const DetalhesLaudo = () => {
                         laudo.status === "Laudo assinado"
                           ? "bg-green-50 text-green-800 border-green-200"
                           : laudo.status === "Laudo realizado"
-                            ? "bg-slate-50 text-slate-800 border-slate-200"
+                            ? "bg-gray-50 text-gray-800 border-gray-200"
                             : laudo.status === "Laudo pronto para assinatura"
                               ? "bg-blue-50 text-blue-800 border-blue-200"
                             : laudo.status === "Laudo refeito"
@@ -913,14 +913,14 @@ const DetalhesLaudo = () => {
                                     ? "bg-red-50 text-red-800 border-red-200"
                                     : laudo.status === "Rascunho"
                                       ? "bg-purple-50 text-purple-800 border-purple-200"
-                                      : "bg-slate-50 text-slate-800 border-slate-200"
+                                      : "bg-gray-50 text-gray-800 border-gray-200"
                       }`}
                     >
                       <span className="font-semibold">{laudo.status}</span>
                     </div>
 
-                    <div className="mt-2 flex items-center gap-2 text-sm text-slate-600">
-                      <FaCalendarAlt className="text-slate-400" />
+                    <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
+                      <FaCalendarAlt className="text-gray-400" />
                       <span>
                         {laudo.status === "Laudo assinado" &&
                         laudo.dataAssinatura ? (
@@ -952,9 +952,9 @@ const DetalhesLaudo = () => {
 
                 {/* Badge de Versão */}
                 {laudo.versao > 1 && (
-                  <div className="flex items-center gap-2 bg-slate-100 px-3 py-2 rounded-lg">
-                    <IoLayers className="text-slate-500" />
-                    <span className="text-sm font-medium text-slate-700">
+                  <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg">
+                    <IoLayers className="text-gray-500" />
+                    <span className="text-sm font-medium text-gray-700">
                       Versão {laudo.versao}
                     </span>
                   </div>
@@ -962,19 +962,19 @@ const DetalhesLaudo = () => {
               </div>
 
               {/* Detalhes Adicionais */}
-              <div className="space-y-3 pt-4 border-t border-slate-100">
+              <div className="space-y-3 pt-4 border-t border-gray-100">
                 {/* Progress Bar para status em processamento */}
                 {laudo.status === "Laudo em processamento" && (
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-slate-600">
+                      <span className="text-gray-600">
                         Processando laudo...
                       </span>
                       <span className="text-blue-600 font-medium">
                         Em andamento
                       </span>
                     </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
+                    <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
                         className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full animate-pulse"
                         style={{ width: "65%" }}
@@ -985,8 +985,8 @@ const DetalhesLaudo = () => {
 
                 {/* Informações contextuais por status */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <FaClock className="text-slate-400" />
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <FaClock className="text-gray-400" />
                     <span>
                       {laudo.status === "Laudo assinado" && laudo.dataAssinatura
                         ? `Assinado às ${new Date(laudo.dataAssinatura).toLocaleTimeString("pt-BR")}`
@@ -995,8 +995,8 @@ const DetalhesLaudo = () => {
                   </div>
 
                   {laudo.medicoResponsavelId?.nome && (
-                    <div className="flex items-center gap-2 text-slate-600">
-                      <FaUserMd className="text-slate-400" />
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <FaUserMd className="text-gray-400" />
                       <span>Dr(a). {laudo.medicoResponsavelId.nome}</span>
                     </div>
                   )}
@@ -1069,7 +1069,7 @@ const DetalhesLaudo = () => {
               <div className="flex items-start justify-between">
                 <div>
                   <p className="font-semibold flex items-center gap-2">
-                    <IoMail className="text-slate-600" />
+                    <IoMail className="text-gray-600" />
                     Status do Email:{" "}
                     <span className="capitalize">
                       {statusEmail.status.toLowerCase()}
@@ -1101,39 +1101,39 @@ const DetalhesLaudo = () => {
           {/* Coluna 1 - Informações do Laudo */}
           <div className="lg:col-span-2 space-y-6">
             {/* Card Informações do Laudo */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <FaFileMedicalAlt className="text-slate-500" />
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                  <FaFileMedicalAlt className="text-blue-600" />
                   Informações do Laudo
                 </h2>
               </div>
               <div className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <p className="text-sm font-medium text-slate-500 mb-2">
+                  <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <p className="text-sm font-medium text-gray-500 mb-2">
                       ID do Laudo
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {laudo._id?.toString()?.substring(0, 8)}
                     </p>
                   </div>
-                  <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <p className="text-sm font-medium text-slate-500 mb-2">
+                  <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <p className="text-sm font-medium text-gray-500 mb-2">
                       Médico Responsável
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {laudo.medicoResponsavel}
                     </p>
                   </div>
-                  <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <p className="text-sm font-medium text-slate-500 mb-2">
+                  <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <p className="text-sm font-medium text-gray-500 mb-2">
                       Data de Criação
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {new Date(laudo.createdAt).toLocaleString()}
                     </p>
-                    <p className="text-xs text-slate-400 mt-1">
+                    <p className="text-xs text-gray-400 mt-1">
                       {new Date(laudo.createdAt).toLocaleDateString("pt-BR", {
                         weekday: "long",
                       })}
@@ -1141,32 +1141,32 @@ const DetalhesLaudo = () => {
                   </div>
                   {laudo.laudoAnterior &&
                   typeof laudo.laudoAnterior === "object" ? (
-                    <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                      <p className="text-sm font-medium text-slate-500 mb-2">
+                    <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <p className="text-sm font-medium text-gray-500 mb-2">
                         Laudo Anterior
                       </p>
-                      <p className="font-semibold text-slate-800">
+                      <p className="font-semibold text-gray-800">
                         <button
                           onClick={() =>
                             navigate(`/laudos/${laudo.laudoAnterior._id}`)
                           }
-                          className="text-slate-600 hover:text-slate-800 hover:underline transition-colors"
+                          className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
                         >
                           #{laudo.laudoAnterior._id.toString().substring(0, 8)}
                         </button>
                       </p>
                     </div>
                   ) : laudo.laudoAnterior ? (
-                    <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                      <p className="text-sm font-medium text-slate-500 mb-2">
+                    <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <p className="text-sm font-medium text-gray-500 mb-2">
                         Laudo Anterior
                       </p>
-                      <p className="font-semibold text-slate-800">
+                      <p className="font-semibold text-gray-800">
                         <button
                           onClick={() =>
                             navigate(`/laudos/${laudo.laudoAnterior}`)
                           }
-                          className="text-slate-600 hover:text-slate-800 hover:underline transition-colors"
+                          className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
                         >
                           #{laudo.laudoAnterior.toString().substring(0, 8)}
                         </button>
@@ -1178,17 +1178,17 @@ const DetalhesLaudo = () => {
             </div>
 
             {/* Card Conclusão Médica */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <FaStethoscope className="text-slate-500" />
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                  <FaStethoscope className="text-blue-600" />
                   Conclusão Médica
                 </h2>
               </div>
               <div className="p-6">
-                <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
                   <div className="prose max-w-none">
-                    <p className="whitespace-pre-line text-slate-700 leading-relaxed">
+                    <p className="whitespace-pre-line text-gray-700 leading-relaxed">
                       {laudo.conclusao}
                     </p>
                   </div>
@@ -1201,9 +1201,9 @@ const DetalhesLaudo = () => {
               <div className="flex justify-center">
                 <button
                   onClick={() => setMostrarHistorico(!mostrarHistorico)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-sm"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm"
                 >
-                  <FaHistory className="text-slate-500" />
+                  <FaHistory className="text-gray-500" />
                   <span>
                     {mostrarHistorico
                       ? "Ocultar Histórico"
@@ -1220,10 +1220,10 @@ const DetalhesLaudo = () => {
 
             {/* Seção Upload */}
             {podeEnviarAssinatura() && (
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                  <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                    <IoCloudUploadOutline className="text-slate-500" />
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                  <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                    <IoCloudUploadOutline className="text-blue-600" />
                     Enviar Laudo Assinado
                   </h2>
                 </div>
@@ -1240,22 +1240,22 @@ const DetalhesLaudo = () => {
                     <button
                       onClick={() => fileInputRef.current.click()}
                       disabled={isLoading}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-colors"
                     >
-                      <IoCloudUploadOutline className="text-xl text-slate-500" />
-                      <span className="font-medium text-slate-700">
+                      <IoCloudUploadOutline className="text-xl text-gray-500" />
+                      <span className="font-medium text-gray-700">
                         Selecionar Arquivo PDF
                       </span>
                     </button>
 
                     {arquivoSelecionado && (
-                      <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                      <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <div className="flex justify-between items-start">
                           <div>
-                            <p className="font-medium text-slate-800">
+                            <p className="font-medium text-gray-800">
                               {arquivoSelecionado.name}
                             </p>
-                            <p className="text-sm text-slate-500">
+                            <p className="text-sm text-gray-500">
                               {(arquivoSelecionado.size / 1024 / 1024).toFixed(
                                 2,
                               )}{" "}
@@ -1267,8 +1267,8 @@ const DetalhesLaudo = () => {
                             disabled={isLoading}
                             className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
                               isLoading
-                                ? "bg-slate-300 text-slate-600"
-                                : "bg-gradient-to-r from-slate-600 to-slate-700 text-white hover:from-slate-700 hover:to-slate-800"
+                                ? "bg-gray-300 text-gray-600"
+                                : "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800"
                             } transition-all shadow-sm`}
                           >
                             {isLoading ? (
@@ -1306,13 +1306,13 @@ const DetalhesLaudo = () => {
 
                         {uploadProgress > 0 && (
                           <div className="mt-3">
-                            <div className="w-full bg-slate-200 rounded-full h-2">
+                            <div className="w-full bg-gray-200 rounded-full h-2">
                               <div
-                                className="bg-gradient-to-r from-slate-500 to-slate-600 h-2 rounded-full"
+                                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full"
                                 style={{ width: `${uploadProgress}%` }}
                               ></div>
                             </div>
-                            <p className="text-xs text-slate-500 mt-1 text-right">
+                            <p className="text-xs text-gray-500 mt-1 text-right">
                               {uploadProgress}% completado
                             </p>
                           </div>
@@ -1326,27 +1326,27 @@ const DetalhesLaudo = () => {
 
             {/* Histórico de Versões */}
             {mostrarHistorico && (
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden transform transition-all duration-300 ease-in-out">
-                <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                  <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                    <FaHistory className="text-slate-500" />
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transform transition-all duration-300 ease-in-out">
+                <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                  <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                    <FaHistory className="text-blue-600" />
                     Histórico de Alterações
                   </h2>
                 </div>
                 <div className="p-6">
                   <div className="space-y-4">
                     {historicoVersoes.length > 0 ? (
-                      <ul className="divide-y divide-slate-200">
+                      <ul className="divide-y divide-gray-200">
                         {historicoVersoes.map((item, index) => (
                           <li
                             key={index}
-                            className="py-3 hover:bg-slate-50 rounded-lg px-2 transition-colors"
+                            className="py-3 hover:bg-gray-50 rounded-lg px-2 transition-colors"
                           >
                             <div className="flex justify-between">
                               <div>
-                                <p className="font-medium text-slate-800 capitalize flex items-center gap-2">
+                                <p className="font-medium text-gray-800 capitalize flex items-center gap-2">
                                   {item.acao === "EnvioEmail" && (
-                                    <IoMail className="text-slate-400" />
+                                    <IoMail className="text-gray-400" />
                                   )}
                                   {item.acao === "LaudoRefazer" && (
                                     <IoReload className="text-yellow-500" />
@@ -1357,13 +1357,13 @@ const DetalhesLaudo = () => {
                                   {item.acao.replace(/([A-Z])/g, " $1").trim()}
                                 </p>
                                 {item.motivo && (
-                                  <p className="text-sm text-slate-600 mt-1">
+                                  <p className="text-sm text-gray-600 mt-1">
                                     <span className="font-medium">Motivo:</span>{" "}
                                     {item.motivo}
                                   </p>
                                 )}
                                 {item.destinatarioEmail && (
-                                  <p className="text-sm text-slate-600 mt-1">
+                                  <p className="text-sm text-gray-600 mt-1">
                                     <span className="font-medium">
                                       Destinatário:
                                     </span>{" "}
@@ -1371,7 +1371,7 @@ const DetalhesLaudo = () => {
                                   </p>
                                 )}
                                 {item.statusEnvio && (
-                                  <p className="text-sm text-slate-600 mt-1">
+                                  <p className="text-sm text-gray-600 mt-1">
                                     <span className="font-medium">Status:</span>
                                     <span
                                       className={`ml-1 font-medium ${
@@ -1386,10 +1386,10 @@ const DetalhesLaudo = () => {
                                 )}
                               </div>
                               <div className="text-right">
-                                <p className="text-sm text-slate-500">
+                                <p className="text-sm text-gray-500">
                                   {new Date(item.data).toLocaleString()}
                                 </p>
-                                <p className="text-xs text-slate-400 mt-1">
+                                <p className="text-xs text-gray-400 mt-1">
                                   por {item.usuario || "Sistema"}
                                 </p>
                               </div>
@@ -1399,8 +1399,8 @@ const DetalhesLaudo = () => {
                       </ul>
                     ) : (
                       <div className="text-center py-8">
-                        <FaHistory className="mx-auto text-slate-300 text-4xl mb-3" />
-                        <p className="text-slate-500">
+                        <FaHistory className="mx-auto text-gray-300 text-4xl mb-3" />
+                        <p className="text-gray-500">
                           Nenhum histórico disponível
                         </p>
                       </div>
@@ -1414,40 +1414,40 @@ const DetalhesLaudo = () => {
           {/* Coluna 2 - Informações do Paciente e Exame */}
           <div className="space-y-6">
             {/* Card Informações do Paciente */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <FaUserAlt className="text-slate-500" />
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                  <FaUserAlt className="text-blue-600" />
                   Paciente
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <div className="mt-1 text-slate-500 text-lg">
+                  <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="mt-1 text-gray-500 text-lg">
                       <IoPersonOutline />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-slate-500">Nome</p>
-                      <p className="font-semibold text-slate-800 mt-1">
+                      <p className="text-sm font-medium text-gray-500">Nome</p>
+                      <p className="font-semibold text-gray-800 mt-1">
                         {paciente?.nome || "Não identificado"}
                       </p>
                     </div>
                   </div>
 
                   {paciente?.dataNascimento && (
-                    <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                      <div className="mt-1 text-slate-500 text-lg">
+                    <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="mt-1 text-gray-500 text-lg">
                         <IoCalendarOutline />
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-slate-500">
+                        <p className="text-sm font-medium text-gray-500">
                           Idade
                         </p>
-                        <p className="font-semibold text-slate-800 mt-1">
+                        <p className="font-semibold text-gray-800 mt-1">
                           {calcularIdade(paciente.dataNascimento)} anos
                         </p>
-                        <p className="text-xs text-slate-400 mt-1">
+                        <p className="text-xs text-gray-400 mt-1">
                           Nascimento:{" "}
                           {new Date(paciente.dataNascimento).toLocaleDateString(
                             "pt-BR",
@@ -1458,15 +1458,15 @@ const DetalhesLaudo = () => {
                   )}
 
                   {paciente?.email && (
-                    <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                      <div className="mt-1 text-slate-500 text-lg">
+                    <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="mt-1 text-gray-500 text-lg">
                         <IoMail />
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-slate-500">
+                        <p className="text-sm font-medium text-gray-500">
                           Email
                         </p>
-                        <p className="font-semibold text-slate-800 mt-1 break-words">
+                        <p className="font-semibold text-gray-800 mt-1 break-words">
                           {paciente.email}
                         </p>
                       </div>
@@ -1477,31 +1477,31 @@ const DetalhesLaudo = () => {
             </div>
 
             {/* Card Informações do Exame */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                  <FaFileMedicalAlt className="text-slate-500" />
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                  <FaFileMedicalAlt className="text-blue-600" />
                   Exame Relacionado
                 </h2>
               </div>
               <div className="p-6">
                 <div className="space-y-4">
-                  <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <p className="text-sm font-medium text-slate-500 flex items-center gap-2 mb-2">
+                  <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <p className="text-sm font-medium text-gray-500 flex items-center gap-2 mb-2">
                       <IoDocumentTextOutline />
                       Tipo de Exame
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {laudo.exame?.tipoExame?.nome || "--"}
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <p className="text-sm font-medium text-slate-500 flex items-center gap-2 mb-2">
+                  <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <p className="text-sm font-medium text-gray-500 flex items-center gap-2 mb-2">
                       <IoCalendarOutline />
                       Data do Exame
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {laudo.exame?.dataExame
                         ? new Date(laudo.exame.dataExame).toLocaleDateString(
                             "pt-BR",
@@ -1509,7 +1509,7 @@ const DetalhesLaudo = () => {
                         : "--"}
                     </p>
                     {laudo.exame?.dataExame && (
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-gray-400 mt-1">
                         {new Date(laudo.exame.dataExame).toLocaleDateString(
                           "pt-BR",
                           {
@@ -1525,24 +1525,24 @@ const DetalhesLaudo = () => {
 
             {/* Render company information if user is medico or adminMaster */}
             {usuario.role === "medico" || usuario.role === "adminMaster" ? (
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-                  <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
-                    <FaBuilding className="text-slate-500" />
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+                  <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                    <FaBuilding className="text-blue-600" />
                     Empresa
                   </h2>
                 </div>
                 <div className="p-6">
-                  <div className="p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <p className="text-sm font-medium text-slate-500 mb-2">
+                  <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <p className="text-sm font-medium text-gray-500 mb-2">
                       Nome da Empresa
                     </p>
-                    <p className="font-semibold text-slate-800">
+                    <p className="font-semibold text-gray-800">
                       {empresa?.nomeFantasia || "Não informado"}
                     </p>
                     {empresa?.razaoSocial &&
                       empresa.razaoSocial !== empresa.nomeFantasia && (
-                        <p className="text-xs text-slate-400 mt-1">
+                        <p className="text-xs text-gray-400 mt-1">
                           Razão Social: {empresa.razaoSocial}
                         </p>
                       )}
@@ -1586,8 +1586,8 @@ const DetalhesLaudo = () => {
         }}
       >
         <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="px-6 py-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
-            <h2 className="text-lg font-semibold text-slate-800 flex items-center gap-2">
+          <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50">
+            <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
               <IoReload className="text-yellow-500" />
               Refazer Laudo
             </h2>
@@ -1601,7 +1601,7 @@ const DetalhesLaudo = () => {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Motivo da Refação *
               </label>
               <input
@@ -1609,32 +1609,32 @@ const DetalhesLaudo = () => {
                 value={motivoRefacao}
                 onChange={(e) => setMotivoRefacao(e.target.value)}
                 placeholder="Ex: Correção de diagnóstico, informações incompletas..."
-                className="w-full px-3 py-2 border border-slate-300 text-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500"
+                className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 required
                 disabled={isLoading}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Nova Conclusão *
               </label>
               <textarea
                 value={novaConclusao}
                 onChange={(e) => setNovaConclusao(e.target.value)}
                 rows={8}
-                className="w-full px-3 py-2 border border-slate-300 text-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500"
+                className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 required
                 disabled={isLoading}
               />
             </div>
           </div>
 
-          <div className="px-6 py-4 border-t border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 flex justify-end gap-3">
+          <div className="px-6 py-4 border-t border-gray-200 bg-gradient-to-r from-blue-50 to-gray-50 flex justify-end gap-3">
             <button
               onClick={() => setModalRefazerAberto(false)}
               disabled={isLoading}
-              className="px-4 py-2 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Cancelar
             </button>
