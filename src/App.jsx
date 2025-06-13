@@ -43,6 +43,8 @@ import ConfigurarValores from "./pages/Financeiro/ConfigurarValores";
 import PagamentosLaudo from "./pages/AdminMaster/Financeiro/PagamentosLaudo";
 import MeusPagamentos from "./pages/Medico/MeusPagamentos";
 import GerenciarCertificados from "./pages/Medico/GerenciarCertificados";
+import GerenciamentoRoles from "./pages/Admin/GerenciamentoRoles";
+import GerenciamentoTenantsAdmin from "./pages/Admin/GerenciamentoTenantsAdmin";
 
 function App() {
   const navigate = useNavigate();
@@ -240,6 +242,32 @@ function App() {
             <RequireRole roles={["admin"]}>
               <MainLayout>
                 <Auditoria />
+              </MainLayout>
+            </RequireRole>
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path="/gerenciamento-roles"
+        element={
+          <RequireAuth>
+            <RequireRole roles={["admin", "adminMaster"]}>
+              <MainLayout>
+                <GerenciamentoRoles />
+              </MainLayout>
+            </RequireRole>
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path="/gerenciamento-tenants-admin"
+        element={
+          <RequireAuth>
+            <RequireRole roles={["adminMaster"]}>
+              <MainLayout>
+                <GerenciamentoTenantsAdmin />
               </MainLayout>
             </RequireRole>
           </RequireAuth>

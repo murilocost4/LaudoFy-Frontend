@@ -24,7 +24,7 @@ import {
 } from "react-icons/fi";
 
 const Sidebar = () => {
-  const { usuario, logout, permissaoFinanceiro, isAdminMaster } = useAuth();
+  const { usuario, logout, permissaoFinanceiro, isAdminMaster, temAlgumaRole, temRole } = useAuth();
   const { isOpen, close } = useSidebar();
   const location = useLocation();
 
@@ -83,6 +83,18 @@ const Sidebar = () => {
           icon: FiDatabase,
           label: "Logs de Auditoria",
           roles: ["admin"],
+        },
+        {
+          path: "/gerenciamento-roles",
+          icon: FiShield,
+          label: "Gerenciar Roles",
+          roles: ["admin", "adminMaster"],
+        },
+        {
+          path: "/gerenciamento-tenants-admin",
+          icon: FiShield,
+          label: "Tenants Admin",
+          roles: ["adminMaster"],
         },
       ],
       roles: ["admin", "recepcionista"],
@@ -160,7 +172,7 @@ const Sidebar = () => {
               // Verifica se o grupo deve ser exibido baseado nas roles
               if (
                 group.roles &&
-                !group.roles.some((role) => usuario?.role === role)
+                !temAlgumaRole(group.roles)
               ) {
                 return null;
               }
@@ -177,7 +189,7 @@ const Sidebar = () => {
               const hasVisibleItems = group.items.some(
                 (item) =>
                   !item.roles ||
-                  item.roles.some((role) => usuario?.role === role),
+                  temAlgumaRole(item.roles),
               );
 
               if (!hasVisibleItems) {
@@ -194,7 +206,7 @@ const Sidebar = () => {
                     {group.items.map((item) => {
                       if (
                         item.roles &&
-                        !item.roles.some((role) => usuario?.role === role)
+                        !temAlgumaRole(item.roles)
                       ) {
                         return null;
                       }

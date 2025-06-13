@@ -15,6 +15,9 @@ export const AuthProvider = ({ children }) => {
     tenant_id: null,
     isAdminMaster: false,
     permissaoFinanceiro: false,
+    // Adicionar estado para múltiplas roles
+    todasRoles: [],
+    roles: []
   });
 
   const navigate = useNavigate();
@@ -30,6 +33,9 @@ export const AuthProvider = ({ children }) => {
           tenant_id: decoded.tenant_id,
           isAdminMaster: decoded.isAdminMaster,
           permissaoFinanceiro: decoded.permissaoFinanceiro || false,
+          // Adicionar informações de múltiplas roles
+          todasRoles: decoded.todasRoles || [decoded.role],
+          roles: decoded.roles || []
         }));
       } catch (error) {
         logout();
@@ -135,6 +141,8 @@ export const AuthProvider = ({ children }) => {
       tenant_id: null,
       isAdminMaster: false,
       permissaoFinanceiro: false,
+      todasRoles: [],
+      roles: []
     });
     navigate("/");
   };
@@ -151,6 +159,40 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Função para verificar se o usuário tem uma role específica
+  const temRole = (roleVerificar) => {
+    const todasRoles = authState.todasRoles || [];
+    return todasRoles.includes(roleVerificar);
+  };
+
+  // Função para verificar se o usuário tem pelo menos uma das roles
+  const temAlgumaRole = (rolesVerificar) => {
+    if (!Array.isArray(rolesVerificar)) {
+      rolesVerificar = [rolesVerificar];
+    }
+    const todasRoles = authState.todasRoles || [];
+    return rolesVerificar.some(role => todasRoles.includes(role));
+  };
+
+  // Função para verificar se o usuário tem todas as roles especificadas
+  const temTodasRoles = (rolesNecessarias) => {
+    if (!Array.isArray(rolesNecessarias)) {
+      rolesNecessarias = [rolesNecessarias];
+    }
+    const todasRoles = authState.todasRoles || [];
+    return rolesNecessarias.every(role => todasRoles.includes(role));
+  };
+
+  // Função para obter a role principal do usuário
+  const getRolePrincipal = () => {
+    return authState.usuario?.role || null;
+  };
+
+  // Função para obter todas as roles do usuário
+  const getTodasRoles = () => {
+    return authState.todasRoles || [];
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -163,6 +205,11 @@ export const AuthProvider = ({ children }) => {
         tenant_id: authState.tenant_id,
         isAdminMaster: authState.isAdminMaster,
         permissaoFinanceiro: authState.permissaoFinanceiro,
+        temRole,
+        temAlgumaRole,
+        temTodasRoles,
+        getRolePrincipal,
+        getTodasRoles,
       }}
     >
       {children}
